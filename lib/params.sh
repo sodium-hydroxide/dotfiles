@@ -19,6 +19,12 @@ BREW_FORMULAE=(
     "ffmpeg"
     "htop"
     "nvim"
+    "duti"
+    "mas"
+    "doxygen"
+    "help2man"
+    "gcc"
+    "texlive-full"
 )
 
 # Casks to be managed
@@ -28,6 +34,7 @@ BREW_CASKS=(
     "calibre"
     "zotero"
     "hiddenbar"
+    "orion"
     "plex"
     "grandperspective"
     "pdf-expert" # needs license
@@ -36,6 +43,12 @@ BREW_CASKS=(
     "mission-control-plus"
     "xquartz"
     "visual-studio-code"
+    "wine-stable"
+    "vlc"
+    "skim"
+    "netnewswire"
+    "aldente"
+    "obsidian"
 )
 
 # Individual file mappings
@@ -87,6 +100,24 @@ export PS4='\[\033[35m\]+${BASH_SOURCE}:${LINENO}:\[\033[0m\] '
 
 export BASH_SILENCE_DEPRECATION_WARNING=1
 export SHELL="/bin/bash"
+export EDITOR="nvim"
+export LANG="en_US.UTF-8"
+export HISTSIZE=10000
+export HISTFILESIZE=20000
+export HISTCONTROL=ignoreboth:erasedups
+export CLICOLOR=1
+export LSCOLORS=GxFxCxDxBxegedabagaced
+
+
+# Prompt settings
+export PS1='\[\033[32m\]\u@\h\[\033[31m\]:$PWD$(if git rev-parse --git-dir > /dev/null 2>&1; then echo -n "\[\033[35m\]$(parse_git_branch)\[\033[33m\]$(parse_git_dirty)"; fi)\n\[\033[34m\]\$\[\033[0m\] '
+export PS2='\[\033[33m\]→ \[\033[0m\]'
+export PS3='Please choose an option: '
+export PS4='\[\033[35m\]+${BASH_SOURCE}:${LINENO}:\[\033[0m\] '
+
+# Basic environment settings
+export BASH_SILENCE_DEPRECATION_WARNING=1
+export SHELL="/bin/bash"
 export EDITOR="vim"
 export LANG="en_US.UTF-8"
 export HISTSIZE=10000
@@ -94,26 +125,66 @@ export HISTFILESIZE=20000
 export HISTCONTROL=ignoreboth:erasedups
 export CLICOLOR=1
 export LSCOLORS=GxFxCxDxBxegedabagaced
+
+# Rust environment
+export CARGO_HOME="$HOME/.cargo"
+export RUSTUP_HOME="$HOME/.rustup"
+export RUST_BACKTRACE=1
+
+# Python environment
+export VIRTUAL_ENV_DISABLE_PROMPT=1
+export PYTHONPATH="$HOME/.local/lib/python3/site-packages:$PYTHONPATH"
+
+# Julia environment
+export JULIA_DEPOT_PATH="$HOME/.julia"
+export JULIA_NUM_THREADS="auto"
+export JULIA_EDITOR="vim"
+
+# Node.js environment
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
+export NODE_ENV="development"
+export NODE_OPTIONS="--max-old-space-size=4096"
+
+# Consolidated PATH with all tool directories
 export PATH="\
-${HOME}/dotfiles/bin:\
+$HOME/.local/bin:\
+$CARGO_HOME/bin:\
+$HOME/.juliaup/bin:\
+/opt/homebrew/opt/julia/bin:\
+$(npm config get prefix 2>/dev/null)/bin:\
+$HOME/dotfiles/bin:\
 /opt/homebrew/bin:\
 /opt/homebrew/sbin:\
 /usr/local/bin:\
-/System/Cryptexes/App/usr/bin:\
-/usr/bin:\
-/bin:\
-/usr/sbin:\
-/sbin:\
 /usr/local/sbin:\
+/usr/bin:\
+/usr/sbin:\
+/bin:\
+/sbin:\
+/Library/Apple/usr/bin:\
+/System/Cryptexes/App/usr/bin:\
 /var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/local/bin:\
 /var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/bin:\
-/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/appleinternal/bin
+/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/appleinternal/bin\
 "
 
+# Common aliases
 alias gui="open"
 alias ll='ls -la'
 alias la='ls -A'
 alias l='ls -CF'
+alias vi="nvim"
+alias vim="nvim"
 
+# Development aliases
+# alias python='python3'
+# alias pip='pip3'
+# alias ts-node='tsx'  # Use tsx for better TypeScript execution
+# alias jl='julia'
+
+# Run greeting on startup
 greeting
 EOL
+

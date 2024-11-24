@@ -4,6 +4,7 @@ source "$CURRENT_DIR/brew.sh"
 source "$CURRENT_DIR/conf_files.sh"
 source "$CURRENT_DIR/macos.sh"
 source "$CURRENT_DIR/upgrade_bash.sh"
+source "$CURRENT_DIR/toolchains/install.sh"
 source "$CURRENT_DIR/../lib/params.sh"  # Load parameters
 
 
@@ -16,7 +17,7 @@ show_usage() {
 
 
 main() {
-    local total_steps=7
+    local total_steps=9
     local current_step=0
 
     print_status "Starting system configuration..."
@@ -24,6 +25,10 @@ main() {
 #     ((current_step++))
 #     show_progress $current_step $total_steps "Checking prerequisites"
 #     check_prerequisites
+
+    ((current_step++))
+    show_progress $current_step $total_steps "Installing development toolchains"
+    install_toolchains
 
     ((current_step++))
     show_progress $current_step $total_steps "Syncing Homebrew"
