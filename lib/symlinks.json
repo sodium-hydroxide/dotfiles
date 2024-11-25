@@ -1,0 +1,17 @@
+{"symlinks": [
+{
+  "directory": false,
+  "initial": "bashrc",
+  "final": "~/.bashrc"
+},
+{
+  "directory": true,
+  "initial": "nvim",
+  "final": "~/.config/nvim"
+},
+{
+  "directory": false,
+  "initial": "gitconfig",
+  "final": "~/.gitconfig"
+}
+]}

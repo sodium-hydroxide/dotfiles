@@ -1,69 +1,3 @@
-#! /bin/bash
-
-# Homebrew taps to be managed
-BREW_TAPS=(
-    # Modern versions of homebrew don't need these
-    # "homebrew/core"
-    # "homebrew/cask"
-)
-
-# Formulae to be managed
-BREW_FORMULAE=(
-    "bash"
-    "wget"
-    "git"       # needs conf
-    "gh"        # needs conf
-    "tmux"      # needs conf
-    "lf"        # needs conf
-    "massren"
-    "ffmpeg"
-    "htop"
-    "nvim"
-    "duti"
-    "mas"
-    "doxygen"
-    "help2man"
-    "gcc"
-    "texlive-full"
-)
-
-# Casks to be managed
-BREW_CASKS=(
-    "bbedit"    # needs license
-    "docker"
-    "calibre"
-    "zotero"
-    "hiddenbar"
-    "orion"
-    "plex"
-    "grandperspective"
-    "pdf-expert" # needs license
-    "whatsapp"
-    "backblaze"
-    "mission-control-plus"
-    "xquartz"
-    "visual-studio-code"
-    "wine-stable"
-    "vlc"
-    "skim"
-    "netnewswire"
-    "aldente"
-    "obsidian"
-)
-
-# Individual file mappings
-CONFIG_FILE_MAPPINGS=(
-    "config.txt:$HOME/Library/Application Support"
-    "settings.json:$HOME/.config"
-)
-
-# Directory mappings - format: "source_dir:target_dir"
-CONFIG_DIR_MAPPINGS=(
-    "nvim:$HOME/.config/nvim"
-)
-
-# Bashrc configuration
-read -r -d '' BASHRC_CONTENT << 'EOL'
 greeting() {
     echo "=== System Status ==="
     echo "Uptime: $(uptime | sed 's/.*up \([^,]*\),.*/\1/')"
@@ -82,6 +16,7 @@ greeting() {
     # System load averages
     echo "Load Averages: $(sysctl -n vm.loadavg | awk '{print $2, $3, $4}')"
     echo "Current Time: $(date -Iseconds)"
+    bash --version
     echo "=================="
 }
 
@@ -93,7 +28,7 @@ parse_git_dirty() {
     [[ $(git status --porcelain 2> /dev/null) ]] && echo "*"
 }
 
-export PS1='\[\033[32m\]\u@\h\[\033[31m\]:$PWD$(if git rev-parse --git-dir > /dev/null 2>&1; then echo -n "\[\033[35m\]$(parse_git_branch)\[\033[33m\]$(parse_git_dirty)"; fi)\n\[\033[34m\]\$\[\033[0m\] '
+export PS1='\[\033[32m\]\u@\h\[\033[31m\]:$PWD$(if git rev-parse --git-dir > /dev/null 2>&1; then echo -n "\[\033[35m\]$(parse_git_branch)\[\033[33m\]$(parse_git_dirty)"; fi)\n\[\033[34m\]bash-\$\[\033[0m\] '
 export PS2='\[\033[33m\]→ \[\033[0m\]'
 export PS3='Please choose an option: '
 export PS4='\[\033[35m\]+${BASH_SOURCE}:${LINENO}:\[\033[0m\] '
@@ -108,47 +43,27 @@ export HISTCONTROL=ignoreboth:erasedups
 export CLICOLOR=1
 export LSCOLORS=GxFxCxDxBxegedabagaced
 
-
-# Prompt settings
-export PS1='\[\033[32m\]\u@\h\[\033[31m\]:$PWD$(if git rev-parse --git-dir > /dev/null 2>&1; then echo -n "\[\033[35m\]$(parse_git_branch)\[\033[33m\]$(parse_git_dirty)"; fi)\n\[\033[34m\]\$\[\033[0m\] '
-export PS2='\[\033[33m\]→ \[\033[0m\]'
-export PS3='Please choose an option: '
-export PS4='\[\033[35m\]+${BASH_SOURCE}:${LINENO}:\[\033[0m\] '
-
-# Basic environment settings
-export BASH_SILENCE_DEPRECATION_WARNING=1
-export SHELL="/bin/bash"
-export EDITOR="vim"
-export LANG="en_US.UTF-8"
-export HISTSIZE=10000
-export HISTFILESIZE=20000
-export HISTCONTROL=ignoreboth:erasedups
-export CLICOLOR=1
-export LSCOLORS=GxFxCxDxBxegedabagaced
-
-# Rust environment
 export CARGO_HOME="$HOME/.cargo"
 export RUSTUP_HOME="$HOME/.rustup"
 export RUST_BACKTRACE=1
 
-# Python environment
 export VIRTUAL_ENV_DISABLE_PROMPT=1
 export PYTHONPATH="$HOME/.local/lib/python3/site-packages:$PYTHONPATH"
 
-# Julia environment
 export JULIA_DEPOT_PATH="$HOME/.julia"
 export JULIA_NUM_THREADS="auto"
 export JULIA_EDITOR="vim"
 
-# Node.js environment
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
 export NODE_ENV="development"
 export NODE_OPTIONS="--max-old-space-size=4096"
 
-# Consolidated PATH with all tool directories
+export XSDIR=""
+
 export PATH="\
+$HOME/.venv/bin:\
 $HOME/.local/bin:\
 $CARGO_HOME/bin:\
 $HOME/.juliaup/bin:\
@@ -178,13 +93,5 @@ alias l='ls -CF'
 alias vi="nvim"
 alias vim="nvim"
 
-# Development aliases
-# alias python='python3'
-# alias pip='pip3'
-# alias ts-node='tsx'  # Use tsx for better TypeScript execution
-# alias jl='julia'
-
-# Run greeting on startup
 greeting
-EOL
 

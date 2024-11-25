@@ -9,15 +9,9 @@ if [[ "${INSTALL_PYTHON_SOURCED-}" != "true" ]]; then
     install_python() {
         print_status "Setting up Python environment..."
 
-        # Check if Rust is installed (needed for uv)
-        if ! command -v cargo &> /dev/null; then
-            print_error "Rust not found. Please install Rust first."
-            return 1
-        fi
-
-        # Install or update uv
+        # Install uv directly from website
         print_status "Installing/updating uv..."
-        cargo install uv
+        curl -LsSf https://astral.sh/uv/install.sh | sh
         if [ $? -ne 0 ]; then
             print_error "Failed to install uv"
             return 1
@@ -33,18 +27,14 @@ if [[ "${INSTALL_PYTHON_SOURCED-}" != "true" ]]; then
         # Install base Python packages
         print_status "Installing base Python packages..."
         source "$venv_path/bin/activate"
-        
+
         uv pip install --upgrade \
             pip \
-            black \
-            isort \
+            ruff \
             mypy \
-            pytest \
             ipython \
             jupyter \
-            numpy \
-            pandas \
-            matplotlib \
+            build \
             requests
 
         if [ $? -ne 0 ]; then
@@ -58,4 +48,3 @@ if [[ "${INSTALL_PYTHON_SOURCED-}" != "true" ]]; then
         return 0
     }
 fi
-

@@ -1,6 +1,7 @@
 #! /bin/bash
 
 CURRENT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+PROJECT_ROOT="$(dirname "$CURRENT_DIR")"
 source "$CURRENT_DIR/utils.sh"
 
 check_defaults() {
@@ -195,6 +196,9 @@ write_my_defaults() {
         # Reload preference cache
         killall cfprefsd
     fi
+
+    print_status "Setting Default files"
+    duti "$PROJECT_ROOT/lib/duti"
 
     print_status "Configuration check complete!"
 }

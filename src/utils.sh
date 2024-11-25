@@ -227,10 +227,10 @@ if [[ "${UTILS_SOURCED-}" != "true" ]]; then
         ensure_command "git" || return 1
 
         # Check and install Command Line Tools
-        if ! install_command_line_tools; then
-            print_error "Failed to install Command Line Tools"
-            return 1
-        fi
+        # if ! install_command_line_tools; then
+        #     print_error "Failed to install Command Line Tools"
+        #     return 1
+        # fi
 
         # Check and install Homebrew
         if ! install_homebrew; then

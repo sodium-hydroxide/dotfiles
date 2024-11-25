@@ -1,0 +1,48 @@
+# BBEDIT
+
+# BBEdit as default handler for TextEdit's primary UTIs
+com.barebones.bbedit public.text all
+com.barebones.bbedit public.plain-text all
+com.barebones.bbedit public.utf8-plain-text all
+com.barebones.bbedit public.utf16-plain-text all
+com.barebones.bbedit public.utf16-external-plain-text all
+
+# Programming and markup languages
+com.barebones.bbedit public.source-code all
+com.barebones.bbedit public.script all
+com.barebones.bbedit public.shell-script all
+com.barebones.bbedit public.python-script all
+com.barebones.bbedit public.perl-script all
+com.barebones.bbedit public.ruby-script all
+com.barebones.bbedit public.php-script all
+com.barebones.bbedit public.c-source all
+com.barebones.bbedit public.c-plus-plus-source all
+com.barebones.bbedit public.c-header all
+com.barebones.bbedit public.c-plus-plus-header all
+com.barebones.bbedit net.daringfireball.markdown all
+com.barebones.bbedit public.xml all
+com.barebones.bbedit public.data all
+com.barebones.bbedit public.content all
+com.barebones.bbedit public.log all
+
+# File extensions for specific types
+com.barebones.bbedit .java all
+com.barebones.bbedit .rs all
+com.barebones.bbedit .nix all
+com.barebones.bbedit .tex all
+com.barebones.bbedit .ini all
+com.barebones.bbedit .config all
+
+# Web-related file extensions
+com.barebones.bbedit .css all
+com.barebones.bbedit .js all
+com.barebones.bbedit .jsx all
+com.barebones.bbedit .tsx all
+com.barebones.bbedit .json all
+
+# Others
+com.readdle.PDFExpert-Mac .pdf all
+org.videolan.vlc .mp3
+org.videolan.vlc .mp4
+org.videolan.vlc .mkv
+org.videolan.vlc .mpeg

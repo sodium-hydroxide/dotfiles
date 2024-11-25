@@ -40,7 +40,7 @@ vim.opt.undofile = false
 vim.opt.hlsearch = false
 
 -- UI settings
-vim.opt.termguicolors = true
+vim.opt.termguicolors = false
 vim.opt.scrolloff = 8
 vim.opt.signcolumn = "yes"
 vim.opt.updatetime = 50
@@ -49,6 +49,6 @@ vim.opt.colorcolumn = "80"
 -- Keymaps
 vim.keymap.set('n', '<leader>v', '<cmd>CHADopen<cr>')
 vim.keymap.set('n', '<C-h>', '<C-w>h')
-vim.keymap.set('n', '<C-j>', '<C-w>j')  -- Fixed: was missing 'j'
+vim.keymap.set('n', '<C-j>', '<C-w>j')
 vim.keymap.set('n', '<C-k>', '<C-w>k')
 vim.keymap.set('n', '<C-l>', '<C-w>l')
