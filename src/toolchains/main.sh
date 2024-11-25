@@ -2,6 +2,7 @@
 
 CURRENT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 source "$CURRENT_DIR/../utils.sh"
+source "$CURRENT_DIR/bash.sh"
 source "$CURRENT_DIR/rust.sh"
 source "$CURRENT_DIR/julia.sh"
 source "$CURRENT_DIR/python.sh"
@@ -12,6 +13,9 @@ if [[ "${INSTALL_TOOLCHAINS_SOURCED-}" != "true" ]]; then
 
     install_toolchains() {
         print_status "Installing development toolchains..."
+        
+        print_success "Upgrading to modern bash"
+        upgrade_bash
 
         # Install Rust first as UV depends on it
         print_status "Installing Rust toolchain..."
@@ -49,3 +53,10 @@ if [[ "${INSTALL_TOOLCHAINS_SOURCED-}" != "true" ]]; then
         return 0
     }
 fi
+
+
+update_toolchains() {
+    rustup update
+    juliaup update
+    uv self update
+}
