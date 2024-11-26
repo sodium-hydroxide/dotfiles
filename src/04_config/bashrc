@@ -63,6 +63,7 @@ export NODE_OPTIONS="--max-old-space-size=4096"
 export XSDIR=""
 
 export PATH="\
+$HOME/.bin:\
 $HOME/.venv/bin:\
 $HOME/.local/bin:\
 $CARGO_HOME/bin:\
@@ -87,11 +88,14 @@ $HOME/dotfiles/bin:\
 
 # Common aliases
 alias gui="open"
-alias ll='ls -la'
-alias la='ls -A'
-alias l='ls -CF'
+alias lsold="ls"
+alias ls="ls -CFl"
+alias lsa="ls -CFla"
 alias vi="nvim"
 alias vim="nvim"
 
-greeting
+if [[ $- == *i* ]]; then
+    greeting
+fi
+
 
