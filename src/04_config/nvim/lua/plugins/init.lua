@@ -1,21 +1,2 @@
 return {
-    -- Example plugins (uncomment and modify as needed):
-    -- { 
-    --     "folke/which-key.nvim",
-    --     event = "VeryLazy",
-    --     config = function()
-    --         require("which-key").setup()
-    --     end
-    -- },
-    -- {
-    --     "nvim-treesitter/nvim-treesitter",
-    --     build = ":TSUpdate",
-    --     event = { "BufReadPost", "BufNewFile" },
-    --     config = function()
-    --         require("nvim-treesitter.configs").setup({
-    --             ensure_installed = { "lua", "vim" },
-    --             highlight = { enable = true },
-    --         })
-    --     end
-    -- }
 }

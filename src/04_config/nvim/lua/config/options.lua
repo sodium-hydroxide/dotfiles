@@ -32,4 +32,11 @@ opt.wrap = false
 opt.cursorline = true
 opt.fixendofline = true
 opt.fixeol = true
+opt.colorcolumn = "80"
 opt.termguicolors = false
+
+opt.mouse = "a"
+opt.mousemodel = "popup"
+
+
+
