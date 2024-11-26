@@ -13,6 +13,7 @@ return {
                 "rust-analyzer",
                 "shellcheck",
                 "julia-lsp",
+                "bash-language-server",
                 -- "ts_ls",
                 "typescript-language-server",
                 "texlab",
@@ -105,6 +106,13 @@ return {
             -- Configure LSP servers
             -- PYTHON LSP==================================================================
             local lspconfig = require('lspconfig')
+
+            -- Shell
+            lspconfig.bashls.setup({
+                capabilities = capabilities,
+                on_attach = on_attach,
+                filetypes = { "sh", "bash", "zsh" },
+            })
             -- Python (update the existing pyright config)
             lspconfig.pyright.setup({
                 capabilities = capabilities,
@@ -134,7 +142,7 @@ return {
                 },
                 -- Rust analyzer will automatically find rustup's installation
             })
-            
+
             -- Julia (update the existing julials config) ==============================
             lspconfig.julials.setup({
                 capabilities = capabilities,
@@ -146,11 +154,12 @@ return {
                     },
                 },
             })
-            -- TypeScript/JavaScript  ==========================
-            lspconfig.tsserver.setup({
-                capabilities = capabilities,
-                on_attach = on_attach,
-            })
+
+            -- -- TypeScript/JavaScript
+            -- lspconfig.tsserver.setup({
+            --     capabilities = capabilities,
+            --     on_attach = on_attach,
+            -- })
 
             -- LaTeX  ==========================
             lspconfig.texlab.setup({

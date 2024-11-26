@@ -131,6 +131,7 @@ return {
             pcall(telescope.load_extension, "fzf")
         end
     },
+-------------------------------------------------------------------------------
     {
         "folke/which-key.nvim",
         version = "*",
@@ -173,49 +174,39 @@ return {
                 },
             })
 
-            -- Register leader groups
+            -- Register mappings using the new syntax
             wk.register({
-                b = { name = "+Buffer" },
-                c = { name = "+Code" },
-                f = { name = "+Find/Files" },
-                g = { name = "+Git" },
-                t = { name = "+Terminal" },
-                w = { name = "+Window" },
-            }, { prefix = "<leader>" })
+                -- Leader mappings
+                { "<leader>b", group = "Buffer" },
+                { "<leader>c", group = "Code" },
+                { "<leader>f", group = "Find/Files" },
+                { "<leader>g", group = "Git" },
+                { "<leader>t", group = "Terminal" },
+                { "<leader>w", group = "Window" },
 
-            -- Register LSP mappings
-            wk.register({
-                g = {
-                    name = "+Goto",
-                    D = { vim.lsp.buf.declaration, "Declaration" },
-                    d = { vim.lsp.buf.definition, "Definition" },
-                    i = { vim.lsp.buf.implementation, "Implementation" },
-                    r = { vim.lsp.buf.references, "References" },
-                },
+                -- LSP mappings
+                { "g", group = "Goto" },
+                { "gD", vim.lsp.buf.declaration, desc = "Declaration" },
+                { "gd", vim.lsp.buf.definition, desc = "Definition" },
+                { "gi", vim.lsp.buf.implementation, desc = "Implementation" },
+                { "gr", vim.lsp.buf.references, desc = "References" },
+
+                -- Telescope mappings
+                { "<leader>ff", "<cmd>Telescope find_files<cr>", desc = "Find File" },
+                { "<leader>fg", "<cmd>Telescope live_grep<cr>", desc = "Live Grep" },
+                { "<leader>fb", "<cmd>Telescope buffers<cr>", desc = "Buffers" },
+                { "<leader>fh", "<cmd>Telescope help_tags<cr>", desc = "Help Tags" },
+                { "<leader>fk", "<cmd>Telescope keymaps<cr>", desc = "Keymaps" },
+                { "<leader>fr", "<cmd>Telescope oldfiles<cr>", desc = "Recent Files" },
+                { "<leader>p", "<cmd>Telescope commands<cr>", desc = "Commands" },
+
+                -- Terminal mappings
+                { "<leader>tf", "<cmd>ToggleTerm direction=float<cr>", desc = "Float Terminal" },
+                { "<leader>th", "<cmd>ToggleTerm size=10 direction=horizontal<cr>", desc = "Horizontal Terminal" },
+                { "<leader>tv", "<cmd>ToggleTerm size=80 direction=vertical<cr>", desc = "Vertical Terminal" },
             })
-
-            -- Register Telescope mappings
-            wk.register({
-                f = {
-                    f = { "<cmd>Telescope find_files<cr>", "Find File" },
-                    g = { "<cmd>Telescope live_grep<cr>", "Live Grep" },
-                    b = { "<cmd>Telescope buffers<cr>", "Buffers" },
-                    h = { "<cmd>Telescope help_tags<cr>", "Help Tags" },
-                    k = { "<cmd>Telescope keymaps<cr>", "Keymaps" },
-                    r = { "<cmd>Telescope oldfiles<cr>", "Recent Files" },
-                },
-                p = { "<cmd>Telescope commands<cr>", "Commands" },
-            }, { prefix = "<leader>" })
-
-            -- Register Terminal mappings
-            wk.register({
-                t = {
-                    f = { "<cmd>ToggleTerm direction=float<cr>", "Float Terminal" },
-                    h = { "<cmd>ToggleTerm size=10 direction=horizontal<cr>", "Horizontal Terminal" },
-                    v = { "<cmd>ToggleTerm size=80 direction=vertical<cr>", "Vertical Terminal" },
-                }
-            }, { prefix = "<leader>" })
         end
     }
+
 }
 

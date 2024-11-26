@@ -10,12 +10,21 @@ return {
             { "<leader>o", "<cmd>NvimTreeFocus<cr>", desc = "Focus NvimTree" },
         },
         opts = {
+            on_attach = function(bufnr)
+                local api = require("nvim-tree.api")
+                -- Default mappings
+                api.config.mappings.default_on_attach(bufnr)
+            end,
             sort = {
                 sorter = "case_sensitive",
             },
             view = {
                 width = 30,
                 relativenumber = false,
+                float = {
+                    enable = false,
+                    quit_on_focus_loss = true,
+                },
             },
             renderer = {
                 group_empty = true,
@@ -36,7 +45,42 @@ return {
                 enable = true,
                 ignore = false,
             },
+            actions = {
+                open_file = {
+                    quit_on_open = false,
+                    resize_window = true,
+                },
+            },
+            notify = {
+                threshold = vim.log.levels.WARN,
+            },
+            log = {
+                enable = true,
+                truncate = true,
+                types = {
+                    all = false,
+                    config = false,
+                    copy_paste = false,
+                    diagnostics = false,
+                    git = false,
+                    profile = false,
+                },
+            },
         },
+        config = function(_, opts)
+            -- Ensure that nvim-tree handles the case where a buffer already exists
+            local function open_nvim_tree(data)
+                local directory = vim.fn.isdirectory(data.file) == 1
+                if not directory then
+                    return
+                end
+                vim.cmd.cd(data.file)
+                require("nvim-tree.api").tree.open()
+            end
+
+            vim.api.nvim_create_autocmd({ "VimEnter" }, { callback = open_nvim_tree })
+            require("nvim-tree").setup(opts)
+        end,
     },
     {
         'akinsho/toggleterm.nvim',

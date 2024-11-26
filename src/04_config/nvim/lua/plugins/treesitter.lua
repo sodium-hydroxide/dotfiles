@@ -9,9 +9,13 @@ return {
             "nvim-treesitter/nvim-treesitter-textobjects",
         },
         opts = {
-            highlight = { enable = true },
+            highlight = {
+                enable = true,
+                additional_vim_regex_highlighting = { "bash", "sh" },
+            },
             indent = { enable = true },
             ensure_installed = {
+                "bash", -- Added this line
                 "python",
                 "rust",
                 "julia",
@@ -49,3 +53,4 @@ return {
         end,
     },
 }
+

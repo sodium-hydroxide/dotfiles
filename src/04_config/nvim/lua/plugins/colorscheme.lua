@@ -11,9 +11,34 @@ return {
             vim.g.xcodelight_emph_idents = 1
             vim.g.xcodelight_match_paren_style = 1
             vim.g.xcodelight_dim_punctuation = 1
+
+            -- Enable Treesitter highlighting before setting colorscheme
+            vim.opt.termguicolors = false
+
             vim.cmd([[colorscheme xcodelight]])
 
-            -- Optional: Custom highlights to make it even more Xcode-like
+            -- Add these Treesitter-specific highlights after colorscheme
+            vim.cmd([[
+                highlight! link @variable Normal
+                highlight! link @function Function
+                highlight! link @function.call Function
+                highlight! link @operator Operator
+                highlight! link @keyword Keyword
+                highlight! link @keyword.function Keyword
+                highlight! link @parameter Normal
+                highlight! link @string String
+                highlight! link @boolean Boolean
+                highlight! link @number Number
+                highlight! link @comment Comment
+                highlight! link @conditional Conditional
+                highlight! link @repeat Repeat
+                highlight! link @label Label
+                highlight! link @include Include
+                highlight! link @type Type
+                highlight! link @constant Constant
+            ]])
+
+            -- Your existing custom highlights
             vim.cmd([[
                 highlight Normal guibg=#FFFFFF guifg=#262626
                 highlight Comment guifg=#008F00
@@ -35,7 +60,7 @@ return {
         end
     },
 
-    -- Make sure treesitter uses the right highlight groups
+    -- Update Treesitter configuration
     {
         "nvim-treesitter/nvim-treesitter",
         opts = {
