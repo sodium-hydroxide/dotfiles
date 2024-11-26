@@ -2,19 +2,21 @@
 tap "sodium-hydroxide/compression-tools", "https://github.com/sodium-hydroxide/compression-tools"
 brew "compression-tools"
 tap "sodium-hydroxide/lsdir", "https://github.com/sodium-hydroxide/lsdir"
-brew "lsdir"
+# brew "lsdir"
 
 # Formulae
-brew "bash"
-brew "wget"
+brew "nvim"
+brew "bash"         # version in macOS is outdated
+brew "wget"         # similar to curl
 brew "git"
+brew "ripgrep"      # regex tool
+brew "fd"           # find directories
 brew "gh"
 brew "tmux"
-brew "lf"
+brew "lf"               # needs confix
 brew "massren"
 brew "ffmpeg"
 brew "htop"
-brew "nvim"
 brew "duti"
 brew "mas"
 brew "doxygen"
@@ -24,7 +26,8 @@ brew "texlive"
 brew "julia"
 
 # Casks
-cask "bbedit"    # needs license
+cask "bbedit"
+cask "backblaze"
 cask "docker"
 cask "calibre"
 cask "zotero"
@@ -45,3 +48,6 @@ cask "netnewswire"
 cask "aldente"
 cask "obsidian"
 cask "font-jetbrains-mono-nerd-font"
+cask "iterm2"
+
+

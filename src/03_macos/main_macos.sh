@@ -1,8 +1,7 @@
 #! /bin/bash
 
 CURRENT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
-PROJECT_ROOT="$(dirname "$CURRENT_DIR")"
-source "$CURRENT_DIR/utils.sh"
+source "$CURRENT_DIR/../utils.sh"
 
 check_defaults() {
     local domain=$1
@@ -34,10 +33,10 @@ write_defaults() {
 
     if ! check_defaults "$domain" "$key" "$value"; then
         print_status "Updating $domain $key to $value"
-        
+
         # First try without sudo (user preferences)
         defaults write "$domain" "$key" "$type" "$value"
-        
+
         # Only use sudo for system-level preferences
         case "$domain" in
             "/Library/Preferences/"* | \
@@ -57,7 +56,7 @@ write_defaults() {
     return 1  # no change needed
 }
 
-write_my_defaults() {
+main_macos() {
     local needs_dock_restart=0
     local needs_finder_restart=0
     local needs_ui_restart=0
@@ -198,7 +197,7 @@ write_my_defaults() {
     fi
 
     print_status "Setting Default files"
-    duti "$PROJECT_ROOT/lib/duti"
+    duti "$CURRENT_DIR/../03_macos/duti"
 
     print_status "Configuration check complete!"
 }

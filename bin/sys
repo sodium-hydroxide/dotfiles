@@ -1,0 +1,184 @@
+#! /bin/bash
+
+# Get the bin directory location
+SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+# Get dotfiles root (one level up from bin)
+DOTFILES_ROOT="$( cd "$SCRIPT_DIR/.." && pwd )"
+# Source directory containing all scripts
+SRC_DIR="$DOTFILES_ROOT/src"
+
+# Source the main script
+source "$SRC_DIR/main.sh"
+
+# Show sys-specific usage
+show_sys_usage() {
+    cat << EOF
+sys - System Management Tool
+
+Usage: sys <command> [options]
+
+Commands:
+    update              Update everything (same as 'sys sync --all')
+    brew               Manage Homebrew packages
+        update         Update Homebrew and packages
+        reinstall     Reinstall all Homebrew packages
+
+    dev                Manage development toolchains
+        update         Update all development tools
+        reinstall     Reinstall all development tools
+
+    macos              Manage macOS settings
+        apply          Apply macOS system settings
+        reset         Reset macOS settings to defaults
+
+    config             Manage configuration files
+        sync          Sync configuration files
+        clean         Remove broken symlinks
+
+    sync               Selectively sync system components
+        --all         Sync everything (default if no flags)
+        --brew        Sync Homebrew packages
+        --toolchain   Sync development toolchains
+        --macos      Sync macOS settings
+        --config      Sync configuration files
+
+Options:
+    -f, --force       Force operations (reinstall/overwrite)
+    -d, --dry-run     Show what would be done
+    -v, --verbose     Show detailed output
+    -h, --help        Show this help message
+
+Examples:
+    sys update                    # Update everything
+    sys brew update              # Update Homebrew packages
+    sys dev reinstall            # Reinstall development tools
+    sys config sync             # Sync config files
+    sys sync --brew --dev       # Update Homebrew and dev tools
+    sys sync --all --force      # Force update everything
+EOF
+}
+
+# Handle brew-specific commands
+handle_brew() {
+    case "$1" in
+        "update")
+            shift
+            main --brew "$@"
+            ;;
+        "reinstall")
+            shift
+            main --brew --force "$@"
+            ;;
+        *)
+            print_error "Unknown brew command: $1"
+            show_sys_usage
+            exit 1
+            ;;
+    esac
+}
+
+# Handle dev-specific commands
+handle_dev() {
+    case "$1" in
+        "update")
+            shift
+            main --toolchain "$@"
+            ;;
+        "reinstall")
+            shift
+            main --reinstall-toolchain "$@"
+            ;;
+        *)
+            print_error "Unknown dev command: $1"
+            show_sys_usage
+            exit 1
+            ;;
+    esac
+}
+
+# Handle macos-specific commands
+handle_macos() {
+    case "$1" in
+        "apply")
+            shift
+            main --macos "$@"
+            ;;
+        "reset")
+            print_error "macOS reset not implemented yet"
+            exit 1
+            ;;
+        *)
+            print_error "Unknown macos command: $1"
+            show_sys_usage
+            exit 1
+            ;;
+    esac
+}
+
+# Handle config-specific commands
+handle_config() {
+    case "$1" in
+        "sync")
+            shift
+            main --config "$@"
+            ;;
+        "clean")
+            print_error "Config cleanup not implemented yet"
+            exit 1
+            ;;
+        *)
+            print_error "Unknown config command: $1"
+            show_sys_usage
+            exit 1
+            ;;
+    esac
+}
+
+# Check if source directory exists
+if [[ ! -d "$SRC_DIR" ]]; then
+    print_error "Source directory not found at: $SRC_DIR"
+    exit 1
+fi
+
+# Check if main script exists
+if [[ ! -f "$SRC_DIR/main.sh" ]]; then
+    print_error "Main script not found at: $SRC_DIR/main.sh"
+    exit 1
+fi
+
+# Main command router
+case "$1" in
+    "update")
+        shift
+        main --all "$@"
+        ;;
+    "brew")
+        shift
+        handle_brew "$@"
+        ;;
+    "dev")
+        shift
+        handle_dev "$@"
+        ;;
+    "macos")
+        shift
+        handle_macos "$@"
+        ;;
+    "config")
+        shift
+        handle_config "$@"
+        ;;
+    "sync")
+        shift
+        main "$@"
+        ;;
+    "-h"|"--help"|"help"|"")
+        show_sys_usage
+        exit 0
+        ;;
+    *)
+        print_error "Unknown command: $1"
+        show_sys_usage
+        exit 1
+        ;;
+esac

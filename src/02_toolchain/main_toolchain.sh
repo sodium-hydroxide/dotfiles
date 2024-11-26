@@ -13,7 +13,7 @@ if [[ "${INSTALL_TOOLCHAINS_SOURCED-}" != "true" ]]; then
 
     install_toolchains() {
         print_status "Installing development toolchains..."
-        
+
         print_success "Upgrading to modern bash"
         upgrade_bash
 
