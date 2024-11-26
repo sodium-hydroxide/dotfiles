@@ -1,11 +1,17 @@
 # Taps
 tap "sodium-hydroxide/compression-tools", "https://github.com/sodium-hydroxide/compression-tools"
 brew "compression-tools"
-tap "sodium-hydroxide/lsdir", "https://github.com/sodium-hydroxide/lsdir"
+# tap "sodium-hydroxide/lsdir", "https://github.com/sodium-hydroxide/lsdir"
+# brew "libmagic"
 # brew "lsdir"
 
-# Formulae
+# Editors
 brew "nvim"
+cask "vimr"
+cask "bbedit"
+cask "visual-studio-code"
+
+# Formulae
 brew "bash"         # version in macOS is outdated
 brew "wget"         # similar to curl
 brew "git"
@@ -23,10 +29,13 @@ brew "doxygen"
 brew "help2man"
 brew "gcc"
 brew "texlive"
+brew "ruby"
 brew "julia"
+brew "cmake"
+brew "ninja"
+
 
 # Casks
-cask "bbedit"
 cask "backblaze"
 cask "docker"
 cask "calibre"
@@ -40,7 +49,6 @@ cask "whatsapp"
 cask "backblaze"
 cask "mission-control-plus"
 cask "xquartz"
-cask "visual-studio-code"
 cask "wine-stable"
 cask "vlc"
 cask "skim"
@@ -49,5 +57,4 @@ cask "aldente"
 cask "obsidian"
 cask "font-jetbrains-mono-nerd-font"
 cask "iterm2"
-
 
