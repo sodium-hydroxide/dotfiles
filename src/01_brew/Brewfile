@@ -12,26 +12,34 @@ brew "utf8proc"
 cask "vimr"
 cask "bbedit"
 cask "visual-studio-code"
+cask "zed"
+
+# Languages
+brew "bash"         # version in macOS is outdated
+brew "perl"
+brew "ruby"
+brew "julia"
+brew "gcc"
+brew "llvm"
+brew "clang"
+brew "sbcl"
+brew "texlive"      # latex
+brew "pandoc"       # converting to and from latex
 
 # Formulae
-brew "bash"         # version in macOS is outdated
 brew "wget"         # similar to curl
-brew "git"
 brew "ripgrep"      # regex tool
 brew "fd"           # find directories
+brew "git"
 brew "gh"
 brew "tmux"
 brew "lf"               # needs confix
-brew "massren"
-brew "ffmpeg"
-brew "htop"
-brew "duti"
-brew "doxygen"
-brew "help2man"
-brew "gcc"
-brew "texlive"
-brew "ruby"
-brew "julia"
+brew "massren"      # rename files
+brew "ffmpeg"       # audio and video editing
+brew "htop"         # see processes running
+brew "duti"         # set default applications macOS
+brew "doxygen"      # create documentation from comments
+brew "help2man"     # create man page from -h or --help flag
 brew "cmake"
 brew "ninja"
 
@@ -61,3 +69,4 @@ cask "font-jetbrains-mono-nerd-font"
 cask "iterm2"
 
 brew "mas"
+

@@ -1,3 +1,5 @@
 [user]
 	email = noahjblair@outlook.com
 	name = Noah Blair
+[init]
+	defaultBranch = main
