@@ -5,7 +5,8 @@ if not vim.loop.fs_stat(lazypath) then
         "git",
         "clone",
         "--filter=blob:none",
-        "https://github.com/folke/lazy.nvim.git",       "--branch=stable",
+        "https://github.com/folke/lazy.nvim.git",
+        "--branch=stable",
         lazypath,
     })
 end
@@ -14,18 +15,11 @@ vim.opt.rtp:prepend(lazypath)
 -- Set leader key before loading plugins
 vim.g.mapleader = " "
 
--- Disable netrw in favor of nvim-tree
-vim.g.loaded_netrw = 1
-vim.g.loaded_netrwPlugin = 1
-
--- Basic editor options
-vim.opt.number = true         -- Show line numbers
-vim.opt.mouse = "a"          -- Enable mouse support
-vim.opt.termguicolors = false -- Enable 24-bit colors
+-- Set which-key health check warnings (set to true to disable warnings)
+vim.g.which_key_ignore_health_warning = false
 
 -- Initialize lazy.nvim with our plugins
 require("lazy").setup({
-    -- Our UI enhancement package
     {
         "sodium-hydroxide/nvim-ui",
         dependencies = {
@@ -34,28 +28,47 @@ require("lazy").setup({
             "akinsho/toggleterm.nvim",
             "nvim-telescope/telescope.nvim",
             "folke/which-key.nvim",
-            "nvim-lua/plenary.nvim",  -- Required by telescope
+            "nvim-lualine/lualine.nvim",
+            "nvim-lua/plenary.nvim",
         },
         config = function()
-            -- The package will use default settings if we pass an empty table
-            require("nvim-ui").setup({})
+            require("nvim-ui").setup({
+                settings = {display = {termguicolors = false}},
+                statusline = {
+                    theme = "auto",           -- Use colorscheme colors
+                    global_status = true,     -- Use global statusline
+                    sections = {
+                        -- Override any section configurations here
+                        lualine_c = {
+                            {
+                                "filename",
+                                path = 1,     -- Show relative path
+                                symbols = {
+                                    modified = "●",
+                                    readonly = "",
+                                    unnamed = "[No Name]",
+                                },
+                            },
+                        },
+                    },
+                },
+            })
         end,
     },
-
      -- MCNP development package
      {
-         "sodium-hydroxide/nvim-mcnp",
-         dependencies = {
-             "L3MON4D3/LuaSnip",
-             "hrsh7th/nvim-cmp",
-             "nvim-treesitter/nvim-treesitter",
-         },
-         config = function()
-             require("nvim-mcnp").setup({})
-         end,
-         ft = { "mcnp" },  -- Load only for MCNP files
-     },
-  
+        "sodium-hydroxide/nvim-mcnp",
+        dependencies = {
+            "L3MON4D3/LuaSnip",
+            "hrsh7th/nvim-cmp",
+            "nvim-treesitter/nvim-treesitter",
+        },
+        config = function()
+            require("nvim-mcnp").setup({})
+        end,
+        ft = { "mcnp", "in", ".in" },  -- Load only for MCNP files
+    },
+
     -- Bash development package
     {
         "sodium-hydroxide/nvim-bash",

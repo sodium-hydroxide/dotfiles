@@ -9,7 +9,10 @@ brew "compression-tools"
 brew "neovim"
 brew "luarocks"
 brew "utf8proc"
+brew "shellcheck"
+brew "shfmt"
 cask "vimr"
+
 cask "bbedit"
 cask "visual-studio-code"
 cask "zed"
@@ -40,6 +43,7 @@ brew "wget"         # similar to curl
 brew "ripgrep"      # regex tool
 brew "fd"           # find directories
 brew "tmux"
+brew "jq"           # JSON Processing
 brew "lf"               # needs confix
 brew "massren"      # rename files
 brew "ffmpeg"       # audio and video editing

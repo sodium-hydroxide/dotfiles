@@ -35,6 +35,11 @@ Commands:
         sync          Sync configuration files
         clean         Remove broken symlinks
 
+    pkg                Manage global packages
+        all           Update all package managers
+        pip           Update Python packages
+        npm           Update Node.js packages
+
     sync               Selectively sync system components
         --all         Sync everything (default if no flags)
         --brew        Sync Homebrew packages
@@ -55,6 +60,9 @@ Examples:
     sys config sync             # Sync config files
     sys sync --brew --dev       # Update Homebrew and dev tools
     sys sync --all --force      # Force update everything
+    sys pkg all                 # Update all packages
+    sys pkg pip                 # Update Python packages
+    sys pkg npm                 # Update Node.js packages
 EOF
 }
 
@@ -134,6 +142,40 @@ handle_config() {
     esac
 }
 
+handle_pkg() {
+    case "$1" in
+        "all")
+            shift
+            main --packages "$@"
+            ;;
+        "pip")
+            shift
+            if [[ -f "$SRC_DIR/05_pkgs/add_pkgs.sh" ]]; then
+                source "$SRC_DIR/05_pkgs/add_pkgs.sh"
+                add_python "$@"
+            else
+                print_error "Package management script not found"
+                exit 1
+            fi
+            ;;
+        "npm")
+            shift
+            if [[ -f "$SRC_DIR/05_pkgs/add_pkgs.sh" ]]; then
+                source "$SRC_DIR/05_pkgs/add_pkgs.sh"
+                add_npm "$@"
+            else
+                print_error "Package management script not found"
+                exit 1
+            fi
+            ;;
+        *)
+            print_error "Unknown pkg command: $1"
+            show_sys_usage
+            exit 1
+            ;;
+    esac
+}
+
 # Check if source directory exists
 if [[ ! -d "$SRC_DIR" ]]; then
     print_error "Source directory not found at: $SRC_DIR"
@@ -167,6 +209,10 @@ case "$1" in
     "config")
         shift
         handle_config "$@"
+        ;;
+    "pkg")
+        shift
+        handle_pkg "$@"
         ;;
     "sync")
         shift

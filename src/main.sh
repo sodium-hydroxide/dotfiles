@@ -10,6 +10,8 @@ CURRENT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 source "$CURRENT_DIR/03_macos/main_macos.sh"
 CURRENT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 source "$CURRENT_DIR/04_config/main_config.sh"
+CURRENT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+source "$CURRENT_DIR/05_pkgs/add_pkgs.sh"
 
 show_usage() {
     cat << EOF
@@ -23,6 +25,7 @@ Options:
     -T, --reinstall-toolchain  Completely reinstall development toolchains
     -m, --macos            Apply macOS system settings
     -c, --config           Sync configuration files
+    -p, --packages         Install/update Python and Node.js packages
     -f, --force            Force operations (reinstall packages, overwrite configs)
     -d, --dry-run          Show what would be done without making changes
     -v, --verbose          Enable verbose output
@@ -31,6 +34,7 @@ Examples:
     $0 --brew --toolchain     # Only update Homebrew and toolchains
     $0 --macos --config       # Only apply system settings and sync configs
     $0 --all --force          # Run everything with forced reinstalls
+    $0 --packages            # Only install/update Python and Node.js packages
 EOF
 }
 
@@ -40,6 +44,7 @@ parse_args() {
     DO_TOOLCHAIN=false
     DO_MACOS=false
     DO_CONFIG=false
+    DO_PACKAGES=false
     REINSTALL_TOOLCHAIN=false
     export FORCE=false
     export DRY_RUN=false
@@ -70,6 +75,9 @@ parse_args() {
             -c|--config)
                 DO_CONFIG=true
                 ;;
+            -p|--packages)
+                DO_PACKAGES=true
+                ;;
             -f|--force)
                 export FORCE=true
                 ;;
@@ -93,7 +101,8 @@ parse_args() {
        [[ $DO_BREW == false ]] && \
        [[ $DO_TOOLCHAIN == false ]] && \
        [[ $DO_MACOS == false ]] && \
-       [[ $DO_CONFIG == false ]]; then
+       [[ $DO_CONFIG == false ]] && \
+       [[ $DO_PACKAGES == false ]]; then
         DO_ALL=true
     fi
 }
@@ -150,6 +159,12 @@ run_operations() {
         run_operation "Syncing configuration files" sync_config || exit_status=$?
     fi
 
+    # Package installation/updates
+    if [[ $DO_ALL == true ]] || [[ $DO_PACKAGES == true ]]; then
+        run_operation "Installing/updating Python packages" add_python || exit_status=$?
+        run_operation "Installing/updating Node.js packages" add_npm || exit_status=$?
+    fi
+
     return $exit_status
 }
 
@@ -167,5 +182,3 @@ main() {
 
     print_success "All operations completed successfully!"
 }
-
-# Run main function with all arguments
