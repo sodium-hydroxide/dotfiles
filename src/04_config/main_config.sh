@@ -106,8 +106,12 @@ sync_config() {
     linkf "bashrc"    "$HOME/.bashrc"
     linkf "gitconfig" "$HOME/.gitconfig"
 
+
+    linkd "git-template" "$HOME/.git-template"
     # Application configs
     linkd "nvim"      "$USER_CONFIG/nvim"
     linkd "freetube"  "$USER_APP_SUPPORT/FreeTube"
     linkd "vscode"    "$USER_APP_SUPPORT/Code/User"
+
 }
+

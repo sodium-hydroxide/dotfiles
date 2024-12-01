@@ -3,3 +3,4 @@
 	name = Noah Blair
 [init]
 	defaultBranch = main
+	templateDir = /Users/noa3hjb/.git-template

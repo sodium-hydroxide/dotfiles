@@ -88,6 +88,7 @@ $HOME/dotfiles/bin:\
 
 # Common aliases
 alias gui="open"
+alias mdp="glow -p"
 alias lsold="ls"
 alias ls="ls -CFl"
 alias lsa="ls -CFla"
@@ -97,5 +98,4 @@ alias vim="nvim"
 if [[ $- == *i* ]]; then
     greeting
 fi
-
 

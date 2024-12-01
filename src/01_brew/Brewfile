@@ -13,6 +13,15 @@ cask "vimr"
 cask "bbedit"
 cask "visual-studio-code"
 cask "zed"
+cask "obsidian"
+brew "glow"         # Markdown previewer
+
+
+# Dev Tools
+brew "git"
+brew "gh"
+cask "docker"
+cask "iterm2"
 
 # Languages
 brew "bash"         # version in macOS is outdated
@@ -21,17 +30,15 @@ brew "ruby"
 brew "julia"
 brew "gcc"
 brew "llvm"
-brew "clang"
 brew "sbcl"
 brew "texlive"      # latex
 brew "pandoc"       # converting to and from latex
 
-# Formulae
+# Utilities
+brew "mas"          # Mac App Store
 brew "wget"         # similar to curl
 brew "ripgrep"      # regex tool
 brew "fd"           # find directories
-brew "git"
-brew "gh"
 brew "tmux"
 brew "lf"               # needs confix
 brew "massren"      # rename files
@@ -42,31 +49,27 @@ brew "doxygen"      # create documentation from comments
 brew "help2man"     # create man page from -h or --help flag
 brew "cmake"
 brew "ninja"
-
-
-# Casks
-cask "backblaze"
-cask "docker"
-cask "calibre"
-cask "zotero"
 cask "hiddenbar"
-cask "orion"
-cask "plex"
 cask "grandperspective"
-cask "pdf-expert" # needs license
-cask "whatsapp"
-cask "backblaze"
 cask "mission-control-plus"
 cask "xquartz"
 cask "wine-stable"
+cask "aldente"
+
+
+# General
+cask "calibre"
+cask "zotero"
+cask "orion"
+cask "plex"
+cask "pdf-expert" # needs license
+cask "whatsapp"
+cask "backblaze"
 cask "vlc"
 cask "skim"
 cask "netnewswire"
-cask "aldente"
-cask "obsidian"
+
+# Fonts
 
 cask "font-jetbrains-mono-nerd-font"
-cask "iterm2"
-
-brew "mas"
 
