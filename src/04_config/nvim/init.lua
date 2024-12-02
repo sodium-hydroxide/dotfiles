@@ -1,3 +1,22 @@
+--[[
+- lua
+- perl
+- ruby
+- javascript + typescript
+- html + markdown + latex
+- common lisp
+- R
+- rust
+- C
+- C++
+- C#
+- java
+- Go
+- Fortran
+- cobol
+- magma, quarto, repl
+]]--
+
 -- Bootstrap lazy.nvim
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then
@@ -104,3 +123,4 @@ require("lazy").setup({
         end
     },
 })
+
