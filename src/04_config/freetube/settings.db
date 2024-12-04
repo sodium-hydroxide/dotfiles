@@ -2,9 +2,9 @@
 {"_id":"autoplayPlaylists","value":false}
 {"_id":"autoplayVideos","value":false}
 {"_id":"barColor","value":true}
-{"_id":"baseTheme","value":"light"}
+{"_id":"baseTheme","value":"nordic"}
 {"_id":"blurThumbnails","value":false}
-{"_id":"bounds","value":{"x":755,"y":210,"width":885,"height":815,"maximized":false,"fullScreen":false}}
+{"_id":"bounds","value":{"x":755,"y":209,"width":885,"height":815,"maximized":false,"fullScreen":false}}
 {"_id":"checkForUpdates","value":true}
 {"_id":"commentAutoLoadEnabled","value":false}
 {"_id":"defaultPlayback","value":1.1}

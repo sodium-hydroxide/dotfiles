@@ -1,0 +1,15 @@
+#!/bin/bash
+
+# Source environment variables
+for file in "$BASH_CONFIG_DIR/env.d"/*.sh; do
+    [ -f "$file" ] && source "$file"
+done
+
+# Source aliases
+[ -f "$BASH_CONFIG_DIR/alias.sh" ] && source "$BASH_CONFIG_DIR/alias.sh"
+
+# Source interactive shell configuration
+if [[ $- == *i* ]]; then
+    [ -f "$BASH_CONFIG_DIR/interactive.sh" ] && source "$BASH_CONFIG_DIR/interactive.sh"
+    greeting
+fi

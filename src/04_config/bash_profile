@@ -1,0 +1,13 @@
+#!/bin/bash
+# XDG Base Directory Specification
+export XDG_CONFIG_HOME="$HOME/.config"
+export BASH_CONFIG_DIR="$XDG_CONFIG_HOME/bash"
+
+# Homebrew setup (needs to be early as it affects PATH)
+eval "$(/opt/homebrew/bin/brew shellenv)"
+
+# Source main configuration
+source "$BASH_CONFIG_DIR/bashrc"
+
+# Source local environment variables if they exist
+[ -f "$HOME/.local/bin/env" ] && . "$HOME/.local/bin/env"

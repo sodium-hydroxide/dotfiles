@@ -1,0 +1,24 @@
+# Set the output directory for auxiliary files
+$out_dir = "output/logs";
+
+# Set the directory for the final PDF
+$pdf_mode = 1;
+$pdf_dir = "output";
+
+# Ensure the output directories exist
+ensure_path($out_dir);
+ensure_path($pdf_dir);
+
+# Clean extensions (files to be cleaned up)
+$clean_ext = "aux bbl bcf blg fdb_latexmk fls log nav out run.xml snm synctex.gz toc";
+
+# Add custom clean function to handle files in output directories
+sub cleanup_dirs {
+    my $dir;
+    foreach $dir ($out_dir, $pdf_dir) {
+        if (-d $dir) {
+            unlink glob "$dir/*.$_" for split ' ', $clean_ext;
+        }
+    }
+}
+push @clean_up_subdirs, \&cleanup_dirs;

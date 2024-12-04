@@ -103,15 +103,21 @@ sync_config() {
     print_status "Syncing configuration files..."
 
     # Core config files
-    linkf "bashrc"    "$HOME/.bashrc"
-    linkf "gitconfig" "$HOME/.gitconfig"
+    linkf "bash_profile"          "$HOME/.bash_profile"
 
-
-    linkd "git-template" "$HOME/.git-template"
     # Application configs
-    linkd "nvim"      "$USER_CONFIG/nvim"
-    linkd "freetube"  "$USER_APP_SUPPORT/FreeTube"
-    linkd "vscode"    "$USER_APP_SUPPORT/Code/User"
-
+    linkd "bash"            "$USER_CONFIG/bash"
+    linkd "git"             "$USER_CONFIG/git"
+    linkd "latexmk"         "$USER_CONFIG/latexmk"
+    linkd "nvim"            "$USER_CONFIG/nvim"
+    linkd "freetube"        "$USER_APP_SUPPORT/FreeTube"
+    linkd "vscode"          "$USER_APP_SUPPORT/Code/User"
+    linkd "lf"              "$USER_CONFIG/lf"
 }
 
+
+
+cleanup_broken_links() {
+    local dir=$1
+    find "$dir" -type l ! -exec test -e {} \; -delete
+}

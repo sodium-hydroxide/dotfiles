@@ -1,0 +1,21 @@
+#!/bin/sh
+
+# File preview handler for lf
+
+case "$(file --mime-type "$1" -b)" in
+    text/*|application/json|application/javascript|application/x-yaml)
+        bat --color always "$1";;
+    image/*)
+        chafa "$1";;
+    video/*)
+        mediainfo "$1";;
+    application/pdf)
+        pdftotext "$1" -;;
+    application/zip)
+        unzip -l "$1";;
+    application/x-tar|application/x-gzip)
+        tar tf "$1";;
+    *)
+        file -b "$1";;
+esac
+

@@ -1,9 +1,6 @@
 # Taps
 tap "sodium-hydroxide/compression-tools", "https://github.com/sodium-hydroxide/compression-tools"
 brew "compression-tools"
-# tap "sodium-hydroxide/lsdir", "https://github.com/sodium-hydroxide/lsdir"
-# brew "libmagic"
-# brew "lsdir"
 
 # Editors
 brew "neovim"
@@ -18,7 +15,6 @@ cask "visual-studio-code"
 cask "zed"
 cask "obsidian"
 brew "glow"         # Markdown previewer
-
 
 # Dev Tools
 brew "git"
@@ -37,15 +33,23 @@ brew "sbcl"
 brew "texlive"      # latex
 brew "pandoc"       # converting to and from latex
 
+# File Browser
+brew "lf"
+brew "massren"      # rename files
+brew "fd"           # find directories
+brew "jq"           # JSON Processing
+brew "bat"          # Cleaner output than cat
+brew "chafa"        # Image Preview
+brew "mediainfo"    # Media Metadata
+brew "file"         # File Type Detection
+brew "poppler"      # PDF Previewer in Terminal
+
 # Utilities
 brew "mas"          # Mac App Store
 brew "wget"         # similar to curl
 brew "ripgrep"      # regex tool
-brew "fd"           # find directories
+brew "fzf"          # Fuzzy find files
 brew "tmux"
-brew "jq"           # JSON Processing
-brew "lf"               # needs confix
-brew "massren"      # rename files
 brew "ffmpeg"       # audio and video editing
 brew "htop"         # see processes running
 brew "duti"         # set default applications macOS

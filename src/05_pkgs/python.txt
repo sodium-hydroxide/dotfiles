@@ -2,4 +2,5 @@ jupyter==1.1.1
 mypy==1.13.0
 ruff==0.8.0
 lsdir==0.1.6
+basedisp==0.1.0
 
