@@ -1,0 +1,13 @@
+{
+    "globalPackages": [
+      "typescript",
+      "ts-node",
+      "@types/node",
+      "prettier",
+      "eslint",
+      "@typescript-eslint/parser",
+      "@typescript-eslint/eslint-plugin",
+      "tsx",
+      "npm-check-updates"
+    ]
+  }
