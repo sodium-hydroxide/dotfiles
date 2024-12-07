@@ -1,11 +1,12 @@
 from typing import Literal
 
 from .utils.logs import setup_logging, logger
-from .utils.arguments import create_parser
+from .parsers import create_parser
 from .utils.paths import get_paths
 from .config.core import main_config
 from .packaging import main_packaging
 from .toolchains import main_toolchains
+from .utils.edit import edit_in_nvim
 
 def main() -> Literal[0, 1]:
     """Main entry point"""
@@ -16,6 +17,8 @@ def main() -> Literal[0, 1]:
 
     try:
         logger.debug(f"Processing command: {args.command}")
+        if args.command == "edit":
+            edit_in_nvim(paths.lib)
         if args.command == "pkg":
             return main_packaging(args, paths)
         elif args.command in ["config", "mac"]:
