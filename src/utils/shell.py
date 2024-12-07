@@ -1,10 +1,9 @@
-
 import os
 import shutil
 import subprocess
 from datetime import datetime
 from pathlib import Path
-from typing import Optional, List, Union, Tuple
+from typing import List, Optional, Tuple, Union
 
 from .errors import FSError, LinkError
 
@@ -13,6 +12,7 @@ def backup_path(path: Path) -> Path:
     """Create a backup path with timestamp"""
     timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
     return path.with_name(f"{path.name}.backup_{timestamp}")
+
 
 def create_backup(path: Path) -> Optional[Path]:
     """
@@ -32,6 +32,7 @@ def create_backup(path: Path) -> Optional[Path]:
     except (shutil.Error, OSError) as e:
         raise FSError(f"Failed to create backup of {path}: {e}")
 
+
 def safe_unlink(path: Path) -> None:
     """Safely remove a file or symlink"""
     try:
@@ -41,6 +42,7 @@ def safe_unlink(path: Path) -> None:
             shutil.rmtree(path)
     except OSError as e:
         raise FSError(f"Failed to remove {path}: {e}")
+
 
 def make_symlink(source: Path, target: Path, backup: bool = True) -> Optional[Path]:
     """
@@ -82,7 +84,10 @@ def make_symlink(source: Path, target: Path, backup: bool = True) -> Optional[Pa
                 pass  # If restoration fails, leave the backup in place
         raise LinkError(f"Failed to create symlink {target} -> {source}: {e}")
 
-def symlink_directory(source_dir: Path, target_dir: Path, backup: bool = True) -> List[Tuple[Path, Optional[Path]]]:
+
+def symlink_directory(
+    source_dir: Path, target_dir: Path, backup: bool = True
+) -> List[Tuple[Path, Optional[Path]]]:
     """
     Recursively symlink contents of source_dir to target_dir.
     Returns list of (target, backup) pairs.
@@ -91,7 +96,7 @@ def symlink_directory(source_dir: Path, target_dir: Path, backup: bool = True) -
         raise LinkError(f"Source directory does not exist: {source_dir}")
 
     results = []
-    for source_path in source_dir.rglob('*'):
+    for source_path in source_dir.rglob("*"):
         # Skip if it's not a file
         if not source_path.is_file():
             continue
@@ -107,6 +112,7 @@ def symlink_directory(source_dir: Path, target_dir: Path, backup: bool = True) -
 
     return results
 
+
 # Shell utilities
 def run_shell_command(
     cmd: Union[str, List[str]],
@@ -114,7 +120,7 @@ def run_shell_command(
     capture_output: bool = True,
     check: bool = True,
     cwd: Optional[Path] = None,
-    env: Optional[dict] = None
+    env: Optional[dict] = None,
 ) -> subprocess.CompletedProcess:
     """
     Run a shell command with proper error handling
@@ -139,26 +145,31 @@ def run_shell_command(
             text=True,
             check=check,
             cwd=cwd,
-            env={**os.environ, **(env or {})}
+            env={**os.environ, **(env or {})},
         )
     except subprocess.CalledProcessError as e:
         # Add command context to error message
-        cmd_str = cmd if isinstance(cmd, str) else ' '.join(cmd)
-        e.args = (f"Command '{cmd_str}' failed with exit code {e.returncode}. "
-                 f"stdout: {e.stdout}, stderr: {e.stderr}",)
+        cmd_str = cmd if isinstance(cmd, str) else " ".join(cmd)
+        e.args = (
+            f"Command '{cmd_str}' failed with exit code {e.returncode}. "
+            f"stdout: {e.stdout}, stderr: {e.stderr}",
+        )
         raise
+
 
 def check_command_exists(cmd: str) -> bool:
     """Check if a command exists in PATH"""
     try:
-        run_shell_command(['which', cmd], capture_output=True, check=False)
+        run_shell_command(["which", cmd], capture_output=True, check=False)
         return True
     except (subprocess.SubprocessError, OSError):
         return False
 
+
 def get_home_dir() -> Path:
     """Get user's home directory"""
     return Path.home()
+
 
 def expand_path(path: Union[str, Path]) -> Path:
     """Expand ~ and environment variables in path"""

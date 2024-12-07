@@ -1,25 +1,28 @@
 from pathlib import Path
-import shutil
-from ..utils.shell import run_shell_command, check_command_exists
-from ..utils.paths import Paths
+
 from ..utils.logs import logger
 from ..utils.options import CommandOptions
+from ..utils.paths import Paths
+from ..utils.shell import run_shell_command
 
 HOMEBREW_BASH = "/opt/homebrew/bin/bash"
 SYSTEM_SHELLS = "/etc/shells"
 WRAPPER_PATH = "/usr/local/bin/bash"
 
+
 def check_homebrew_bash() -> bool:
     """Check if Homebrew's bash is installed"""
     return Path(HOMEBREW_BASH).exists()
 
+
 def is_shell_registered(shell_path: str) -> bool:
     """Check if shell is registered in /etc/shells"""
     try:
-        with open(SYSTEM_SHELLS, 'r') as f:
+        with open(SYSTEM_SHELLS, "r") as f:
             return shell_path in f.read().splitlines()
     except FileNotFoundError:
         return False
+
 
 def register_shell(shell_path: str, dry_run: bool = False) -> bool:
     """Register shell in /etc/shells"""
@@ -42,6 +45,7 @@ def register_shell(shell_path: str, dry_run: bool = False) -> bool:
         logger.error(f"Failed to register shell: {e}")
         return False
 
+
 def create_wrapper(dry_run: bool = False) -> bool:
     """Create or update the bash wrapper script"""
     if dry_run:
@@ -60,7 +64,7 @@ exec {HOMEBREW_BASH} "$@"
             return False
 
         # Make wrapper executable
-        cmd = f'sudo chmod +x {WRAPPER_PATH}'
+        cmd = f"sudo chmod +x {WRAPPER_PATH}"
         result = run_shell_command(cmd, shell=True, capture_output=True)
         if result.returncode != 0:
             logger.error(f"Failed to make wrapper executable: {result.stderr}")
@@ -71,6 +75,7 @@ exec {HOMEBREW_BASH} "$@"
         logger.error(f"Failed to create wrapper: {e}")
         return False
 
+
 def set_as_default_shell(dry_run: bool = False) -> bool:
     """Set Homebrew's bash as the default shell"""
     if dry_run:
@@ -78,7 +83,7 @@ def set_as_default_shell(dry_run: bool = False) -> bool:
         return True
 
     try:
-        cmd = f'chsh -s {WRAPPER_PATH}'
+        cmd = f"chsh -s {WRAPPER_PATH}"
         result = run_shell_command(cmd, shell=True, capture_output=True)
         if result.returncode != 0:
             logger.error(f"Failed to set default shell: {result.stderr}")
@@ -87,6 +92,7 @@ def set_as_default_shell(dry_run: bool = False) -> bool:
     except Exception as e:
         logger.error(f"Failed to set default shell: {e}")
         return False
+
 
 def setup_bash(dry_run: bool = False) -> bool:
     """Set up Homebrew's bash as the default shell"""
@@ -111,6 +117,7 @@ def setup_bash(dry_run: bool = False) -> bool:
         return False
 
     return True
+
 
 def bash_toolchain(options: CommandOptions, paths: Paths) -> bool:
     """Main entry point for bash toolchain management"""

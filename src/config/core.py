@@ -1,21 +1,19 @@
-# src/config/core.py
-from typing import Literal
 from argparse import Namespace
-from ..utils.logs import logger
-from ..utils.paths import Paths
-from ..utils.options import CommandOptions
+from typing import Literal
 
-from .symlinks import symlink_config
+from ..utils.logs import logger
+from ..utils.options import CommandOptions
+from ..utils.paths import Paths
 from .macos import macos_config
+from .symlinks import symlink_config
+
 
 def main_config(args: Namespace, paths: Paths) -> Literal[0, 1]:
     """Main entry point for configuration management"""
     try:
         logger.debug(f"Configuration management: {args.command} {args.action}")
         options = CommandOptions(
-            action=args.action,
-            dry_run=args.dry_run,
-            verbose=args.verbose
+            action=args.action, dry_run=args.dry_run, verbose=args.verbose
         )
 
         if args.command == "config":

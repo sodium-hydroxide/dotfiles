@@ -1,11 +1,13 @@
-from pathlib import Path
 import os
-from ..utils.shell import run_shell_command, check_command_exists
-from ..utils.paths import Paths
+from pathlib import Path
+
 from ..utils.logs import logger
 from ..utils.options import CommandOptions
+from ..utils.paths import Paths
+from ..utils.shell import check_command_exists, run_shell_command
 
 VENV_PATH = Path.home() / ".venv"
+
 
 def install_uv(dry_run: bool = False) -> bool:
     """Install or update uv"""
@@ -14,7 +16,7 @@ def install_uv(dry_run: bool = False) -> bool:
         return True
 
     logger.info("Installing/updating uv...")
-    cmd = 'curl -LsSf https://astral.sh/uv/install.sh | sh'
+    cmd = "curl -LsSf https://astral.sh/uv/install.sh | sh"
     result = run_shell_command(cmd, shell=True, capture_output=True)
 
     if result.returncode != 0:
@@ -22,6 +24,7 @@ def install_uv(dry_run: bool = False) -> bool:
         return False
 
     return True
+
 
 def create_venv(dry_run: bool = False) -> bool:
     """Create virtual environment using uv"""
@@ -35,16 +38,14 @@ def create_venv(dry_run: bool = False) -> bool:
 
     # Create virtual environment
     logger.info("Creating virtual environment...")
-    result = run_shell_command(
-        ["uv", "venv", str(VENV_PATH)],
-        capture_output=True
-    )
+    result = run_shell_command(["uv", "venv", str(VENV_PATH)], capture_output=True)
 
     if result.returncode != 0:
         logger.error(f"Failed to create virtual environment: {result.stderr}")
         return False
 
     return True
+
 
 def install_base_packages(dry_run: bool = False) -> bool:
     """Install base Python packages"""
@@ -53,15 +54,7 @@ def install_base_packages(dry_run: bool = False) -> bool:
         return True
 
     # List of base packages to install
-    packages = [
-        "pip",
-        "ruff",
-        "mypy",
-        "ipython",
-        "jupyter",
-        "build",
-        "requests"
-    ]
+    packages = ["pip", "ruff", "mypy", "ipython", "jupyter", "build", "requests"]
 
     # Activate virtual environment
     venv_python = VENV_PATH / "bin" / "python"
@@ -73,7 +66,7 @@ def install_base_packages(dry_run: bool = False) -> bool:
     logger.info("Installing base Python packages...")
     result = run_shell_command(
         [str(venv_python), "-m", "uv", "pip", "install", "--upgrade", *packages],
-        capture_output=True
+        capture_output=True,
     )
 
     if result.returncode != 0:
@@ -81,6 +74,7 @@ def install_base_packages(dry_run: bool = False) -> bool:
         return False
 
     return True
+
 
 def uvpython_toolchain(options: CommandOptions, paths: Paths) -> bool:
     """Main entry point for Python toolchain management"""
@@ -97,6 +91,7 @@ def uvpython_toolchain(options: CommandOptions, paths: Paths) -> bool:
         if not options.dry_run and VENV_PATH.exists():
             try:
                 import shutil
+
                 shutil.rmtree(VENV_PATH)
             except Exception as e:
                 logger.error(f"Failed to remove existing virtual environment: {e}")

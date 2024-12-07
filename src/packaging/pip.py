@@ -1,8 +1,10 @@
 from pathlib import Path
-from ..utils.shell import run_shell_command, check_command_exists
-from ..utils.paths import Paths
+
 from ..utils.logs import logger
 from ..utils.options import CommandOptions
+from ..utils.paths import Paths
+from ..utils.shell import check_command_exists, run_shell_command
+
 
 def ensure_pip() -> bool:
     """Ensure pip is installed and up to date"""
@@ -12,8 +14,7 @@ def ensure_pip() -> bool:
 
     # Upgrade pip itself
     result = run_shell_command(
-        ["pip", "install", "--upgrade", "pip"],
-        capture_output=True
+        ["pip", "install", "--upgrade", "pip"], capture_output=True
     )
 
     if result.returncode != 0:
@@ -21,6 +22,7 @@ def ensure_pip() -> bool:
         return False
 
     return True
+
 
 def update_pip(requirements: Path, dry_run: bool = False) -> bool:
     """Update pip packages"""
@@ -34,8 +36,7 @@ def update_pip(requirements: Path, dry_run: bool = False) -> bool:
     # Update all packages from requirements file
     logger.info("Updating pip packages...")
     result = run_shell_command(
-        ["pip", "install", "--upgrade", "-r", str(requirements)],
-        capture_output=True
+        ["pip", "install", "--upgrade", "-r", str(requirements)], capture_output=True
     )
 
     if result.returncode != 0:
@@ -43,6 +44,7 @@ def update_pip(requirements: Path, dry_run: bool = False) -> bool:
         return False
 
     return True
+
 
 def reinstall_pip(requirements: Path, dry_run: bool = False) -> bool:
     """Reinstall all pip packages"""
@@ -56,15 +58,13 @@ def reinstall_pip(requirements: Path, dry_run: bool = False) -> bool:
     # First uninstall all packages from requirements
     logger.info("Uninstalling existing pip packages...")
     result = run_shell_command(
-        ["pip", "uninstall", "-y", "-r", str(requirements)],
-        capture_output=True
+        ["pip", "uninstall", "-y", "-r", str(requirements)], capture_output=True
     )
 
     # Install packages from requirements file
     logger.info("Reinstalling pip packages...")
     result = run_shell_command(
-        ["pip", "install", "-r", str(requirements)],
-        capture_output=True
+        ["pip", "install", "-r", str(requirements)], capture_output=True
     )
 
     if result.returncode != 0:
@@ -72,6 +72,7 @@ def reinstall_pip(requirements: Path, dry_run: bool = False) -> bool:
         return False
 
     return True
+
 
 def pip_packaging(options: CommandOptions, paths: Paths) -> bool:
     """Main entry point for pip package management"""

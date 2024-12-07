@@ -1,10 +1,13 @@
 from pathlib import Path
-import yaml
 from typing import Any, Dict, List
-from ..utils.shell import run_shell_command
-from ..utils.paths import Paths
+
+import yaml
+
 from ..utils.logs import logger
 from ..utils.options import CommandOptions
+from ..utils.paths import Paths
+from ..utils.shell import run_shell_command
+
 
 def read_yaml_config(file_path: Path) -> Dict[str, Any]:
     """Read YAML configuration file"""
@@ -15,19 +18,26 @@ def read_yaml_config(file_path: Path) -> Dict[str, Any]:
         logger.error(f"Failed to read config file {file_path}: {e}")
         return {}
 
+
 def check_defaults(domain: str, key: str, expected: Any) -> bool:
     """Check if defaults setting matches expected value"""
     try:
         result = run_shell_command(
-            ["defaults", "read", domain, key],
-            capture_output=True
+            ["defaults", "read", domain, key], capture_output=True
         )
         return result.returncode == 0 and str(result.stdout.strip()) == str(expected)
     except Exception:
         return False
 
-def write_defaults(domain: str, key: str, value: Any, value_type: str,
-                  sudo: bool = False, dry_run: bool = False) -> bool:
+
+def write_defaults(
+    domain: str,
+    key: str,
+    value: Any,
+    value_type: str,
+    sudo: bool = False,
+    dry_run: bool = False,
+) -> bool:
     """Write defaults setting"""
     if dry_run:
         logger.info(f"Would set {domain} {key} to {value}")
@@ -48,6 +58,7 @@ def write_defaults(domain: str, key: str, value: Any, value_type: str,
 
     return True
 
+
 def get_value_type(value: Any) -> str:
     """Determine defaults value type"""
     if isinstance(value, bool):
@@ -59,7 +70,10 @@ def get_value_type(value: Any) -> str:
     else:
         return "string"
 
-def apply_settings(config: Dict[str, List[Dict[str, Any]]], dry_run: bool = False) -> bool:
+
+def apply_settings(
+    config: Dict[str, List[Dict[str, Any]]], dry_run: bool = False
+) -> bool:
     """Apply macOS settings from configuration"""
     success = True
 
@@ -71,19 +85,25 @@ def apply_settings(config: Dict[str, List[Dict[str, Any]]], dry_run: bool = Fals
             settings = entry["settings"]
 
             # Determine if sudo is needed based on domain
-            needs_sudo = any(d in domain for d in [
-                "/Library/Preferences/",
-                "com.apple.loginwindow",
-                "com.apple.WindowManager",
-                "/Library/Preferences/SystemConfiguration/"
-            ])
+            needs_sudo = any(
+                d in domain
+                for d in [
+                    "/Library/Preferences/",
+                    "com.apple.loginwindow",
+                    "com.apple.WindowManager",
+                    "/Library/Preferences/SystemConfiguration/",
+                ]
+            )
 
             for key, value in settings.items():
                 value_type = get_value_type(value)
-                if not write_defaults(domain, key, value, value_type, needs_sudo, dry_run):
+                if not write_defaults(
+                    domain, key, value, value_type, needs_sudo, dry_run
+                ):
                     success = False
 
     return success
+
 
 def configure_duti(config: Dict[str, List[str]], dry_run: bool = False) -> bool:
     """Configure default applications using duti"""
@@ -99,15 +119,17 @@ def configure_duti(config: Dict[str, List[str]], dry_run: bool = False) -> bool:
                 continue
 
             result = run_shell_command(
-                ["duti", "-s", app, entry, "all"],
-                capture_output=True
+                ["duti", "-s", app, entry, "all"], capture_output=True
             )
 
             if result.returncode != 0:
-                logger.error(f"Failed to set {app} as handler for {entry}: {result.stderr}")
+                logger.error(
+                    f"Failed to set {app} as handler for {entry}: {result.stderr}"
+                )
                 success = False
 
     return success
+
 
 def restart_services(changed_services: List[str], dry_run: bool = False) -> None:
     """Restart necessary macOS services"""
@@ -118,6 +140,7 @@ def restart_services(changed_services: List[str], dry_run: bool = False) -> None
     for service in changed_services:
         logger.info(f"Restarting {service}...")
         run_shell_command(["killall", service], check=False)
+
 
 def setup_macos(paths: Paths, dry_run: bool = False) -> bool:
     """Set up macOS system settings"""
@@ -161,10 +184,12 @@ def setup_macos(paths: Paths, dry_run: bool = False) -> bool:
 
     return success
 
+
 def revert_macos(paths: Paths, dry_run: bool = False) -> bool:
     """Revert macOS settings to defaults"""
     logger.warning("Reverting macOS settings not implemented yet")
     return False
+
 
 def macos_config(options: CommandOptions, paths: Paths) -> bool:
     """Main entry point for macOS configuration"""

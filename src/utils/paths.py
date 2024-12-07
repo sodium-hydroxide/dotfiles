@@ -1,12 +1,14 @@
 from dataclasses import dataclass
 from pathlib import Path
 
+
 @dataclass(frozen=True)  # frozen=True makes it immutable
 class Paths:
     root: Path
     lib: Path
     config: Path
     pkgs: Path
+
 
 def get_paths() -> Paths:
     """
@@ -24,16 +26,13 @@ def get_paths() -> Paths:
     for path in (root, lib, config, pkgs):
         path.mkdir(parents=True, exist_ok=True)
 
-    return Paths(
-        root=root,
-        lib=lib,
-        config=config,
-        pkgs=pkgs
-    )
+    return Paths(root=root, lib=lib, config=config, pkgs=pkgs)
+
 
 def expand_path(path: Path) -> Path:
     """Expand a path, resolving any special characters or variables"""
     return Path(path).expanduser().resolve()
+
 
 def get_cache_dir() -> Path:
     """Get the cache directory for temporary files"""

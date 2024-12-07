@@ -1,12 +1,13 @@
 from pathlib import Path
-import os
-from ..utils.shell import run_shell_command, check_command_exists
-from ..utils.paths import Paths
+
 from ..utils.logs import logger
 from ..utils.options import CommandOptions
+from ..utils.paths import Paths
+from ..utils.shell import check_command_exists, run_shell_command
 
 JULIAUP_INSTALLER = "https://install.julialang.org"
 JULIA_DEPOT = Path.home() / ".julia"
+
 
 def install_juliaup(dry_run: bool = False) -> bool:
     """Install or update juliaup"""
@@ -16,16 +17,13 @@ def install_juliaup(dry_run: bool = False) -> bool:
 
     if check_command_exists("juliaup"):
         logger.info("Updating juliaup...")
-        result = run_shell_command(
-            ["juliaup", "update"],
-            capture_output=True
-        )
+        result = run_shell_command(["juliaup", "update"], capture_output=True)
     else:
         logger.info("Installing juliaup...")
         result = run_shell_command(
-            f'curl -fsSL {JULIAUP_INSTALLER} | sh -s -- --yes',
+            f"curl -fsSL {JULIAUP_INSTALLER} | sh -s -- --yes",
             shell=True,
-            capture_output=True
+            capture_output=True,
         )
 
     if result.returncode != 0:
@@ -34,6 +32,7 @@ def install_juliaup(dry_run: bool = False) -> bool:
 
     return True
 
+
 def setup_julia(dry_run: bool = False) -> bool:
     """Set up Julia release channel and default version"""
     if dry_run:
@@ -41,24 +40,19 @@ def setup_julia(dry_run: bool = False) -> bool:
         return True
 
     # Add latest stable version
-    result = run_shell_command(
-        ["juliaup", "add", "release"],
-        capture_output=True
-    )
+    result = run_shell_command(["juliaup", "add", "release"], capture_output=True)
     if result.returncode != 0:
         logger.error(f"Failed to add release channel: {result.stderr}")
         return False
 
     # Set as default
-    result = run_shell_command(
-        ["juliaup", "default", "release"],
-        capture_output=True
-    )
+    result = run_shell_command(["juliaup", "default", "release"], capture_output=True)
     if result.returncode != 0:
         logger.error(f"Failed to set default channel: {result.stderr}")
         return False
 
     return True
+
 
 def install_packages(dry_run: bool = False) -> bool:
     """Install essential Julia packages"""
@@ -67,7 +61,7 @@ def install_packages(dry_run: bool = False) -> bool:
         return True
 
     # Create Julia script for package installation
-    script = '''
+    script = """
     using Pkg
 
     essential_packages = [
@@ -88,12 +82,11 @@ def install_packages(dry_run: bool = False) -> bool:
 
     println("Precompiling packages...")
     Pkg.precompile()
-    '''
+    """
 
     logger.info("Installing Julia packages...")
     result = run_shell_command(
-        ["julia", "--startup-file=no", "-e", script],
-        capture_output=True
+        ["julia", "--startup-file=no", "-e", script], capture_output=True
     )
 
     if result.returncode != 0:
@@ -101,6 +94,7 @@ def install_packages(dry_run: bool = False) -> bool:
         return False
 
     return True
+
 
 def juliaup_toolchain(options: CommandOptions, paths: Paths) -> bool:
     """Main entry point for Julia toolchain management"""
@@ -116,6 +110,7 @@ def juliaup_toolchain(options: CommandOptions, paths: Paths) -> bool:
         if not options.dry_run and JULIA_DEPOT.exists():
             try:
                 import shutil
+
                 shutil.rmtree(JULIA_DEPOT)
             except Exception as e:
                 logger.error(f"Failed to remove Julia depot: {e}")

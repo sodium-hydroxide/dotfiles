@@ -1,7 +1,9 @@
-from pathlib import Path
 import subprocess
+from pathlib import Path
 from typing import Literal
+
 from .logs import logger
+
 
 def edit_in_nvim(target: Path) -> Literal[0, 1]:
     """

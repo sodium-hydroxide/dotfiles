@@ -1,14 +1,16 @@
-from pathlib import Path
 import json
 import os
 import re
 import shutil
-from typing import List, Optional
 from datetime import datetime
-from ..utils.logs import logger
-from ..utils.paths import Paths
+from pathlib import Path
+from typing import List, Optional
+
 from ..utils.errors import FSError, LinkError
+from ..utils.logs import logger
 from ..utils.options import CommandOptions
+from ..utils.paths import Paths
+
 
 class SymlinkManager:
     """Manage configuration symlinks"""
@@ -105,7 +107,9 @@ class SymlinkManager:
                     pass  # If restoration fails, leave the backup in place
             raise LinkError(f"Failed to create symlink {target} -> {source}: {e}")
 
-    def write_file(self, content: str, target: Path, chmod: Optional[str] = None) -> None:
+    def write_file(
+        self, content: str, target: Path, chmod: Optional[str] = None
+    ) -> None:
         """Write content to a file with proper permissions"""
         try:
             target.parent.mkdir(parents=True, exist_ok=True)
@@ -177,6 +181,7 @@ class SymlinkManager:
         # (You could add backup cleanup logic here)
 
         return success
+
 
 def symlink_config(options: CommandOptions, paths: Paths) -> bool:
     """Main entry point for symlink configuration"""

@@ -1,9 +1,10 @@
 from pathlib import Path
-from typing import Optional
-from ..utils.shell import run_shell_command, check_command_exists
-from ..utils.paths import Paths
+
 from ..utils.logs import logger
 from ..utils.options import CommandOptions
+from ..utils.paths import Paths
+from ..utils.shell import check_command_exists, run_shell_command
+
 
 def ensure_homebrew() -> bool:
     """Ensure Homebrew is installed"""
@@ -19,6 +20,7 @@ def ensure_homebrew() -> bool:
         return False
 
     return True
+
 
 def update_brew(brewfile: Path, dry_run: bool = False) -> bool:
     """Update Homebrew and packages"""
@@ -38,7 +40,9 @@ def update_brew(brewfile: Path, dry_run: bool = False) -> bool:
 
     # Update packages
     logger.info("Updating Homebrew packages...")
-    result = run_shell_command(["brew", "bundle", "--file", str(brewfile)], capture_output=True)
+    result = run_shell_command(
+        ["brew", "bundle", "--file", str(brewfile)], capture_output=True
+    )
     if result.returncode != 0:
         logger.error(f"Failed to update Homebrew packages: {result.stderr}")
         return False
@@ -47,6 +51,7 @@ def update_brew(brewfile: Path, dry_run: bool = False) -> bool:
     run_shell_command(["brew", "cleanup"], capture_output=True)
 
     return True
+
 
 def reinstall_brew(brewfile: Path, dry_run: bool = False) -> bool:
     """Reinstall all Homebrew packages"""
@@ -59,8 +64,7 @@ def reinstall_brew(brewfile: Path, dry_run: bool = False) -> bool:
 
     logger.info("Reinstalling all Homebrew packages...")
     result = run_shell_command(
-        ["brew", "bundle", "--file", str(brewfile), "--force"],
-        capture_output=True
+        ["brew", "bundle", "--file", str(brewfile), "--force"], capture_output=True
     )
 
     if result.returncode != 0:
@@ -68,6 +72,7 @@ def reinstall_brew(brewfile: Path, dry_run: bool = False) -> bool:
         return False
 
     return True
+
 
 def brew_packaging(options: CommandOptions, paths: Paths) -> bool:
     """Main entry point for Homebrew package management"""
