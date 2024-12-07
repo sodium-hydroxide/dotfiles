@@ -1,10 +1,12 @@
 #!/bin/bash
 PATH="\
+$HOME/.MCNP/mcnparse/bin:\
 $HOME/.bin:\
 $HOME/.venv/bin:\
 $HOME/.local/bin:\
 $CARGO_HOME/bin:\
 $HOME/.juliaup/bin:\
+/opt/homebrew/opt/openjdk/bin:\
 /opt/homebrew/opt/julia/bin:\
 $(npm config get prefix 2>/dev/null)/bin:\
 $HOME/dotfiles/bin:\
@@ -24,3 +26,4 @@ $HOME/dotfiles/bin:\
 "
 
 export PATH
+

@@ -27,6 +27,7 @@ brew "bash"         # version in macOS is outdated
 brew "perl"
 brew "ruby"
 brew "julia"
+brew "openjdk"
 brew "gcc"
 brew "llvm"
 brew "sbcl"
