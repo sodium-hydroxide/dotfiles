@@ -41,18 +41,18 @@ def set_global_flags(parser: ArgumentParser) -> ArgumentParser:
         -v, --verbose : Print all debug messages
         -d, --dry-run : Test commands without running them
     """
-    (
-        parser.add_argument(
-            "-v",
-            "--verbose",
-            action="store_true",
-            help="Enable verbose output with detailed logging",
-        ).add_argument(
-            "-d",
-            "--dry-run",
-            action="store_true",
-            help="Show what would be done without making any changes",
-        )
+
+    parser.add_argument(
+        "-v",
+        "--verbose",
+        action="store_true",
+        help="Enable verbose output with detailed logging",
+    )
+    parser.add_argument(
+        "-d",
+        "--dry-run",
+        action="store_true",
+        help="Show what would be done without making any changes",
     )
     return parser
 
@@ -75,3 +75,4 @@ def create_parser() -> ArgumentParser:
     create_toolchain_parser(subparsers)
 
     return parser
+
