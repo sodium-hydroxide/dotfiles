@@ -51,3 +51,4 @@ export FZF_DEFAULT_OPTS="--history=$HOME/.fzf_history"
 # Enable using Up arrow to search command history
 bind '"\e[A": history-search-backward'
 bind '"\e[B": history-search-forward'
+

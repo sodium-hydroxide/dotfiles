@@ -18,6 +18,9 @@ cd_ls() {
     ls
 }
 
+icloud_path = "${HOME}/Library/Mobile\ Documents/com~apple~CloudDocs"
+obsidian_path = "${HOME}/Library/Mobile\ Documents/iCloud~md~obsidian/Documents"
+
 alias gui="open"
 alias mdp="glow -p"
 alias lsold="ls"
@@ -28,3 +31,5 @@ alias vim="nvim"
 alias lfold="lf"
 alias lf="lf_exit"
 alias kd="cd_ls"
+alias notes="open -a Obsidian"
+

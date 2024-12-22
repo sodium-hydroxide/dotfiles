@@ -7,6 +7,9 @@ export RUST_BACKTRACE=1
 # python
 export VIRTUAL_ENV_DISABLE_PROMPT=1
 export PYTHONPATH="$HOME/.local/lib/python3/site-packages:$PYTHONPATH"
+export LDFLAGS="-L$(brew --prefix tcl-tk)/lib" # tkinter
+export CPPFLAGS="-I$(brew --prefix tcl-tk)/include" # tkinter
+export TCL_LIBRARY=$(brew --prefix tcl-tk)/lib/tcl8.6
 
 # julia
 export JULIA_DEPOT_PATH="$HOME/.julia"
@@ -21,4 +24,6 @@ export NODE_ENV="development"
 export NODE_OPTIONS="--max-old-space-size=4096"
 
 # mcnp
-export XSDIR=""
+export DATAPATH="$HOME/.MCNP/mcnp63/exec/MCNP_DATA"
+export XSDIR="${DATAPATH}/xsdir"
+
