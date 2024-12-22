@@ -7,19 +7,16 @@ lf_exit() {
         dir="$(cat "$tmp")"
         rm -f "$tmp"
         if [ -d "$dir" ] && [ "$dir" != "$(pwd)" ]; then
-            cd "$dir"
+            cd "$dir" || return
         fi
     fi
 }
 
 cd_ls() {
     dir=$1
-    cd "$dir"
+    cd "$dir" || return
     ls
 }
-
-icloud_path = "${HOME}/Library/Mobile\ Documents/com~apple~CloudDocs"
-obsidian_path = "${HOME}/Library/Mobile\ Documents/iCloud~md~obsidian/Documents"
 
 alias gui="open"
 alias mdp="glow -p"

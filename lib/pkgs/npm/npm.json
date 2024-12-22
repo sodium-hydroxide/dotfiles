@@ -8,6 +8,8 @@
       "@typescript-eslint/parser",
       "@typescript-eslint/eslint-plugin",
       "tsx",
-      "npm-check-updates"
+      "npm-check-updates",
+      "bash-language-server"
     ]
-  }
+}
+

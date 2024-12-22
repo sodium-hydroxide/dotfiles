@@ -1,0 +1,404 @@
+-- lua/lsp-cmp-c.lua
+return {
+    {
+        "neovim/nvim-lspconfig",
+        dependencies = {
+            "hrsh7th/nvim-cmp",
+        },
+        config = function()
+            local lspconfig = require('lspconfig')
+            local capabilities = require('cmp_nvim_lsp').default_capabilities()
+
+            -- clangd setup
+            lspconfig.clangd.setup({
+                capabilities = capabilities,
+                on_attach = _G.lsp_on_attach,
+                cmd = {
+                    "clangd",
+                    "--background-index",
+                    "--suggest-missing-includes",
+                    "--clang-tidy",
+                    "--header-insertion=iwyu",
+                },
+            })
+
+            -- Configure clang-format via null-ls
+            local null_ls = require("null-ls")
+            null_ls.setup({
+                sources = {
+                    null_ls.builtins.formatting.clang_format.with({
+                        extra_args = { "-style=file:.clang-format" },
+                    }),
+                },
+            })
+        end
+    }
+}
+
+
+-- lua/lsp-cmp-fortran.lua
+return {
+    {
+        "neovim/nvim-lspconfig",
+        dependencies = {
+            "hrsh7th/nvim-cmp",
+        },
+        config = function()
+            local lspconfig = require('lspconfig')
+            local capabilities = require('cmp_nvim_lsp').default_capabilities()
+
+            -- Fortran Language Server setup
+            lspconfig.fortls.setup({
+                capabilities = capabilities,
+                on_attach = _G.lsp_on_attach,
+                settings = {
+                    fortran = {
+                        variableHover = true,
+                        includeSymbolMem = true,
+                        symbolCaseMatch = false,
+                    },
+                },
+            })
+
+            -- Optional: Configure formatting via fprettify
+            local null_ls = require("null-ls")
+            null_ls.setup({
+                sources = {
+                    null_ls.builtins.formatting.fprettify.with({
+                        extra_args = {
+                            "--indent", "4",
+                            "--line-length", "132",
+                            "--case", "2", -- uppercase keywords
+                        },
+                    }),
+                },
+            })
+        end
+    }
+}
+
+
+-- lua/lsp-cmp-rust.lua
+return {
+    {
+        "neovim/nvim-lspconfig",
+        dependencies = {
+            "hrsh7th/nvim-cmp",
+            "simrat39/rust-tools.nvim",
+        },
+        config = function()
+            local rt = require("rust-tools")
+
+            rt.setup({
+                server = {
+                    capabilities = require('cmp_nvim_lsp').default_capabilities(),
+                    on_attach = function(client, bufnr)
+                        -- Normal LSP attachments
+                        _G.lsp_on_attach(client, bufnr)
+
+                        -- Rust-specific keymaps
+                        local opts = { buffer = bufnr }
+                        vim.keymap.set("n", "<leader>rh", rt.hover_actions.hover_actions, opts)
+                        vim.keymap.set("n", "<leader>ra", rt.code_action_group.code_action_group, opts)
+                    end,
+                    settings = {
+                        ["rust-analyzer"] = {
+                            checkOnSave = {
+                                command = "clippy",
+                            },
+                            cargo = {
+                                allFeatures = true,
+                            },
+                        }
+                    },
+                },
+            })
+        end
+    }
+}
+
+
+-- lua/lsp-cmp-haskell.lua
+return {
+    {
+        "neovim/nvim-lspconfig",
+        dependencies = {
+            "hrsh7th/nvim-cmp",
+        },
+        config = function()
+            local lspconfig = require('lspconfig')
+            local capabilities = require('cmp_nvim_lsp').default_capabilities()
+
+            -- Haskell Language Server setup
+            lspconfig.hls.setup({
+                capabilities = capabilities,
+                on_attach = _G.lsp_on_attach,
+                settings = {
+                    haskell = {
+                        checkProject = true,
+                        formattingProvider = "ormolu", -- or "brittany" or "floskell"
+                    }
+                },
+            })
+
+            -- Optional: Configure additional formatting via null-ls
+            local null_ls = require("null-ls")
+            null_ls.setup({
+                sources = {
+                    null_ls.builtins.formatting.ormolu,
+                    null_ls.builtins.diagnostics.hlint,
+                },
+            })
+        end
+    }
+}
+
+
+-- lua/lsp-cmp-scheme.lua
+return {
+    {
+        "neovim/nvim-lspconfig",
+        dependencies = {
+            "hrsh7th/nvim-cmp",
+        },
+        config = function()
+            local lspconfig = require('lspconfig')
+            local capabilities = require('cmp_nvim_lsp').default_capabilities()
+
+            -- Racket Language Server setup
+            lspconfig.racket_langserver.setup({
+                capabilities = capabilities,
+                on_attach = _G.lsp_on_attach,
+            })
+        end
+    }
+}
+
+
+-- lua/lsp-cmp-r.lua
+return {
+    {
+        "neovim/nvim-lspconfig",
+        dependencies = {
+            "hrsh7th/nvim-cmp",
+            "jalvesaq/Nvim-R",  -- Optional but recommended for R development
+        },
+        config = function()
+            local lspconfig = require('lspconfig')
+            local capabilities = require('cmp_nvim_lsp').default_capabilities()
+
+            -- R Language Server setup
+            lspconfig.r_language_server.setup({
+                capabilities = capabilities,
+                on_attach = _G.lsp_on_attach,
+                settings = {
+                    r = {
+                        lsp = {
+                            diagnostics = true,
+                            rich_documentation = true,
+                        },
+                    },
+                },
+            })
+
+            -- Configure formatting via styler
+            local null_ls = require("null-ls")
+            null_ls.setup({
+                sources = {
+                    null_ls.builtins.formatting.styler,
+                    null_ls.builtins.diagnostics.lintr,
+                },
+            })
+        end
+    }
+}
+
+
+-- lua/lsp-cmp-julia.lua
+return {
+    {
+        "neovim/nvim-lspconfig",
+        dependencies = {
+            "hrsh7th/nvim-cmp",
+        },
+        config = function()
+            local lspconfig = require('lspconfig')
+            local capabilities = require('cmp_nvim_lsp').default_capabilities()
+
+            -- Julia Language Server setup
+            lspconfig.julials.setup({
+                capabilities = capabilities,
+                on_attach = _G.lsp_on_attach,
+                settings = {
+                    julia = {
+                        format = {
+                            indent = 4,
+                        },
+                        lint = {
+                            missingrefs = "all",
+                            iter = true,
+                            lazy = true,
+                            modname = true,
+                        },
+                    },
+                },
+            })
+        end
+    }
+}
+
+
+-- lua/lsp-cmp-latex.lua
+return {
+    {
+        "neovim/nvim-lspconfig",
+        dependencies = {
+            "hrsh7th/nvim-cmp",
+            "lervag/vimtex",  -- Recommended for LaTeX
+        },
+        config = function()
+            local lspconfig = require('lspconfig')
+            local capabilities = require('cmp_nvim_lsp').default_capabilities()
+
+            -- TexLab setup
+            lspconfig.texlab.setup({
+                capabilities = capabilities,
+                on_attach = _G.lsp_on_attach,
+                settings = {
+                    texlab = {
+                        build = {
+                            executable = "latexmk",
+                            args = { "-pdf", "-interaction=nonstopmode", "-synctex=1", "%f" },
+                            onSave = true,
+                        },
+                        forwardSearch = {
+                            executable = "zathura",
+                            args = { "--synctex-forward", "%l:1:%f", "%p" },
+                        },
+                        chktex = {
+                            onOpenAndSave = true,
+                        },
+                    },
+                },
+            })
+
+            -- Configure additional formatting
+            local null_ls = require("null-ls")
+            null_ls.setup({
+                sources = {
+                    null_ls.builtins.formatting.latexindent,
+                    null_ls.builtins.diagnostics.chktex,
+                },
+            })
+        end
+    }
+}
+
+
+-- lua/lsp-cmp-markdown.lua
+return {
+    {
+        "neovim/nvim-lspconfig",
+        dependencies = {
+            "hrsh7th/nvim-cmp",
+        },
+        config = function()
+            local lspconfig = require('lspconfig')
+            local capabilities = require('cmp_nvim_lsp').default_capabilities()
+
+            -- Markdown Language Server setup
+            lspconfig.marksman.setup({
+                capabilities = capabilities,
+                on_attach = _G.lsp_on_attach,
+            })
+
+            -- Configure additional tools via null-ls
+            local null_ls = require("null-ls")
+            null_ls.setup({
+                sources = {
+                    null_ls.builtins.diagnostics.markdownlint,
+                    null_ls.builtins.formatting.prettier.with({
+                        filetypes = { "markdown" },
+                    }),
+                    null_ls.builtins.diagnostics.vale,
+                },
+            })
+        end
+    }
+}
+
+
+-- lua/lsp-cmp-perl.lua
+return {
+    {
+        "neovim/nvim-lspconfig",
+        dependencies = {
+            "hrsh7th/nvim-cmp",
+        },
+        config = function()
+            local lspconfig = require('lspconfig')
+            local capabilities = require('cmp_nvim_lsp').default_capabilities()
+
+            -- Perl Language Server setup
+            lspconfig.perlls.setup({
+                capabilities = capabilities,
+                on_attach = _G.lsp_on_attach,
+                settings = {
+                    perl = {
+                        perlcritic = {
+                            enabled = true,
+                        },
+                        syntax = {
+                            enabled = true,
+                        },
+                    },
+                },
+            })
+
+            -- Configure additional tools via null-ls
+            local null_ls = require("null-ls")
+            null_ls.setup({
+                sources = {
+                    null_ls.builtins.formatting.perltidy,
+                    null_ls.builtins.diagnostics.perl,
+                },
+            })
+        end
+    }
+}
+
+
+# C
+sudo apt install clangd clang-format  # or equivalent for your system
+
+# Fortran
+pip install fortran-language-server
+pip install fprettify
+
+# Rust
+curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+rustup component add rust-analyzer
+
+# Haskell
+ghcup install hls
+stack install ormolu hlint
+
+# Scheme
+raco pkg install racket-langserver
+
+# R
+R -e 'install.packages(c("languageserver", "styler", "lintr"))'
+
+# Julia
+julia -e 'using Pkg; Pkg.add("LanguageServer")'
+
+# LaTeX
+sudo apt install texlab latexmk chktex
+pip install latexindent
+
+# Markdown
+npm install -g markdownlint-cli prettier vale
+
+# Perl
+cpan Perl::LanguageServer
+cpan Perl::Tidy
