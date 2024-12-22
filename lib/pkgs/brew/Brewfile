@@ -8,8 +8,8 @@ brew "luarocks"
 brew "utf8proc"
 brew "shellcheck"
 brew "shfmt"
-cask "vimr"
-
+# cask "vimr"
+cask "neovide"
 cask "bbedit"
 cask "visual-studio-code"
 cask "zed"
@@ -27,12 +27,15 @@ brew "bash"         # version in macOS is outdated
 brew "perl"
 brew "ruby"
 brew "julia"
+cask "r"
 brew "openjdk"
 brew "gcc"
 brew "llvm"
 brew "sbcl"
 brew "texlive"      # latex
 brew "pandoc"       # converting to and from latex
+brew "tcl-tk"       # Tkinter
+brew "python-tk"
 
 # File Browser
 brew "lf"
@@ -67,10 +70,10 @@ cask "aldente"
 
 
 # General
+cask "firefox"
 cask "microsoft-teams"
 cask "calibre"
 cask "zotero"
-cask "orion"
 cask "plex"
 cask "pdf-expert" # needs license
 cask "whatsapp"
