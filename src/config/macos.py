@@ -105,7 +105,10 @@ def apply_settings(
     return success
 
 
-def configure_duti(config: Dict[str, List[str]], dry_run: bool = False) -> bool:
+def configure_duti(
+    config: Dict[str, List[str]],
+    dry_run: bool = False
+) -> bool:
     """Configure default applications using duti"""
     if not Path("/opt/homebrew/bin/duti").exists():
         logger.error("duti not installed. Please install via Homebrew first.")
@@ -210,3 +213,4 @@ def run_with_login_shell(cmd: str) -> bool:
     except Exception as e:
         logger.error(f"Command failed: {e}")
         return False
+

@@ -8,6 +8,7 @@ from .packaging import main_packaging
 from .toolchains import main_toolchains
 from .utils.edit import edit_in_nvim
 
+
 def main() -> Literal[0, 1]:
     """Main entry point"""
 
@@ -33,3 +34,4 @@ def main() -> Literal[0, 1]:
         else:
             logger.error(str(e))
         return 1
+
