@@ -3,18 +3,18 @@ tap "sodium-hydroxide/compression-tools", "https://github.com/sodium-hydroxide/c
 brew "compression-tools"
 
 # Editors
-brew "neovim"
+brew "neovim"               # Vim
 brew "luarocks"
 brew "utf8proc"
-brew "shellcheck"
-brew "shfmt"
-# cask "vimr"
-cask "neovide"
-cask "bbedit"
-cask "visual-studio-code"
-cask "zed"
-cask "obsidian"
-brew "glow"         # Markdown previewer
+brew "shellcheck"           # Shell LSP
+brew "shfmt"                # Shell Formating
+brew "bash-debug-adapter"   # Shell debugging
+cask "neovide"              # Vim Gui
+cask "bbedit"               # Basic Text Editor
+cask "visual-studio-code"   # IDE
+cask "zed"                  # Modern gui IDE
+cask "obsidian"             # Note Taking
+brew "glow"                 # Markdown previewer
 
 # Dev Tools
 brew "git"
@@ -23,65 +23,65 @@ cask "docker"
 cask "iterm2"
 
 # Languages
-brew "bash"         # version in macOS is outdated
+brew "bash"                 # version in macOS is outdated
 brew "perl"
 brew "ruby"
-brew "julia"
-cask "r"
+brew "julia"                # Julia Scientific Computing Language
+cask "r"                    # R Statistical Language
 brew "openjdk"
-brew "gcc"
+brew "gcc"                  # GNU Compiler Connection
 brew "llvm"
 brew "sbcl"
-brew "texlive"      # latex
-brew "pandoc"       # converting to and from latex
-brew "tcl-tk"       # Tkinter
+brew "texlive"              # latex
+brew "pandoc"               # converting to and from latex
+brew "tcl-tk"               # Tkinter
 brew "python-tk"
 
 # File Browser
 brew "lf"
-brew "massren"      # rename files
-brew "fd"           # find directories
-brew "jq"           # JSON Processing
-brew "bat"          # Cleaner output than cat
-brew "chafa"        # Image Preview
-brew "mediainfo"    # Media Metadata
-brew "file"         # File Type Detection
-brew "poppler"      # PDF Previewer in Terminal
+brew "massren"              # rename files
+brew "fd"                   # find directories
+brew "jq"                   # JSON Processing
+brew "bat"                  # Cleaner output than cat
+brew "chafa"                # Image Preview
+brew "mediainfo"            # Media Metadata
+brew "file"                 # File Type Detection
+brew "poppler"              # PDF Previewer in Terminal
 
 # Utilities
-brew "mas"          # Mac App Store
-brew "wget"         # similar to curl
-brew "ripgrep"      # regex tool
-brew "fzf"          # Fuzzy find files
+brew "mas"                  # Mac App Store
+brew "wget"                 # similar to curl
+brew "ripgrep"              # regex tool
+brew "fzf"                  # Fuzzy find files
 brew "tmux"
-brew "ffmpeg"       # audio and video editing
-brew "htop"         # see processes running
-brew "duti"         # set default applications macOS
-brew "doxygen"      # create documentation from comments
-brew "help2man"     # create man page from -h or --help flag
-brew "cmake"
+brew "ffmpeg"               # audio and video editing
+brew "htop"                 # see processes running
+brew "duti"                 # set default applications macOS
+brew "doxygen"              # create documentation from comments
+brew "help2man"             # create man page from -h or --help flag
+brew "cmake"                # Expanded make utilities
 brew "ninja"
-cask "hiddenbar"
-cask "grandperspective"
-cask "mission-control-plus"
-cask "xquartz"
-cask "wine-stable"
-cask "aldente"
+cask "hiddenbar"            # Hidden icons in menu bar
+cask "grandperspective"     # Disk Viewer
+cask "mission-control-plus" # Advanced Window Management
+cask "xquartz"              # X-Window Support
+cask "wine-stable"          # Run NT Applications
+cask "aldente"              # Batter Manager
 
 
 # General
-cask "firefox"
-cask "microsoft-teams"
-cask "calibre"
-cask "zotero"
-cask "plex"
-cask "pdf-expert" # needs license
-cask "whatsapp"
-cask "backblaze"
-cask "vlc"
-cask "skim"
-cask "netnewswire"
+cask "firefox"              # Web Browser
+cask "calibre"              # Library for Books
+cask "zotero"               # Library for Academic Documents
+cask "plex"                 # Media Server
+cask "pdf-expert"           # PDF Editor
+cask "whatsapp"             # Messaging
+cask "backblaze"            # Backups
+cask "vlc"                  # Media Viewer
+cask "skim"                 # Lightweight PDF Viewer
+cask "netnewswire"          # RSS Reader
 
 # Fonts
 
 cask "font-jetbrains-mono-nerd-font"
+
