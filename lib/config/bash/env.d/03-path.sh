@@ -11,6 +11,7 @@ $CARGO_HOME/bin:\
 $HOME/.juliaup/bin:\
 /opt/homebrew/opt/openjdk/bin:\
 /opt/homebrew/opt/julia/bin:\
+/usr/local/opt/llvm/bin:\
 $(npm config get prefix 2>/dev/null)/bin:\
 $HOME/dotfiles/bin:\
 /opt/homebrew/bin:\
