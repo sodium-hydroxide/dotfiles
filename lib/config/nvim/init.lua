@@ -11,8 +11,10 @@ if not vim.loop.fs_stat(lazypath) then
   })
 end
 vim.opt.rtp:prepend(lazypath)
-vim.g.mapleader = " "           -- sets leader key
-vim.keymap.set(                 -- Reload vim config
+vim.g.mapleader = " "               -- sets leader key
+vim.g.maplocalleader = "\\"         -- sets local leader key
+vim.g.theme_choice = "github_light" -- Sets the theme
+vim.keymap.set(                     -- Reload vim config
     'n',
     '<leader>r',
     ':source $MYVIMRC<CR>',
@@ -21,23 +23,12 @@ vim.keymap.set(                 -- Reload vim config
 
 -- Extensions
 require("lazy").setup({
-    require("filetree"),        -- File Browsing
-    require('terminal'),        -- Terminal Emulator
-    require('hex-edit'),        -- Hex Editor
-    require('cmp-lsp'),         -- Language Server Protocol
-    require('cmp-lsp-python'),  -- Python Support
-    require('cmp-lsp-shell')    -- Shell Support
-    -- C-language
-    -- Markdown
-    -- LaTeX
-    -- Rust
-    -- Haskell
-    -- Perl
-    -- Scheme
-    -- R-lang
-    -- FORTRAN
-    -- MCNP
-    --
+    require('theme'),               -- UI Theme
+    require('filetree'),            -- File Browsing
+    -- require('buffer'),              -- Show open buffers
+    require('terminal'),            -- Terminal Emulator
+    require('hex-edit'),            -- Hex Editor
+    require('languages'),           -- LSP + Syntax Highlighting
 }, {
     checker = {
         enabled = true,
@@ -52,3 +43,4 @@ require("lazy").setup({
 require('ui')                   -- General UI Settings
 require('paste')                -- Paste Buffer
 require('whitespace')           -- Rendering and trimming whitespace
+
