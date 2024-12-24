@@ -1,0 +1,59 @@
+// Default config for zellij
+keybinds {
+    normal {
+        // Vi-style pane movement
+        bind "Alt h" { MoveFocus "Left"; }
+        bind "Alt l" { MoveFocus "Right"; }
+        bind "Alt j" { MoveFocus "Down"; }
+        bind "Alt k" { MoveFocus "Up"; }
+
+        // Create splits
+        bind "Alt |" { NewPane "Right"; }
+        bind "Alt -" { NewPane "Down"; }
+
+        // Tabs
+        bind "Alt t" { NewTab; }
+        bind "Alt n" { GoToNextTab; }
+        bind "Alt p" { GoToPreviousTab; }
+    }
+}
+
+// Layout configuration
+layout {
+    pane split_direction="vertical" {
+        pane size="15%" {
+            plugin location="zellij:tab-bar"
+        }
+        pane
+    }
+    pane size=2 borderless=true {
+        plugin location="zellij:status-bar"
+    }
+}
+
+// Theme and UI settings
+theme "default"
+pane_frames true
+mouse_mode true
+
+// Tab bar settings
+tabs_as_list true
+
+// Status settings
+status {
+    format {
+        left_format "#[fg=blue] {session_name} #[fg=white]| #[fg=green]{command} ({current_working_dir})"
+    }
+}
+
+// Default layout
+default_layout "compact"
+
+// Make tabs more visible
+ui {
+    pane_frames {
+        rounded_corners true
+        hide_session_name false
+    }
+}
+

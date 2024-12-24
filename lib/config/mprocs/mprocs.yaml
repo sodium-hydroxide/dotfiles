@@ -1,0 +1,10 @@
+keymap:
+  root:
+    add: "<C-n>"
+    remove: "<C-w>"
+
+procs:
+  shell:
+    cmd: ["bash"]
+    autostart: false
+

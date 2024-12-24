@@ -20,6 +20,29 @@
             "chmod": "0755"
         },
         {
+            "local": "nvim-term",
+            "link": ["$USER_CONFIG", "nvim-term"],
+            "chmod": "0755"
+        },
+        {
+            "local": "tmux",
+            "link": ["$USER_CONFIG", "tmux"],
+            "exclude": ["*.bak", "*.old"],
+            "chmod": "0755"
+        },
+        {
+            "local": "zellij",
+            "link": ["$USER_CONFIG", "zellij"],
+            "exclude": ["*.bak", "*.old"],
+            "chmod": "0755"
+        },
+        {
+            "local": "mprocs",
+            "link": ["$USER_CONFIG", "mprocs"],
+            "exclude": ["*.bak", "*.old"],
+            "chmod": "0755"
+        },
+        {
             "local": "git",
             "link": ["$USER_CONFIG", "git"],
             "chmod": "0755"
@@ -44,3 +67,4 @@
         }
     ]
 }
+
