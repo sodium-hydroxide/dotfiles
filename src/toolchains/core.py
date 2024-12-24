@@ -5,6 +5,7 @@ from ..utils.logs import logger
 from ..utils.options import CommandOptions
 from ..utils.paths import Paths
 from .bash import bash_toolchain
+from .ghcup import ghcup_toolchain
 from .juliaup import juliaup_toolchain
 from .nvm import nvm_toolchain
 from .rustup import rustup_toolchain
@@ -38,6 +39,7 @@ def main_toolchains(args: Namespace, paths: Paths) -> Literal[0, 1]:
                 nvm_toolchain(options, paths),
                 juliaup_toolchain(options, paths),
                 rustup_toolchain(options, paths),
+                ghcup_toolchain(options, paths),
             ]
         )
         return 0 if success else 1
@@ -52,5 +54,7 @@ def main_toolchains(args: Namespace, paths: Paths) -> Literal[0, 1]:
         return 0 if juliaup_toolchain(options, paths) else 1
     elif args.tool_type == "rust":
         return 0 if rustup_toolchain(options, paths) else 1
+    elif args.tool_type == "haskell":
+        return 0 if ghcup_toolchain(options, paths) else 1
 
     return 1

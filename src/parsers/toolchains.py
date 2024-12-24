@@ -108,5 +108,8 @@ def create_toolchain_parser(subparsers: _SubParsersAction) -> ArgumentParser:
     create_specific_toolchain_parser(
         toolchain_subparsers, cmd="rust", toolchain_name="Rust"
     )
+    create_specific_toolchain_parser(
+        toolchain_subparsers, cmd="haskell", toolchain_name="Haskell"
+    )
 
     return toolchain_parser
