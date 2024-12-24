@@ -7,7 +7,7 @@ vim.opt.relativenumber = false  -- use absolute numbering
 vim.opt.syntax = "ON"           -- syntax highlighting
 vim.opt.backup = false          -- supress generation of backup files
 vim.opt.wrap = true             -- wrap text
-vim.opt.termguicolors = false   -- Disable theme when open in terminal
+vim.opt.termguicolors = true    -- Disable theme when open in terminal
 
 -- Navigation around different windows
 vim.keymap.set('n', '<C-h>', '<C-w>h', { noremap = true, silent = true })

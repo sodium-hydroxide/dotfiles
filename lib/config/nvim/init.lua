@@ -14,6 +14,7 @@ vim.opt.rtp:prepend(lazypath)
 vim.g.mapleader = " "               -- sets leader key
 vim.g.maplocalleader = "\\"         -- sets local leader key
 vim.g.theme_choice = "github_light" -- Sets the theme
+vim.opt.termguicolors = true
 vim.keymap.set(                     -- Reload vim config
     'n',
     '<leader>r',
