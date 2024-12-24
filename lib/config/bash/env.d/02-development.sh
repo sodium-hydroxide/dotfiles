@@ -23,7 +23,11 @@ export NVM_DIR="$HOME/.nvm"
 export NODE_ENV="development"
 export NODE_OPTIONS="--max-old-space-size=4096"
 
-# mcnp
-export DATAPATH="$HOME/.MCNP/mcnp63/exec/MCNP_DATA"
-export XSDIR="${DATAPATH}/xsdir"
+# haskell
+export CABAL_HOME="${HOME}/.cabal"
+export HASKELL_HOME="${HOME}/.ghcup"
 
+# mcnp
+export MCNP_HOME="$HOME/.MCNP/mcnp63/exec"
+export DATAPATH="$MCNP_HOME/MCNP_DATA"
+export XSDIR="${DATAPATH}/xsdir"
