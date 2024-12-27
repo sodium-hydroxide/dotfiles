@@ -1,0 +1,36 @@
+general.import = [
+    "./github_dark.toml" # Theme
+]
+# Shell program
+[terminal.shell]
+# program =           "/opt/homebrew/bin/zellij"
+program = "/bin/bash"
+
+# Window settings
+[window]
+dynamic_padding =   false
+[window.dimensions]
+columns =           120
+lines =             40
+[window.padding]
+x =                 0
+y =                 0
+
+# Font configuration
+[font]
+normal =        { family = "JetBrainsMono Nerd Font Mono", style = "Regular" }
+bold =          { family = "JetBrainsMono Nerd Font Mono", style = "Bold" }
+italic =        { family = "JetBrainsMono Nerd Font Mono", style = "Italic" }
+bold_italic =   { family = "JetBrainsMono Nerd Font Mono", style = "Bold Italic" }
+size =          14.0
+
+
+# Cursor settings
+[cursor]
+style = { shape = "Beam" }
+vi_mode_style = { shape = "Beam" }
+blink_interval = 750
+thickness = 0.3
+
+# URL settings
+

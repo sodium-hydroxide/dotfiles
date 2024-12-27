@@ -22,6 +22,7 @@ return {
             require("languages.python")()
             require("languages.shell")()
             require("languages.c")()
+            require("languages.haskell")()
         end,
     },
 }

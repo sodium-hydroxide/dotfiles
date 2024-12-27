@@ -11,6 +11,6 @@ done
 # Source interactive shell configuration
 if [[ $- == *i* ]]; then
     [ -f "$BASH_CONFIG_DIR/interactive.sh" ] && source "$BASH_CONFIG_DIR/interactive.sh"
-    greeting
+#     greeting
 fi
 

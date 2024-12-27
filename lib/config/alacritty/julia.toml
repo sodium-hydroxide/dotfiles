@@ -1,0 +1,32 @@
+[colors]
+[colors.primary]
+background = "#f0f0f0"  # Lighter grey background
+foreground = "#1a1a1a"  # Julia's default text color
+
+[colors.cursor]
+text = "#ffffff"
+cursor = "#9558b2"  # Julia purple
+
+[colors.normal]
+black = "#383a42"
+red = "#ca1243"    # Julia red
+green = "#389826"  # Julia green
+yellow = "#cb9c04" # Julia yellow
+blue = "#4063D8"   # Julia blue
+magenta = "#9558b2"# Julia purple
+cyan = "#0184bc"   # Julia cyan
+white = "#a0a1a7"
+
+[colors.bright]
+black = "#4f525e"
+red = "#e45649"
+green = "#50a14f"
+yellow = "#c18401"
+blue = "#4271ae"
+magenta = "#a626a4"
+cyan = "#0997b3"
+white = "#fafafa"
+
+[colors.hints]
+start = { foreground = "#4271ae" }
+

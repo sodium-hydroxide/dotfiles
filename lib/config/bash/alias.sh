@@ -18,15 +18,16 @@ cd_ls() {
     ls
 }
 
-alias gui="open"
-alias mdp="glow -p"
-alias lsold="ls"
-alias ls="ls -CFl"
-alias lsa="ls -CFla"
-alias vi="nvim"
-alias vim="nvim"
-alias lfold="lf"
-alias lf="lf_exit"
-alias kd="cd_ls"
-alias notes="open -a Obsidian"
+alias gui="open"               # Open in Graphical Interface
+alias mdp="glow -p"            # Markdown Previewer
+alias lsold="ls"               # Use the typical ls command
+alias ls="ls -CFl"             # List Files in a List
+alias lsa="ls -CFla"           # List All Files in a List
+alias vi="nvim"                # Open VIm
+alias vim="nvim"               # Open VIm
+alias lfold="lf"               # List Files (without Changing Directory)
+alias lf="lf_exit"             # List Files (and Change Directory)
+alias kd="cd_ls"               # Change Directory and List Contents
+alias notes="open -a Obsidian" # Obsidian Nodes
+alias icat="kitty icat"        # Image Concatenation
 

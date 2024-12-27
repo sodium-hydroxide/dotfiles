@@ -15,13 +15,14 @@
             "chmod": "0755"
         },
         {
-            "local": "nvim",
-            "link": ["$USER_CONFIG", "nvim"],
+            "local": "alacritty",
+            "link": ["$USER_CONFIG", "alacritty"],
+            "exclude": ["*.bak", "*.old"],
             "chmod": "0755"
         },
         {
-            "local": "nvim-term",
-            "link": ["$USER_CONFIG", "nvim-term"],
+            "local": "nvim",
+            "link": ["$USER_CONFIG", "nvim"],
             "chmod": "0755"
         },
         {

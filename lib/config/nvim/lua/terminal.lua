@@ -55,7 +55,7 @@ return {
         function _G.set_terminal_keymaps()
             local opts = {buffer = 0}
             -- Exit terminal mode
-            vim.keymap.set('t', '<esc>', [[<C-\><C-n>]], opts)
+            vim.keymap.set('t', '<esc><esc>', [[<C-\><C-n>]], opts)
             -- Better terminal navigation
             vim.keymap.set('t', '<C-h>', [[<Cmd>wincmd h<CR>]], opts)
             vim.keymap.set('t', '<C-j>', [[<Cmd>wincmd j<CR>]], opts)
@@ -67,3 +67,4 @@ return {
         vim.cmd('autocmd! TermOpen term://* lua set_terminal_keymaps()')
     end
 }
+
