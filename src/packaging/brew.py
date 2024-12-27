@@ -41,7 +41,7 @@ def update_brew(brewfile: Path, dry_run: bool = False) -> bool:
     # Update packages
     logger.info("Updating Homebrew packages...")
     result = run_shell_command(
-        ["brew", "bundle", "--file", str(brewfile)], capture_output=True
+        ["brew", "bundle", "--file", str(brewfile), "--cleanup"], capture_output=True
     )
     if result.returncode != 0:
         logger.error(f"Failed to update Homebrew packages: {result.stderr}")
@@ -88,3 +88,4 @@ def brew_packaging(options: CommandOptions, paths: Paths) -> bool:
         return reinstall_brew(brewfile, options.dry_run)
 
     return False
+
