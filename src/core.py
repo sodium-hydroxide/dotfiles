@@ -10,28 +10,30 @@ from .utils.edit import edit_in_nvim
 
 
 def main() -> Literal[0, 1]:
-    """Main entry point"""
-
     args = create_parser().parse_args()
     setup_logging(args.verbose)
     paths = get_paths()
 
     try:
-        logger.debug(f"Processing command: {args.command}")
-        if args.command == "edit":
-            edit_in_nvim(paths.lib)
-        if args.command == "pkg":
-            return main_packaging(args, paths)
-        elif args.command in ["config", "mac"]:
-            # Both config and mac commands are handled by config module
-            return main_config(args, paths)
-        elif args.command == "tool":
-            return main_toolchains(args, paths)
-        return 1
+        match args.command:
+            case "config":
+                options = CommandOptions(
+                    action=args.action,
+                    dry_run=args.dry_run,
+                    verbose=args.verbose
+                )
+                return 0 if symlink_config(options, paths) else 1
+            case "mac":
+                from .macos import macos_config
+                return 0 if macos_config(args, paths) else 1
+            case "pkg":
+                from .packaging import main_packaging
+                return 0 if main_packaging(args, paths) else 1
+            case "edit":
+                from .utils.edit import edit_in_nvim
+                return 0 if edit_in_nvim(paths.lib) else 1
+            case _:
+                return 1
     except Exception as e:
-        if args.verbose:
-            logger.error(f"Error details: {str(e)}", exc_info=True)
-        else:
-            logger.error(str(e))
+        logger.error(str(e), exc_info=args.verbose)
         return 1
-

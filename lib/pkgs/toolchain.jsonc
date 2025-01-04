@@ -1,0 +1,30 @@
+
+[[tool]]
+name = "Haskell"
+install = "curl --proto '=https' --tlsv1.2 -sSf https://get-ghcup.haskell.org | sh"
+update = "ghcup upgrade"
+
+[[tool]]
+name = "Python"
+install = "curl -LsSf https://astral.sh/uv/install.sh | sh"
+update = "uv self update"
+
+[[tool]]
+name = "Julia"
+install = "curl -fsSL https://install.julialang.org | sh"
+update = "juliaup update"
+
+[[tool]]
+name = "Node.js"
+install = "curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.1/install.sh | bash"
+update = ""
+
+[[tool]]
+name = "Rust"
+install = "curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh"
+update = "rustup update"
+
+[[tool]]
+name = "Bash"
+install = ""
+update = ""
