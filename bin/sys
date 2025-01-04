@@ -6,7 +6,6 @@ import sys
 root_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0, root_dir)
 
-from src.core import main
-
 if __name__ == "__main__":
+    from src.core import main
     sys.exit(main())

@@ -1,0 +1,166 @@
+{
+    "settings": {
+      "keyboard": [
+        {
+          "domain": "-g",
+          "settings": {
+            "KeyRepeat": 2,
+            "ApplePressAndHoldEnabled": false,
+            "AppleFnUsageType": 0,
+            "InitialKeyRepeat": 15
+          }
+        }
+      ],
+      "global": [
+        {
+          "domain": "-g",
+          "settings": {
+            "AppleMetricUnits": 1,
+            "AppleMeasurementUnits": "Centimeters",
+            "AppleTemperatureUnit": "Celsius",
+            "AppleICUForce24HourTime": true,
+            "com.apple.swipescrolldirection": false,
+            "NSAutomaticSpellingCorrectionEnabled": false,
+            "NSAutomaticCapitalizationEnabled": false,
+            "NSAutomaticPeriodSubstitutionEnabled": false,
+            "NSAutomaticDashSubstitutionEnabled": false,
+            "NSAutomaticQuoteSubstitutionEnabled": false
+          }
+        }
+      ],
+      "dock": [
+        {
+          "domain": "com.apple.dock",
+          "settings": {
+            "autohide": false,
+            "launchanim": false,
+            "largesize": 32,
+            "magnification": true,
+            "tilesize": 24,
+            "mineffect": "scale",
+            "minimize-to-application": false,
+            "mru-spaces": false,
+            "orientation": "left",
+            "show-process-indicators": true,
+            "show-recents": false,
+            "expose-group-by-app": false,
+            "expose-animation-duration": 0.1,
+            "window-snap": false
+          }
+        }
+      ],
+      "finder": [
+        {
+          "domain": "com.apple.finder",
+          "settings": {
+            "FXPreferredViewStyle": "Nlsv",
+            "_FXShowPosixPathInTitle": true,
+            "AppleShowAllExtensions": true,
+            "ShowPathbar": true,
+            "ShowStatusBar": true,
+            "FXEnableExtensionChangeWarning": false
+          }
+        }
+      ],
+      "trackpad": [
+        {
+          "domain": "com.apple.AppleMultitouchTrackpad",
+          "settings": {
+            "ActuationStrength": 0,
+            "Clicking": true,
+            "Dragging": false,
+            "TrackpadRightClick": true,
+            "TrackpadThreeFingerDrag": false,
+            "TrackpadThreeFingerTapGesture": 0,
+            "ForceSuppressed": true,
+            "ActuateDetents": false
+          }
+        }
+      ],
+      "system": [
+        {
+          "domain": "com.apple.menuextra.clock",
+          "settings": {
+            "IsAnalog": true
+          }
+        },
+        {
+          "domain": "com.apple.screencapture",
+          "settings": {
+            "show-thumbnail": false
+          }
+        },
+        {
+          "domain": "com.apple.SoftwareUpdate",
+          "settings": {
+            "AutomaticallyInstallMacOSUpdates": false
+          }
+        },
+        {
+          "domain": "com.apple.WindowManager",
+          "settings": {
+            "EnableStandardClickToShowDesktop": false
+          }
+        }
+      ],
+      "hot_corners": [
+        {
+          "domain": "com.apple.dock",
+          "settings": {
+            "wvous-bl-corner": 1,
+            "wvous-br-corner": 4,
+            "wvous-tl-corner": 1,
+            "wvous-tr-corner": 1
+          }
+        }
+      ]
+    },
+    "default_files": {
+      "com.barebones.bbedit": [
+        "public.text",
+        "public.plain-text",
+        "public.utf8-plain-text",
+        "public.utf16-plain-text",
+        "public.utf16-external-plain-text",
+        "public.source-code",
+        "public.script",
+        "public.shell-script",
+        "public.python-script",
+        "public.perl-script",
+        "public.ruby-script",
+        "public.php-script",
+        "public.c-source",
+        "public.c-plus-plus-source",
+        "public.c-header",
+        "public.c-plus-plus-header",
+        "net.daringfireball.markdown",
+        "public.xml",
+        "public.html",
+        "public.css",
+        "public.json",
+        "public.data",
+        "public.content",
+        "public.log",
+        ".java",
+        ".rs",
+        ".nix",
+        ".tex",
+        ".ini",
+        ".config",
+        ".css",
+        ".js",
+        ".jsx",
+        ".tsx",
+        ".json"
+      ],
+      "com.readdle.PDFExpert-Mac": [
+        ".pdf"
+      ],
+      "org.videolan.vlc": [
+        ".mp3",
+        ".mp4",
+        ".mkv",
+        ".mpeg"
+      ]
+    }
+  }
