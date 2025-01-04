@@ -25,8 +25,6 @@ return {
             require("languages.haskell")()
         end,
     },
-
--- Add this after your language setup in init.lua
 }
 -- Markdown
 -- LaTeX

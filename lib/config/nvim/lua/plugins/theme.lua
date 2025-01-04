@@ -2,9 +2,9 @@
 -- Function to setup common highlight groups for special characters
 local function setup_list_chars_highlights()
   -- Ensure special characters are visible
-  vim.api.nvim_set_hl(0, 'Whitespace', { fg = '#504945' })  -- for spaces
-  vim.api.nvim_set_hl(0, 'NonText', { fg = '#504945' })     -- for eol and extends
-  vim.api.nvim_set_hl(0, 'SpecialKey', { fg = '#504945' })  -- for other special chars
+  vim.api.nvim_set_hl(0, 'Whitespace', { fg = '#FFFFFF' })  -- for spaces
+  vim.api.nvim_set_hl(0, 'NonText', { fg = '#004945' })     -- for eol and extends
+  vim.api.nvim_set_hl(0, 'SpecialKey', { fg = '#004945' })  -- for other special chars
 end
 
 -- Theme definitions table

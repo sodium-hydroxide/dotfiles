@@ -24,7 +24,10 @@ require("lazy").setup({
     require('plugins.filetree'),    --> File Browsing
     require('plugins.terminal'),    --> Terminal Emulator
     require('plugins.hex-edit'),    --> Hex Editor
-    require('plugins.languages'),   --> LSP + Syntax Highlighting
+    require('plugins.fold'),        --> Code folding
+    require('plugins.status'),      --> Status Line
+    -- require('plugins.buffers'),      --> Status Line
+    require('languages'),           --> LSP + Syntax Highlighting
 }, {
     checker = {
         enabled = true,
