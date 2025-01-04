@@ -1,0 +1,31 @@
+
+[[tool]]
+name = "Haskell"
+install = "haskell cmd"
+update = "ghcup upgrade"
+
+[[tool]]
+name = "Python"
+install = ""
+update = "uv self update"
+
+[[tool]]
+name = "Julia"
+install = ""
+update = "juliaup update"
+
+[[tool]]
+name = "Node.js"
+install = ""
+update = ""
+
+[[tool]]
+name = "Rust"
+install = ""
+update = "rustup update"
+
+[[tool]]
+name = "Bash"
+install = ""
+update = ""
+

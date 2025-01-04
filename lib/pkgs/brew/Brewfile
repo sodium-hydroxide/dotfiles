@@ -1,6 +1,22 @@
-# Taps
-# tap "sodium-hydroxide/compression-tools", "https://github.com/sodium-hydroxide/compression-tools"
-# brew "compression-tools"
+brew "lynx"                 # CLI Browser
+cask "utm"                  # Virtual Machine
+cask "silhouette-studio"
+cask "iterm2"               # Terminal Emulator
+cask "arc"
+
+# General
+cask "firefox"              # Web Browser
+cask "calibre"              # Library for Books
+cask "zotero"               # Library for Academic Documents
+cask "plex"                 # Media Server
+cask "pdf-expert"           # PDF Editor
+cask "whatsapp"             # Messaging
+cask "backblaze"            # Backups
+cask "vlc"                  # Media Viewer
+cask "skim"                 # Lightweight PDF Viewer
+cask "netnewswire"          # RSS Reader
+cask "freetube"             # YouTube Client
+cask "transmission"         #
 
 # Editors
 brew "neovim"               # Vim
@@ -8,7 +24,7 @@ brew "luarocks"
 brew "utf8proc"
 brew "shellcheck"           # Shell LSP
 brew "shfmt"                # Shell Formating
-brew "bash-debug-adapter"   # Shell debugging
+# brew "bash-debug-adapter"   # Shell debugging
 cask "neovide"              # Vim Gui
 cask "bbedit"               # Basic Text Editor
 cask "visual-studio-code"   # IDE
@@ -17,10 +33,9 @@ cask "obsidian"             # Note Taking
 brew "glow"                 # Markdown previewer
 
 # Dev Tools
-brew "git"
-brew "gh"
-cask "docker"
-cask "iterm2"
+brew "git"                  # Version Control
+brew "gh"                   # GitHub
+cask "docker"               # Container
 
 # Languages
 brew "bash"                 # version in macOS is outdated
@@ -28,14 +43,14 @@ brew "perl"
 brew "ruby"
 brew "julia"                # Julia Scientific Computing Language
 cask "r"                    # R Statistical Language
-brew "openjdk"
+brew "openjdk"              # Java Compiler
 brew "gcc"                  # GNU Compiler Connection
-brew "llvm"
-brew "sbcl"
+brew "llvm"                 # Low Level Virtual Machine
+brew "sbcl"                 #
 brew "texlive"              # latex
 brew "pandoc"               # converting to and from latex
 brew "tcl-tk"               # Tkinter
-brew "python-tk"
+brew "python-tk"            # TkInter
 
 # File Browser
 brew "lf"
@@ -44,6 +59,7 @@ brew "fd"                   # find directories
 brew "jq"                   # JSON Processing
 brew "bat"                  # Cleaner output than cat
 brew "chafa"                # Image Preview
+brew "libsixel"             # Image Preview for Zellij
 brew "mediainfo"            # Media Metadata
 brew "file"                 # File Type Detection
 brew "poppler"              # PDF Previewer in Terminal
@@ -61,6 +77,7 @@ brew "htop"                 # see processes running
 brew "duti"                 # set default applications macOS
 brew "doxygen"              # create documentation from comments
 brew "help2man"             # create man page from -h or --help flag
+cask "amethyst"
 brew "cmake"                # Expanded make utilities
 brew "ninja"
 cask "hiddenbar"            # Hidden icons in menu bar
@@ -69,19 +86,6 @@ cask "mission-control-plus" # Advanced Window Management
 cask "xquartz"              # X-Window Support
 cask "wine-stable"          # Run NT Applications
 cask "aldente"              # Batter Manager
-
-
-# General
-cask "firefox"              # Web Browser
-cask "calibre"              # Library for Books
-cask "zotero"               # Library for Academic Documents
-cask "plex"                 # Media Server
-cask "pdf-expert"           # PDF Editor
-cask "whatsapp"             # Messaging
-cask "backblaze"            # Backups
-cask "vlc"                  # Media Viewer
-cask "skim"                 # Lightweight PDF Viewer
-cask "netnewswire"          # RSS Reader
 
 # Fonts
 cask "font-jetbrains-mono-nerd-font"
