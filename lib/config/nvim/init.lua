@@ -28,6 +28,7 @@ require("lazy").setup({
     require('plugins.status'),      --> Status Line
     -- require('plugins.buffers'),      --> Status Line
     require('languages'),           --> LSP + Syntax Highlighting
+    require('plugins.keybindings')  --> Which key support
 }, {
     checker = {
         enabled = true,
@@ -42,4 +43,5 @@ require('options.ui')
 require('options.whitespace')
 require('options.diagnostics')
 require('options.navigation')
+require('modes')
 
