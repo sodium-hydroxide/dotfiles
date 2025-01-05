@@ -3,6 +3,7 @@
 codex_bootstrap="/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr"
 
 paths=(
+    "$HOME/.config/nvim/bin"
     "/usr/local/opt/llvm/bin" # Low Level Virtual Machine
     #=========================================================================#
     "$HOME/.local/bin"                         # UV (python) Management
@@ -43,4 +44,3 @@ PATH=$(
     echo "${paths[*]}"
 )
 export PATH
-
