@@ -5,6 +5,12 @@ vim.api.nvim_create_user_command('MoveTopRight', function()
     vim.cmd('wincmd l')
 end, {})
 
+vim.api.nvim_create_user_command('TerminalPython', function()vim.cmd([[
+TermOpen horizontal
+wincmd j
+TermOpen horizontal cmd=.venv/bin/ipython name=REPL-Python
+]])end, {})
+
 vim.api.nvim_create_user_command('ModeIDE', function()
     vim.cmd('NvimTreeToggle')
     vim.cmd('TermOpen horizontal')
@@ -23,7 +29,7 @@ vim.api.nvim_create_user_command('ModeHaskell', function()
     vim.cmd('ModeIDE')
     vim.cmd('wincmd j')
     vim.cmd('TermOpen horizontal cmd=ghci name=REPL-Haskell')
-    vim.cmd('TermOpen vertical cmd=ghcid')
+    vim.cmd('TermOpen vertical')
     vim.cmd('MoveTopRight')
 end, {})
 

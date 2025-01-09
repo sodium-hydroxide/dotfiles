@@ -27,16 +27,35 @@ require("lazy").setup({
     require('plugins.fold'),        --> Code folding
     require('plugins.status'),      --> Status Line
     -- require('plugins.buffers'),      --> Status Line
-    require('languages'),           --> LSP + Syntax Highlighting
+    {
+        "neovim/nvim-lspconfig",
+        dependencies = {
+            "hrsh7th/nvim-cmp",
+            "hrsh7th/cmp-nvim-lsp",
+            "hrsh7th/cmp-buffer",
+            "hrsh7th/cmp-path",
+            "jose-elias-alvarez/null-ls.nvim",
+            "nvim-lua/plenary.nvim",
+            "williamboman/mason.nvim",
+            "williamboman/mason-lspconfig.nvim",
+            "nvim-treesitter/nvim-treesitter",
+            "mfussenegger/nvim-dap",
+            "rcarriga/nvim-dap-ui",
+        },
+        config = function()
+            -- Method 1: Direct import of language configs
+            local language = require('languages')
+            language({
+                require('languages.config.python'),
+                require('languages.config.shell'),
+                -- Add more languages as needed
+            })
+        end
+    },
     require('plugins.keybindings')  --> Which key support
 }, {
-    checker = {
-        enabled = true,
-        notify = false,
-    },
-    change_detection = {
-        notify = false,
-    },
+    checker = {enabled = true, notify = false,},
+    change_detection = {notify = false,},
 })
 
 require('options.ui')
