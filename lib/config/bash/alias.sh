@@ -27,7 +27,7 @@ alias vim="vi"                                                                  
 alias lfold="lf"                                                                                       # List Files (without Changing Directory)
 alias lf="lf_exit"                                                                                     # List Files (and Change Directory)
 alias kd="cd_ls"                                                                                       # Change Directory and List Contents
-alias notes="vi /Users/noa3hjb/Library/Mobile\ Documents/iCloud~md~obsidian/Documents/Personal\ Notes" # Obsidian Nodes
+alias notes="/Users/noa3hjb/Library/Mobile\ Documents/iCloud~md~obsidian/Documents/Personal\ Notes" # Obsidian Nodes
 
 # GUI Aliases
 alias web="open -a Safari"

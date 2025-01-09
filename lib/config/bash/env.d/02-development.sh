@@ -16,6 +16,9 @@ export JULIA_DEPOT_PATH="$HOME/.julia"
 export JULIA_NUM_THREADS="auto"
 export JULIA_EDITOR="vim"
 
+# R
+export R_HOME="/usr/local/bin/R"
+
 # node
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
@@ -31,3 +34,4 @@ export HASKELL_HOME="${HOME}/.ghcup"
 export MCNP_HOME="$HOME/.MCNP/mcnp63/exec"
 export DATAPATH="$MCNP_HOME/MCNP_DATA"
 export XSDIR="${DATAPATH}/xsdir"
+
