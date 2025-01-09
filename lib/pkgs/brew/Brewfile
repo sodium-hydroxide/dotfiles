@@ -14,9 +14,14 @@ cask "whatsapp"             # Messaging
 cask "backblaze"            # Backups
 cask "vlc"                  # Media Viewer
 cask "skim"                 # Lightweight PDF Viewer
+tap "zegervdv/zathura"      # Tap for Zathura
+brew "zathura"              # Zathura PDF Viewer
+brew "zathura-pdf-poppler"  #
 cask "netnewswire"          # RSS Reader
 cask "freetube"             # YouTube Client
 cask "transmission"         #
+cask "noxappplayer"         # Emulator
+
 
 # Editors
 brew "neovim"               # Vim
@@ -30,11 +35,13 @@ cask "bbedit"               # Basic Text Editor
 cask "visual-studio-code"   # IDE
 cask "zed"                  # Modern gui IDE
 cask "obsidian"             # Note Taking
+cask "rstudio"              # IDE For R and Python
 brew "glow"                 # Markdown previewer
 
 # Dev Tools
 brew "git"                  # Version Control
 brew "gh"                   # GitHub
+brew "lazygit"              # Git Interface
 cask "docker"               # Container
 
 # Languages
@@ -43,6 +50,7 @@ brew "perl"
 brew "ruby"
 brew "julia"                # Julia Scientific Computing Language
 cask "r"                    # R Statistical Language
+cask "quarto"               # Quarto
 brew "openjdk"              # Java Compiler
 brew "gcc"                  # GNU Compiler Connection
 brew "llvm"                 # Low Level Virtual Machine
