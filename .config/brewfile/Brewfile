@@ -1,0 +1,86 @@
+cask "utm"                  # Virtual Machine
+cask "silhouette-studio"
+
+#       CLI Programs --------------------------
+cask "kitty"                # Terminal Emulator
+brew "neofetch"
+# File Browser
+brew "lf"
+brew "yazi"
+brew "massren"              # rename files
+brew "fd"                   # find directories
+brew "jq"                   # JSON Processing
+brew "bat"                  # Cleaner output than cat
+brew "chafa"                # Image Preview
+brew "libsixel"             # Image Preview for Zellij
+brew "mediainfo"            # Media Metadata
+brew "file"                 # File Type Detection
+# Editors
+brew "neovim"               # Vim
+
+tap "chase/tap"
+brew "awrit"                # Chromium Browser
+brew "w3m"                  # Text Based Browser
+brew "mdcat"                #
+
+brew "mpv"                  # Media Playback
+# tdf
+# termpdf.py
+# fancy-cat
+# mdcat - markdown
+# ranger, nnn, yazi, hunter (alternatives to lf)
+# nb for markdown stuff
+#
+# shawan
+# timg
+# matplotlib stuff
+# euporie?
+
+
+# General
+cask "calibre"              # Library for Books
+cask "zotero"               # Library for Academic Documents
+cask "backblaze"            # Backups
+cask "vlc"                  # Media Viewer
+cask "skim"                 # Lightweight PDF Viewer
+cask "freetube"             # YouTube Client
+cask "transmission"         #
+
+# Editors
+cask "bbedit"               # Basic Text Editor
+cask "visual-studio-code"   # IDE
+
+# Dev Tools
+brew "git"                  # Version Control
+brew "gh"                   # GitHub
+brew "lazygit"              # Git Interface
+cask "docker"               # Container
+
+# Languages
+brew "bash"                 # version in macOS is outdated
+cask "r"                    # R Statistical Language
+cask "quarto"               # Quarto
+brew "gcc"                  # GNU Compiler Connection
+brew "llvm"                 # Low Level Virtual Machine
+brew "texlive"              # latex
+brew "pandoc"               # converting to and from latex
+
+
+# Utilities
+brew "mas"                  # Mac App Store
+brew "stow"                 # Dotfiles Management
+brew "wget"                 # similar to curl
+brew "ripgrep"              # regex tool
+brew "fzf"                  # Fuzzy find files
+brew "htop"                 # see processes running
+brew "cmake"                # Expanded make utilities
+cask "hiddenbar"            # Hidden icons in menu bar
+cask "grandperspective"     # Disk Viewer
+cask "mission-control-plus" # Advanced Window Management
+cask "xquartz"              # X-Window Support
+cask "wine-stable"          # Run NT Applications
+cask "aldente"              # Batter Manager
+
+# Fonts
+cask "font-jetbrains-mono-nerd-font"
+
