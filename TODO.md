@@ -16,3 +16,5 @@ sys {config, pkg, macos, edit}
 - pkg update packages from list
 - macos update settings
 - edit (edit lib directory)
+
+https://www.youtube.com/watch?v=Joy4wPaPGBo

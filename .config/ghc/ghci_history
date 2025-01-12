@@ -1,0 +1,100 @@
+runPattern x "hell\nworld" == Nothing
+runPattern x "hell\nworld"
+runPattern x "hello\nworld"
+x = stringP "hello"
+:l Main
+runParser jsonNull "nullhello"
+:l Main
+runParser x "hello"
+x = stringP "he"
+:l Main
+runParser he
+he
+he = [h, e]
+e = charP 'e'
+runParser h "hello"
+h
+h = charP 'h'
+h = runParser Parser 'h'
+h = runParser Parser "h"
+h = Parser 'h'
+h = Parser "h"
+:l Main
+quit
+q
+exit
+pwd
+ls
+prime0 -1
+prime0 0
+prime0 1
+prime0 2
+isPrime 2
+:l prime
+isPrime 2
+isPrime 4
+isPrime 2
+isPrime 1
+:l prime
+leastDivisor 1
+leastDivisor 5
+leastDivisor 1
+leastDivisor 2
+leastDivisor 10
+:l prime
+leastDivisor 
+leastDivisor 10
+leastDivisor 9
+leastDivisor 5
+:l prime
+:l prime
+divides 2 4
+divides d n = rem n d == 0
+main
+:l rk.hs
+:l rk.hs
+:l rk.hs
+:l rk.hs
+:l rk.hs
+:l rk.hs
+:l rk.hs
+:l rk.hs
+:l rk.hs
+:l rk.hs
+:l rk.hs
+:l rk.hs
+:l rk.hs
+:l rk.hs
+exponentiate (-1.0)
+exponentiate -1.0
+exponentiate -1
+exponentiate -0
+exponentiate 0
+exponentiate 6
+exponentiate 2
+:l doubleMe.hs
+:l doubleMe.hs
+doubleSmallNumber2 101
+doubleSmallNumber2 100
+:l doubleMe.hs
+doubleSmallNumber 100
+doubleSmallNumber 101
+doubleSmallNumber 100
+doubleSmallNumber 99
+:l doubleMe.hs
+doubleMe 5
+:l doubleMe.hs
+q
+exit
+doubleMe:: Int -> Int
+doubleMe 2.0
+doubleMe 4
+doubleMe x = x + x
+doubleMe ::Int -> Int
+min 8 7
+min 8 7 1
+succ 8.0
+succ 8
+5 +2.0
+5 + 2
+5 & 2

@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 # Script name: decompress-files
 # Description: Decompresses all .gz files in the current directory (excluding .tar.gz)

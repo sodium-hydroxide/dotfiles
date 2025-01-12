@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 # Script name: compress-files
 # Description: Compresses each file in the current directory using gzip
@@ -34,7 +34,7 @@ for file in *; do
     if [ -d "$file" ] || [[ "$file" == *.gz ]]; then
         continue
     fi
-    
+
     # Try to compress the file
     if gzip -f "$file"; then
         echo "Successfully compressed: $file"

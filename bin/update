@@ -1,0 +1,84 @@
+#!/usr/bin/env bash
+
+# Function to check if GNU Stow is installed
+check_stow_installed() {
+    if ! command -v stow &> /dev/null; then
+        echo "Error: GNU Stow is not installed. Install it first (e.g., 'brew install stow')."
+        return 1
+    fi
+    return 0  # Optional: Ensure consistent return for success
+}
+
+# Function to apply symlinks using GNU Stow
+
+# Function to apply symlinks using GNU Stow
+dotfiles_apply() {
+    local DOTFILES_DIR=~/dotfiles    # Path to your dotfiles directory
+
+    # Check if Stow is installed
+    check_stow_installed || return 1
+
+    # Ensure the dotfiles directory exists
+    if [ ! -d "$DOTFILES_DIR" ]; then
+        echo "Error: Dotfiles directory '$DOTFILES_DIR' does not exist."
+        return 1
+    fi
+
+    # Remove .DS_Store files to avoid issues
+    find "$DOTFILES_DIR" -name .DS_Store -delete
+
+    # Apply symlinks with --no-folding
+    echo "Applying symlinks from $DOTFILES_DIR..."
+    stow --no-folding -d "$DOTFILES_DIR" -t ~ .
+}
+
+# Function to remove symlinks using GNU Stow
+dotfiles_remove() {
+    local DOTFILES_DIR=~/dotfiles    # Path to your dotfiles directory
+
+    # Check if Stow is installed
+    check_stow_installed || return 1
+
+    # Ensure the dotfiles directory exists
+    if [ ! -d "$DOTFILES_DIR" ]; then
+        echo "Error: Dotfiles directory '$DOTFILES_DIR' does not exist."
+        return 1
+    fi
+
+    # Remove symlinks with --no-folding
+    echo "Removing symlinks from $DOTFILES_DIR..."
+    stow --no-folding -D -d "$DOTFILES_DIR" -t ~ .
+}
+
+brew_update () {
+    brew upgrade
+    brew update
+    brew bundle --file="${HOME}/.config/brewfile/Brewfile" --cleanup
+    brew cleanup
+}
+
+pip_update() {
+    local py_global="${HOME}/.venv/bin/python3"  # Adjust Python path if necessary
+
+    if [ ! -f "$py_global" ]; then
+        echo "Error: Python virtual environment not found at '$py_global'."
+        return 1
+    fi
+
+    # Ensure pip is installed and up-to-date
+    $py_global -m ensurepip
+    $py_global -m pip install --upgrade pip
+
+    # Install requirements from the specified requirements.txt
+    $py_global -m pip install -r "${HOME}/.config/brewfile/requirements.txt"
+}
+
+main() {
+    check_stow_installed || return 1
+    # dotfiles_remove || return 1
+    dotfiles_apply || return 1
+    brew_update || return 1
+    pip_update || return 1
+}
+
+main
