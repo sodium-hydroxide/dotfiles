@@ -1,0 +1,46 @@
+#!/usr/bin/env bash
+
+# Set strict error handling
+set -euo pipefail
+
+CONFIG_DIR="${HOME}/dotfiles/.config"
+
+use_old() {
+    if [[ -d "$CONFIG_DIR/nvim" && -d "$CONFIG_DIR/nvim.new" ]]; then
+        mv "$CONFIG_DIR/nvim" "$CONFIG_DIR/nvim.bak"
+        mv "$CONFIG_DIR/nvim.new" "$CONFIG_DIR/nvim"
+    else
+        echo "Error: Required directories not found"
+        exit 1
+    fi
+}
+
+use_new() {
+    if [[ -d "$CONFIG_DIR/nvim" && -d "$CONFIG_DIR/nvim.bak" ]]; then
+        mv "$CONFIG_DIR/nvim" "$CONFIG_DIR/nvim.new"
+        mv "$CONFIG_DIR/nvim.bak" "$CONFIG_DIR/nvim"
+    else
+        echo "Error: Required directories not found"
+        exit 1
+    fi
+}
+
+main() {
+    if [[ $# -eq 0 ]]; then
+        echo "Usage: $0 [new|old]"
+        exit 1
+    fi
+
+    local condition=$1
+    if [[ "$condition" == "new" ]]; then
+        use_new
+    elif [[ "$condition" == "old" ]]; then
+        use_old
+    else
+        echo "Invalid argument. Use 'new' or 'old'"
+        exit 1
+    fi
+}
+
+main "$@"
+

@@ -5,6 +5,7 @@ dotfiles="$HOME/dotfiles"
 
 paths=(
     "$HOME/bin"
+    "$HOME/bin/macos"                           # Launch Applications in GUI
     "$dotfiles/scripts/alias/bin"               # Aliases for Shell Programs
     "$dotfiles/utils/bin"                       # Utility scripts
     #=========================================================================>
@@ -40,4 +41,3 @@ PATH=$(
     echo "${paths[*]}"
 )
 export PATH
-

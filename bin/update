@@ -62,7 +62,10 @@ pip_update() {
 
     if [ ! -f "$py_global" ]; then
         echo "Error: Python virtual environment not found at '$py_global'."
-        return 1
+        echo "Creating new virtual environment '$py_global'."
+        cd "${HOME}" || return 1
+        uv venv
+        cd - || return 1
     fi
 
     # Ensure pip is installed and up-to-date
@@ -75,7 +78,7 @@ pip_update() {
 
 main() {
     check_stow_installed || return 1
-    # dotfiles_remove || return 1
+    dotfiles_remove || return 1
     dotfiles_apply || return 1
     brew_update || return 1
     pip_update || return 1

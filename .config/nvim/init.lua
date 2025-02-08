@@ -10,8 +10,14 @@ if not vim.loop.fs_stat(lazypath) then
     lazypath,
   })
 end
--- look at removing many plugins, using lsp base
 --
+
+-- TODO
+--  - move all config into single file (for now)
+--  - more standard method of language setup
+--  - set all commands manually as traditional commands
+--  - add keyboard shortcuts from commands
+--  - look into REPL/Quarto/Magma/Jupyter setup and running code from container
 ------  Important Globals
 vim.opt.rtp:prepend(lazypath)
 vim.g.mapleader = " "               --> sets leader key
@@ -64,4 +70,3 @@ require('options.whitespace')
 require('options.diagnostics')
 require('options.navigation')
 require('modes')
-

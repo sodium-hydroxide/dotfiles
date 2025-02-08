@@ -1,9 +1,23 @@
 cask "utm"                  # Virtual Machine
-cask "silhouette-studio"
 
+cask "zen-browser"
+cask "librewolf"
+cask "pdf-expert"
+
+cask "silhouette-studio"
+cask "microsoft-teams"
 #       CLI Programs --------------------------
 cask "kitty"                # Terminal Emulator
 brew "neofetch"
+cask "openemu"
+cask "rstudio"
+cask "raycast"
+tap "koekeishiya/formulae"  # Provides yabai and skhd
+brew "koekeishiya/formulae/yabai"                # Tiling WM
+brew "koekeishiya/formulae/skhd"                 # Keyboard shortcuts
+
+# cask "eloston-chromium"
+cask "brave-browser"
 # File Browser
 brew "lf"
 brew "yazi"
@@ -17,7 +31,7 @@ brew "mediainfo"            # Media Metadata
 brew "file"                 # File Type Detection
 # Editors
 brew "neovim"               # Vim
-
+brew "neovide"              # Gui-vim
 tap "chase/tap"
 brew "awrit"                # Chromium Browser
 brew "w3m"                  # Text Based Browser
@@ -60,11 +74,40 @@ cask "docker"               # Container
 brew "bash"                 # version in macOS is outdated
 cask "r"                    # R Statistical Language
 cask "quarto"               # Quarto
-brew "gcc"                  # GNU Compiler Connection
-brew "llvm"                 # Low Level Virtual Machine
+# brew "marksman"             # LSP for Markdown
+# brew "prettier"             # Formatter for Markdown
+
 brew "texlive"              # latex
 brew "pandoc"               # converting to and from latex
 
+# Systems
+brew "gcc"                  # GNU Compiler Connection
+# brew "llvm"                 # Low Level Virtual Machine
+# brew "clang-format"         # Formatter for C
+# brew "rustup"               # Rust
+# brew "go"                   # Go
+# brew "gnu-getopt"           # Argument Parsing
+# brew "zlib"                 # Compression tools
+
+# Lua
+# brew "lua@5.1"              # Lua Scripting Language
+# brew "lua-language-server"  # Lua LSP
+
+# Python
+brew "uv"                   # Python Management
+# brew "ruff"                 # Linter / Formatter for Python
+# brew "ruff-lsp"             # LSP for Ruff
+# brew "pyright"              # Type Checker for Python
+
+# ECMAScript
+# brew "nvm"                  # Node Version Manager
+
+# Ruby
+# brew "ruby"                 # Ruby Language
+
+# brew "perl"                 # PERL Language
+
+# brew "brainfuck"
 
 # Utilities
 brew "mas"                  # Mac App Store
@@ -83,4 +126,3 @@ cask "aldente"              # Batter Manager
 
 # Fonts
 cask "font-jetbrains-mono-nerd-font"
-
