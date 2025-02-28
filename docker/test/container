@@ -1,0 +1,50 @@
+#!/usr/bin/env python3
+
+import argparse
+import sys
+from dataclasses import dataclass
+from typing import Dict, Final, List, Literal, Tuple, TypeAlias
+
+ExitCode: TypeAlias = Literal[0, 1]
+
+DEBIAN_VERSION: Final[str] = "bookworm-slim"
+
+
+@dataclass(frozen=True)
+class ContainerInfo:
+    dockerfile: str
+    copy_cmds: List[str]
+    vscode_settings: Dict[str, str]
+    vscode_extensions: List[str]
+    env_vars: List[Tuple[str, str]]
+
+
+def get_args() -> argparse.ArgumentParser:
+    parser = argparse.ArgumentParser(
+        prog="container",
+        description="Manage and build docker containers for developer environments",
+    )
+    parser.add_argument("--name", required=True, help="Name of container")
+
+    parser.add_argument(
+        "--python", action="store true", help="Add Python 3 interpreter"
+    )
+    parser.add_argument(
+        "--rlang", action="store true", help="Add R Statistical Language"
+    )
+
+    return parser
+
+
+def main() -> ExitCode:
+    parser = get_args()
+    if len(sys.argv) == 1:
+        parser.print_help()
+        return 0
+    args = parser.parse_args()
+
+    return 0
+
+
+if __name__ == "__main__":
+    sys.exit(main())

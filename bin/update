@@ -53,7 +53,7 @@ dotfiles_remove() {
 brew_update () {
     brew upgrade
     brew update
-    brew bundle --file="${HOME}/.config/brewfile/Brewfile" --cleanup
+    brew bundle --file="${HOME}/.config/brewfile/Brewfile" --cleanup --force
     brew cleanup
 }
 
@@ -78,10 +78,11 @@ pip_update() {
 
 main() {
     check_stow_installed || return 1
-    dotfiles_remove || return 1
+    # dotfiles_remove || return 1
     dotfiles_apply || return 1
     brew_update || return 1
-    pip_update || return 1
+    # pip_update || return 1
 }
 
 main
+

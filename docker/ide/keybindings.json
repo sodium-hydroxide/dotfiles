@@ -1,0 +1,20 @@
+// Place your key bindings in this file to override the defaults
+[
+    {
+        "key": "alt+-",
+        "command": "type",
+        "args": { "text": " <- " },
+        "when": "editorTextFocus && (editorLangId == 'r' || editorLangId == 'rmd' || editorLangId == 'qmd' || editorLangId == 'quarto')"
+    },
+    {
+        "key": "cmd+shift+m",
+        "command": "type",
+        "args": { "text": " |> " },
+        "when": "editorTextFocus && (editorLangId == 'r' || editorLangId == 'rmd' || editorLangId == 'qmd' || editorLangId == 'quarto')"
+    },
+    {
+        "key": "space space",
+        "command": "workbench.action.showCommands",
+        "when": "editorTextFocus && vim.active && vim.mode == 'Normal'"
+    }
+]

@@ -1,0 +1,92 @@
+#!/usr/bin/env python3
+
+from textwrap import dedent
+from typing import List, Final
+
+__all__: Final[List[None]] = []
+
+DEBIAN="bookworm-slim"
+
+def lang_latex() -> tuple[str,str,str]:
+    build_name = "latex-build"
+    build_stage = dedent(r"""
+RUN apt-get update && apt-get install -y \
+    curl \
+    texlive-latex-base \
+    texlive-latex-extra \
+    texlive-bibtex-extra \
+    texlive-science \
+    texlive-fonts-recommended \
+    texlive-fonts-extra \
+    texlive-pictures \
+    texlive-luatex \
+    texlive-xetex \
+    biber \
+    latexmk \
+    pandoc \
+    --no-install-recommends && \
+    apt-get clean && rm -rf /var/lib/apt/lists/*
+
+RUN ARCH=$(dpkg --print-architecture) && \
+    if [ "$ARCH" = "amd64" ]; then \
+        QUARTO_PKG="quarto-linux-amd64.deb"; \
+    elif [ "$ARCH" = "arm64" ]; then \
+        QUARTO_PKG="quarto-linux-arm64.deb"; \
+    else \
+        echo "Unsupported architecture: $ARCH" && exit 1; \
+    fi && \
+    curl -LO "https://github.com/quarto-dev/quarto-cli/releases/latest/download/$QUARTO_PKG" && \
+    dpkg -i "$QUARTO_PKG" && \
+    rm "$QUARTO_PKG"
+    """)
+    run_stage = dedent(r"""
+USER root
+COPY --from=latex-build /usr/bin/latexmk /usr/bin/latexmk
+COPY --from=latex-build /usr/bin/biber /usr/bin/biber
+COPY --from=latex-build /usr/bin/pandoc /usr/bin/pandoc
+COPY --from=latex-build /usr/share/texlive /usr/share/texlive
+COPY --from=latex-build /usr/bin/quarto /usr/bin/quarto
+RUN apt-get update && apt-get install -y \
+    fonts-liberation \
+    --no-install-recommends && \
+    apt-get clean && rm -rf /var/lib/apt/lists/*
+
+USER user
+RUN echo '# Explicitly set output directory for auxiliary files\n' \
+    'out_dir = "logs";             # Auxiliary files go here\n' \
+    'pdf_mode = 1;                 # Generate PDF\n' \
+    '\n' \
+    '# Complex pdflatex command to force separation\n' \
+    'pdflatex = "pdflatex -output-directory=logs -aux-directory=logs %O %S && cp logs/*.pdf .";\n' \
+    '\n' \
+    '# Cleanup commands\n' \
+    'clean_ext = "aux bbl bcf blg fdb_latexmk fls log nav out run.xml snm synctex.gz toc";\n' \
+    '\n' \
+    'sub cleanup_dirs {\n' \
+    '    my $dir;\n' \
+    '    foreach $dir ($out_dir, $pdf_dir) {\n' \
+    '        if (-d $dir) {\n' \
+    '            unlink glob "$dir/*.$_" for split " ", $clean_ext;\n' \
+    '        }\n' \
+    '    }\n' \
+    '}\n' > /
+    """)
+    return build_name, build_stage, run_stage
+
+
+def create_user() -> str:
+    return dedent("""
+RUN useradd -m -s /bin/bash user
+    """)
+
+
+def create_dockerfile(latex: bool) -> str:
+    dockerfile = f"FROM debian:{DEBIAN}\n\n{create_user()}\n"
+    if latex:
+        stage_name, build_stage, final_stage = lang_latex()
+        build_stage = f"FROM debian:{DEBIAN} AS {stage_name}\n{build_stage}\n\n"
+        dockerfile = f"{build_stage}{dockerfile}{final_stage}"
+    return dockerfile
+
+with open("test.txt", "wt") as conn:
+    conn.write(create_dockerfile(True))
