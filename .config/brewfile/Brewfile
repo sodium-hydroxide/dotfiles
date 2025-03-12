@@ -26,7 +26,7 @@ brew "gcc"                   # GNU Compiler Collection
 
 # Languages --------------------------
 brew "bash"                  # Bash shell (macOS version is outdated)
-
+brew "node"
 cask "r"                     # R Statistical Language               ## docker
 cask "rstudio"               # IDE for R                            ## rm
 cask "quarto"                # Quarto for data science              ## rm

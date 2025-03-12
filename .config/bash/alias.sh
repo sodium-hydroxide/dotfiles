@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-
+alias mcnp="open /Users/noa3hjb/Zotero/storage/N6X49GR3/TechReport_2022_LANL_LA-UR-22-30006Rev.1_KuleszaAdamsEtAl.pdf"
 lf_exit() {
     tmp="$(mktemp)"
     command lf -last-dir-path="$tmp" "$@"

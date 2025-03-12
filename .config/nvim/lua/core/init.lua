@@ -10,7 +10,7 @@ function M.setup()
 
     -- UI settings can load next since they're fundamental but independent
     require('core.ui').setup()
-    require('core.theme').setup()
+    require('core.theme').setup({theme="catppuccin_frappe"})
 
     -- Diagnostics should load before keymaps since some keymaps might use diagnostic functions
     require('core.diagnostics').setup()
@@ -20,6 +20,10 @@ function M.setup()
 
     -- Autocommands can load last as they often depend on settings from other modules
     require('core.autocmds').setup()
+
+
+    -- Syntax highlighting for MCNP
+    require('core.mcnp').setup()
 end
 
 return M
