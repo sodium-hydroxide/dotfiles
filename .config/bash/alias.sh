@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-
+alias mcnp="open /Users/noa3hjb/Zotero/storage/N6X49GR3/TechReport_2022_LANL_LA-UR-22-30006Rev.1_KuleszaAdamsEtAl.pdf"
 lf_exit() {
     tmp="$(mktemp)"
     command lf -last-dir-path="$tmp" "$@"
@@ -26,4 +26,9 @@ alias lfold="lf"       # List Files (without Changing Directory)
 alias lf="lf_exit"     # List Files (and Change Directory)
 alias kd="cd_ls"       # Change Directory and List Contents
 alias icat="kitten icat"
+alias cluster="ssh njblair@129.82.20.78"
+alias web="awrit https://html.duckduckgo.com/html/"
+alias rstudio="open -a RStudio"
+alias dotedit="vi ${HOME}/dotfiles"
+alias colostate="cd ${HOME}/Files/COLOSTATE && ls"
 

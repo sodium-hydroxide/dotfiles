@@ -1,0 +1,49 @@
+
+#!/bin/bash
+
+# Set focus to the window under the cursor when the mouse enters the window
+yabai -m config mouse_follows_focus on
+
+# Set the window border width (0 for no border)
+yabai -m config window_border_width 2
+
+# Enable window gaps (in pixels)
+yabai -m config window_gap 10
+
+# Enable gaps between windows and the screen edges
+yabai -m config screen_gap 10
+
+# Tiling window layout (can use 'bsp' or 'float' for floating windows)
+yabai -m config layout bsp
+
+# Focus on the next window when the current one is closed
+yabai -m config focus_follows_mouse autofocus
+
+# Set the active window to always stay on top
+yabai -m config topmost on
+
+# Set the modifier key for keybindings
+yabai -m config modifier alt
+
+# Add spaces (virtual desktops)
+yabai -m space --create "Space 1"
+yabai -m space --create "Space 2"
+yabai -m space --create "Space 3"
+
+# Set the default space layout to be 'bsp' (tiling)
+yabai -m config space_layout bsp
+
+# Adjust the focus behavior for windows
+yabai -m config window_focus_follows_mouse on
+
+# Resize windows using the keyboard
+yabai -m bind sym cmd -1 resize left
+yabai -m bind sym cmd -2 resize right
+yabai -m bind sym cmd -3 resize up
+yabai -m bind sym cmd -4 resize down
+
+# Move windows between spaces (example)
+yabai -m bind sym cmd -1 space --move 1
+yabai -m bind sym cmd -2 space --move 2
+yabai -m bind sym cmd -3 space --move 3
+

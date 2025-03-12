@@ -8,7 +8,7 @@ export CPPFLAGS="-I$(/opt/homebrew/bin/brew --prefix tcl-tk)/include" # tkinter
 export TCL_LIBRARY=$(/opt/homebrew/bin/brew --prefix tcl-tk)/lib/tcl8.6
 
 # R
-export R_HOME="/usr/local/bin/R"
+export R_HOME="/Library/Frameworks/R.framework/Resources"
 
 # mcnp
 export MCNP_HOME="$HOME/.MCNP/mcnp63/exec"

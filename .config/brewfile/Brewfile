@@ -1,86 +1,70 @@
-cask "utm"                  # Virtual Machine
-cask "silhouette-studio"
+# Cask Applications --------------------------
+cask "brave-browser"         # Privacy-focused browser
+cask "utm"                   # Virtual Machine
+cask "carbon-copy-cloner@6"  # Backup software
+cask "pdf-expert"            # PDF viewer                           ## rm
+cask "skim"                  # Lightweight PDF Viewer
+cask "microsoft-teams"       # Collaboration and communication      ## rm
+cask "raycast"               # Productivity tool
+cask "iterm2"                # Terminal emulator
+cask "calibre"               # Library for Books
+cask "zotero"                # Library for Academic Documents
+cask "backblaze"             # Cloud backup service
+cask "vlc"                   # Media Viewer
+cask "freetube"              # YouTube Client
+cask "transmission"          # Torrent client
+cask "bbedit"                # Basic Text Editor                    ## rm
+cask "visual-studio-code"    # IDE
+brew "biber"
+# Development Tools --------------------------
+brew "git"                   # Version Control
+brew "git-lfs"               # VCS for Large Files
+brew "gh"                    # GitHub CLI
+brew "lazygit"               # Git Interface
+cask "docker"                # Container management
+brew "gcc"                   # GNU Compiler Collection
 
-#       CLI Programs --------------------------
-cask "kitty"                # Terminal Emulator
-brew "neofetch"
-# File Browser
-brew "lf"
-brew "yazi"
-brew "massren"              # rename files
-brew "fd"                   # find directories
-brew "jq"                   # JSON Processing
-brew "bat"                  # Cleaner output than cat
-brew "chafa"                # Image Preview
-brew "libsixel"             # Image Preview for Zellij
-brew "mediainfo"            # Media Metadata
-brew "file"                 # File Type Detection
-# Editors
-brew "neovim"               # Vim
+# Languages --------------------------
+brew "bash"                  # Bash shell (macOS version is outdated)
+brew "node"
+cask "r"                     # R Statistical Language               ## docker
+cask "rstudio"               # IDE for R                            ## rm
+cask "quarto"                # Quarto for data science              ## rm
 
-tap "chase/tap"
-brew "awrit"                # Chromium Browser
-brew "w3m"                  # Text Based Browser
-brew "mdcat"                #
+brew "texlive"               # LaTeX distribution                   ## docker
+brew "pandoc"                # Document conversion (including LaTeX)## docker
+brew "uv"                    # Python environment management        ## docker
 
-brew "mpv"                  # Media Playback
-# tdf
-# termpdf.py
-# fancy-cat
-# mdcat - markdown
-# ranger, nnn, yazi, hunter (alternatives to lf)
-# nb for markdown stuff
-#
-# shawan
-# timg
-# matplotlib stuff
-# euporie?
+# CLI Programs --------------------------
+brew "lf"                    # File browser
+brew "yazi"                  # File renaming tool
+brew "massren"               # Mass file renaming
+brew "fd"                    # Fast file search (alternative to find)
+brew "bat"                   # Better cat (view files with syntax highlighting)
+brew "chafa"                 # Image preview in the terminal
+brew "libsixel"              # Image preview for Zellij
+brew "mediainfo"             # Media metadata tool
+brew "file"                  # File type detection
+brew "neovim"                # Modern Vim
+brew "tmux"                  # Terminal Multiplexer
+brew "w3m"                   # Text-based web browser
+brew "mdcat"                 # Markdown to terminal viewer
+brew "mpv"                   # Media player
+brew "ripgrep"               # Fast search tool (similar to grep)
+brew "fzf"                   # Fuzzy finder for files and text
+brew "htop"                  # Process viewer
 
+# Utilities --------------------------
+brew "mas"                   # Mac App Store CLI
+brew "stow"                  # Dotfiles management
+brew "wget"                  # Download files from the web (like curl)
+cask "hiddenbar"             # Hide icons in the menu bar
+cask "grandperspective"      # Disk space viewer
+cask "mission-control-plus"  # Window management tool
+cask "xquartz"               # X Window System support
+cask "wine-stable"           # Run Windows applications on macOS
+cask "aldente"               # Battery manager
 
-# General
-cask "calibre"              # Library for Books
-cask "zotero"               # Library for Academic Documents
-cask "backblaze"            # Backups
-cask "vlc"                  # Media Viewer
-cask "skim"                 # Lightweight PDF Viewer
-cask "freetube"             # YouTube Client
-cask "transmission"         #
-
-# Editors
-cask "bbedit"               # Basic Text Editor
-cask "visual-studio-code"   # IDE
-
-# Dev Tools
-brew "git"                  # Version Control
-brew "gh"                   # GitHub
-brew "lazygit"              # Git Interface
-cask "docker"               # Container
-
-# Languages
-brew "bash"                 # version in macOS is outdated
-cask "r"                    # R Statistical Language
-cask "quarto"               # Quarto
-brew "gcc"                  # GNU Compiler Connection
-brew "llvm"                 # Low Level Virtual Machine
-brew "texlive"              # latex
-brew "pandoc"               # converting to and from latex
-
-
-# Utilities
-brew "mas"                  # Mac App Store
-brew "stow"                 # Dotfiles Management
-brew "wget"                 # similar to curl
-brew "ripgrep"              # regex tool
-brew "fzf"                  # Fuzzy find files
-brew "htop"                 # see processes running
-brew "cmake"                # Expanded make utilities
-cask "hiddenbar"            # Hidden icons in menu bar
-cask "grandperspective"     # Disk Viewer
-cask "mission-control-plus" # Advanced Window Management
-cask "xquartz"              # X-Window Support
-cask "wine-stable"          # Run NT Applications
-cask "aldente"              # Batter Manager
-
-# Fonts
-cask "font-jetbrains-mono-nerd-font"
+# Fonts --------------------------
+cask "font-jetbrains-mono-nerd-font"  # Nerd font for developers
 

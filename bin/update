@@ -53,7 +53,7 @@ dotfiles_remove() {
 brew_update () {
     brew upgrade
     brew update
-    brew bundle --file="${HOME}/.config/brewfile/Brewfile" --cleanup
+    brew bundle --file="${HOME}/.config/brewfile/Brewfile" --cleanup --force
     brew cleanup
 }
 
@@ -62,7 +62,10 @@ pip_update() {
 
     if [ ! -f "$py_global" ]; then
         echo "Error: Python virtual environment not found at '$py_global'."
-        return 1
+        echo "Creating new virtual environment '$py_global'."
+        cd "${HOME}" || return 1
+        uv venv
+        cd - || return 1
     fi
 
     # Ensure pip is installed and up-to-date
@@ -78,7 +81,8 @@ main() {
     # dotfiles_remove || return 1
     dotfiles_apply || return 1
     brew_update || return 1
-    pip_update || return 1
+    # pip_update || return 1
 }
 
 main
+

@@ -1,0 +1,1521 @@
+#0 building with "desktop-linux" instance using docker driver
+
+#1 [internal] load build definition from Dockerfile
+#1 transferring dockerfile: 1.07kB done
+#1 DONE 0.0s
+
+#2 [internal] load metadata for docker.io/library/debian:bookworm-slim
+#2 DONE 0.5s
+
+#3 [internal] load .dockerignore
+#3 transferring context: 2B done
+#3 DONE 0.0s
+
+#4 [1/8] FROM docker.io/library/debian:bookworm-slim@sha256:12c396bd585df7ec21d5679bb6a83d4878bc4415ce926c9e5ea6426d23c60bdc
+#4 resolve docker.io/library/debian:bookworm-slim@sha256:12c396bd585df7ec21d5679bb6a83d4878bc4415ce926c9e5ea6426d23c60bdc 0.0s done
+#4 DONE 0.0s
+
+#5 [internal] load build context
+#5 transferring context: 216B done
+#5 DONE 0.0s
+
+#6 [3/8] RUN useradd -m -s /bin/bash user &&     echo "user:PASSWORD" | chpasswd &&     usermod -aG sudo user
+#6 CACHED
+
+#7 [4/8] WORKDIR /home/user
+#7 CACHED
+
+#8 [6/8] COPY keybindings.json /home/user/.local/share/code-server/User/keybindings.json
+#8 CACHED
+
+#9 [2/8] RUN apt-get update && apt-get install -y     curl     ca-certificates     gnupg     git     sudo     make     && curl -fsSL https://code-server.dev/install.sh | sh     && apt-get clean && rm -rf /var/lib/apt/lists/*
+#9 CACHED
+
+#10 [5/8] COPY settings.json /home/user/.local/share/code-server/User/settings.json
+#10 CACHED
+
+#11 [7/8] COPY extensions.txt /home/user/extensions.txt
+#11 CACHED
+
+#12 [8/8] RUN while IFS= read -r extension; do     code-server --install-extension "$extension"; done < /home/user/extensions.txt &&     rm /home/user/extensions.txt
+#12 0.298 [2025-02-25T23:41:48.473Z] info  Wrote default config file to /home/user/.config/code-server/config.yaml
+#12 0.357 Error: EACCES: permission denied, mkdir '/home/user/.local/share/code-server/extensions'
+#12 0.357     at Module.mkdirSync (node:fs:1371:26)
+#12 0.357     at file:///usr/lib/code-server/lib/vscode/out/server-main.js:204:6761
+#12 0.357     at Array.forEach (<anonymous>)
+#12 0.357     at wI (file:///usr/lib/code-server/lib/vscode/out/server-main.js:204:6724)
+#12 0.357     at Object.oB (file:///usr/lib/code-server/lib/vscode/out/server-main.js:204:6848)
+#12 0.357     at /usr/lib/code-server/out/node/main.js:74:28
+#12 0.357     at Generator.next (<anonymous>)
+#12 0.357     at fulfilled (/usr/lib/code-server/out/node/main.js:28:58) {
+#12 0.357   errno: -13,
+#12 0.357   code: 'EACCES',
+#12 0.357   syscall: 'mkdir',
+#12 0.357   path: '/home/user/.local/share/code-server/extensions'
+#12 0.357 }
+#12 0.357 Error: EACCES: permission denied, mkdir '/home/user/.local/share/code-server/Machine'
+#12 0.357     at Module.mkdirSync (node:fs:1371:26)
+#12 0.357     at file:///usr/lib/code-server/lib/vscode/out/server-main.js:204:6761
+#12 0.357     at Array.forEach (<anonymous>)
+#12 0.357     at wI (file:///usr/lib/code-server/lib/vscode/out/server-main.js:204:6724)
+#12 0.357     at Object.oB (file:///usr/lib/code-server/lib/vscode/out/server-main.js:204:6848)
+#12 0.357     at /usr/lib/code-server/out/node/main.js:74:28
+#12 0.357     at Generator.next (<anonymous>)
+#12 0.357     at fulfilled (/usr/lib/code-server/out/node/main.js:28:58) {
+#12 0.357   errno: -13,
+#12 0.357   code: 'EACCES',
+#12 0.357   syscall: 'mkdir',
+#12 0.357   path: '/home/user/.local/share/code-server/Machine'
+#12 0.357 }
+#12 0.357 Error: EACCES: permission denied, mkdir '/home/user/.local/share/code-server/User/globalStorage'
+#12 0.357     at Module.mkdirSync (node:fs:1371:26)
+#12 0.357     at file:///usr/lib/code-server/lib/vscode/out/server-main.js:204:6761
+#12 0.357     at Array.forEach (<anonymous>)
+#12 0.357     at wI (file:///usr/lib/code-server/lib/vscode/out/server-main.js:204:6724)
+#12 0.357     at Object.oB (file:///usr/lib/code-server/lib/vscode/out/server-main.js:204:6848)
+#12 0.357     at /usr/lib/code-server/out/node/main.js:74:28
+#12 0.357     at Generator.next (<anonymous>)
+#12 0.357     at fulfilled (/usr/lib/code-server/out/node/main.js:28:58) {
+#12 0.357   errno: -13,
+#12 0.357   code: 'EACCES',
+#12 0.357   syscall: 'mkdir',
+#12 0.357   path: '/home/user/.local/share/code-server/User/globalStorage'
+#12 0.357 }
+#12 0.358 Error: EACCES: permission denied, mkdir '/home/user/.local/share/code-server/User/History'
+#12 0.358     at Module.mkdirSync (node:fs:1371:26)
+#12 0.358     at file:///usr/lib/code-server/lib/vscode/out/server-main.js:204:6761
+#12 0.358     at Array.forEach (<anonymous>)
+#12 0.358     at wI (file:///usr/lib/code-server/lib/vscode/out/server-main.js:204:6724)
+#12 0.358     at Object.oB (file:///usr/lib/code-server/lib/vscode/out/server-main.js:204:6848)
+#12 0.358     at /usr/lib/code-server/out/node/main.js:74:28
+#12 0.358     at Generator.next (<anonymous>)
+#12 0.358     at fulfilled (/usr/lib/code-server/out/node/main.js:28:58) {
+#12 0.358   errno: -13,
+#12 0.358   code: 'EACCES',
+#12 0.358   syscall: 'mkdir',
+#12 0.358   path: '/home/user/.local/share/code-server/User/History'
+#12 0.358 }
+#12 0.374 Installing extensions...
+#12 0.376 [Error: EACCES: permission denied, mkdir '/home/user/.local/share/code-server/logs'] {
+#12 0.376   errno: -13,
+#12 0.376   code: 'EACCES',
+#12 0.376   syscall: 'mkdir',
+#12 0.376   path: '/home/user/.local/share/code-server/logs'
+#12 0.376 }
+#12 0.377 [2025-02-25T23:41:48.552Z] error parent:7 Uncaught exception: Unable to resolve nonexistent file '/home/user/.local/share/code-server/extensions'
+#12 0.377 [2025-02-25T23:41:48.552Z] error parent:7 Error: Unable to resolve nonexistent file '/home/user/.local/share/code-server/extensions'
+#12 0.377     at Kc.resolve (file:///usr/lib/code-server/lib/vscode/out/server-main.js:64:8834)
+#12 0.377     at async Xc.zb (file:///usr/lib/code-server/lib/vscode/out/server-main.js:55:17818)
+#12 0.425 Error while installing extensions: Unable to read file '/home/user/.local/share/code-server/extensions/extensions.json' (Error: Unable to resolve nonexistent file '/home/user/.local/share/code-server/extensions/extensions.json')
+#12 0.426 Unable to read file '/home/user/.local/share/code-server/extensions/extensions.json' (Error: Unable to resolve nonexistent file '/home/user/.local/share/code-server/extensions/extensions.json')
+#12 0.632 Error: EACCES: permission denied, mkdir '/home/user/.local/share/code-server/extensions'
+#12 0.632     at Module.mkdirSync (node:fs:1371:26)
+#12 0.632     at file:///usr/lib/code-server/lib/vscode/out/server-main.js:204:6761
+#12 0.632     at Array.forEach (<anonymous>)
+#12 0.632     at wI (file:///usr/lib/code-server/lib/vscode/out/server-main.js:204:6724)
+#12 0.632     at Object.oB (file:///usr/lib/code-server/lib/vscode/out/server-main.js:204:6848)
+#12 0.632     at /usr/lib/code-server/out/node/main.js:74:28
+#12 0.632     at Generator.next (<anonymous>)
+#12 0.632     at fulfilled (/usr/lib/code-server/out/node/main.js:28:58) {
+#12 0.632   errno: -13,
+#12 0.632   code: 'EACCES',
+#12 0.632   syscall: 'mkdir',
+#12 0.632   path: '/home/user/.local/share/code-server/extensions'
+#12 0.632 }
+#12 0.632 Error: EACCES: permission denied, mkdir '/home/user/.local/share/code-server/Machine'
+#12 0.632     at Module.mkdirSync (node:fs:1371:26)
+#12 0.632     at file:///usr/lib/code-server/lib/vscode/out/server-main.js:204:6761
+#12 0.632     at Array.forEach (<anonymous>)
+#12 0.632     at wI (file:///usr/lib/code-server/lib/vscode/out/server-main.js:204:6724)
+#12 0.632     at Object.oB (file:///usr/lib/code-server/lib/vscode/out/server-main.js:204:6848)
+#12 0.632     at /usr/lib/code-server/out/node/main.js:74:28
+#12 0.632     at Generator.next (<anonymous>)
+#12 0.632     at fulfilled (/usr/lib/code-server/out/node/main.js:28:58) {
+#12 0.632   errno: -13,
+#12 0.632   code: 'EACCES',
+#12 0.632   syscall: 'mkdir',
+#12 0.632   path: '/home/user/.local/share/code-server/Machine'
+#12 0.632 }
+#12 0.632 Error: EACCES: permission denied, mkdir '/home/user/.local/share/code-server/User/globalStorage'
+#12 0.632     at Module.mkdirSync (node:fs:1371:26)
+#12 0.632     at file:///usr/lib/code-server/lib/vscode/out/server-main.js:204:6761
+#12 0.632     at Array.forEach (<anonymous>)
+#12 0.632     at wI (file:///usr/lib/code-server/lib/vscode/out/server-main.js:204:6724)
+#12 0.632     at Object.oB (file:///usr/lib/code-server/lib/vscode/out/server-main.js:204:6848)
+#12 0.632     at /usr/lib/code-server/out/node/main.js:74:28
+#12 0.632     at Generator.next (<anonymous>)
+#12 0.632     at fulfilled (/usr/lib/code-server/out/node/main.js:28:58) {
+#12 0.632   errno: -13,
+#12 0.632   code: 'EACCES',
+#12 0.632   syscall: 'mkdir',
+#12 0.632   path: '/home/user/.local/share/code-server/User/globalStorage'
+#12 0.632 }
+#12 0.633 Error: EACCES: permission denied, mkdir '/home/user/.local/share/code-server/User/History'
+#12 0.633     at Module.mkdirSync (node:fs:1371:26)
+#12 0.633     at file:///usr/lib/code-server/lib/vscode/out/server-main.js:204:6761
+#12 0.633     at Array.forEach (<anonymous>)
+#12 0.633     at wI (file:///usr/lib/code-server/lib/vscode/out/server-main.js:204:6724)
+#12 0.633     at Object.oB (file:///usr/lib/code-server/lib/vscode/out/server-main.js:204:6848)
+#12 0.633     at /usr/lib/code-server/out/node/main.js:74:28
+#12 0.633     at Generator.next (<anonymous>)
+#12 0.633     at fulfilled (/usr/lib/code-server/out/node/main.js:28:58) {
+#12 0.633   errno: -13,
+#12 0.633   code: 'EACCES',
+#12 0.633   syscall: 'mkdir',
+#12 0.633   path: '/home/user/.local/share/code-server/User/History'
+#12 0.633 }
+#12 0.646 Installing extensions...
+#12 0.648 [Error: EACCES: permission denied, mkdir '/home/user/.local/share/code-server/logs'] {
+#12 0.648   errno: -13,
+#12 0.648   code: 'EACCES',
+#12 0.648   syscall: 'mkdir',
+#12 0.648   path: '/home/user/.local/share/code-server/logs'
+#12 0.648 }
+#12 0.648 [2025-02-25T23:41:48.824Z] error parent:25 Uncaught exception: Unable to resolve nonexistent file '/home/user/.local/share/code-server/extensions'
+#12 0.648 [2025-02-25T23:41:48.824Z] error parent:25 Error: Unable to resolve nonexistent file '/home/user/.local/share/code-server/extensions'
+#12 0.648     at Kc.resolve (file:///usr/lib/code-server/lib/vscode/out/server-main.js:64:8834)
+#12 0.648     at async Xc.zb (file:///usr/lib/code-server/lib/vscode/out/server-main.js:55:17818)
+#12 0.695 Error while installing extensions: Unable to read file '/home/user/.local/share/code-server/extensions/extensions.json' (Error: Unable to resolve nonexistent file '/home/user/.local/share/code-server/extensions/extensions.json')
+#12 0.695 Unable to read file '/home/user/.local/share/code-server/extensions/extensions.json' (Error: Unable to resolve nonexistent file '/home/user/.local/share/code-server/extensions/extensions.json')
+#12 0.904 Error: EACCES: permission denied, mkdir '/home/user/.local/share/code-server/extensions'
+#12 0.904     at Module.mkdirSync (node:fs:1371:26)
+#12 0.904     at file:///usr/lib/code-server/lib/vscode/out/server-main.js:204:6761
+#12 0.904     at Array.forEach (<anonymous>)
+#12 0.904     at wI (file:///usr/lib/code-server/lib/vscode/out/server-main.js:204:6724)
+#12 0.904     at Object.oB (file:///usr/lib/code-server/lib/vscode/out/server-main.js:204:6848)
+#12 0.904     at /usr/lib/code-server/out/node/main.js:74:28
+#12 0.904     at Generator.next (<anonymous>)
+#12 0.904     at fulfilled (/usr/lib/code-server/out/node/main.js:28:58) {
+#12 0.904   errno: -13,
+#12 0.904   code: 'EACCES',
+#12 0.904   syscall: 'mkdir',
+#12 0.904   path: '/home/user/.local/share/code-server/extensions'
+#12 0.904 }
+#12 0.904 Error: EACCES: permission denied, mkdir '/home/user/.local/share/code-server/Machine'
+#12 0.904     at Module.mkdirSync (node:fs:1371:26)
+#12 0.904     at file:///usr/lib/code-server/lib/vscode/out/server-main.js:204:6761
+#12 0.904     at Array.forEach (<anonymous>)
+#12 0.904     at wI (file:///usr/lib/code-server/lib/vscode/out/server-main.js:204:6724)
+#12 0.904     at Object.oB (file:///usr/lib/code-server/lib/vscode/out/server-main.js:204:6848)
+#12 0.904     at /usr/lib/code-server/out/node/main.js:74:28
+#12 0.904     at Generator.next (<anonymous>)
+#12 0.904     at fulfilled (/usr/lib/code-server/out/node/main.js:28:58) {
+#12 0.904   errno: -13,
+#12 0.904   code: 'EACCES',
+#12 0.904   syscall: 'mkdir',
+#12 0.904   path: '/home/user/.local/share/code-server/Machine'
+#12 0.904 }
+#12 0.904 Error: EACCES: permission denied, mkdir '/home/user/.local/share/code-server/User/globalStorage'
+#12 0.904     at Module.mkdirSync (node:fs:1371:26)
+#12 0.904     at file:///usr/lib/code-server/lib/vscode/out/server-main.js:204:6761
+#12 0.904     at Array.forEach (<anonymous>)
+#12 0.904     at wI (file:///usr/lib/code-server/lib/vscode/out/server-main.js:204:6724)
+#12 0.904     at Object.oB (file:///usr/lib/code-server/lib/vscode/out/server-main.js:204:6848)
+#12 0.904     at /usr/lib/code-server/out/node/main.js:74:28
+#12 0.904     at Generator.next (<anonymous>)
+#12 0.904     at fulfilled (/usr/lib/code-server/out/node/main.js:28:58) {
+#12 0.904   errno: -13,
+#12 0.904   code: 'EACCES',
+#12 0.904   syscall: 'mkdir',
+#12 0.904   path: '/home/user/.local/share/code-server/User/globalStorage'
+#12 0.904 }
+#12 0.905 Error: EACCES: permission denied, mkdir '/home/user/.local/share/code-server/User/History'
+#12 0.905     at Module.mkdirSync (node:fs:1371:26)
+#12 0.905     at file:///usr/lib/code-server/lib/vscode/out/server-main.js:204:6761
+#12 0.905     at Array.forEach (<anonymous>)
+#12 0.905     at wI (file:///usr/lib/code-server/lib/vscode/out/server-main.js:204:6724)
+#12 0.905     at Object.oB (file:///usr/lib/code-server/lib/vscode/out/server-main.js:204:6848)
+#12 0.905     at /usr/lib/code-server/out/node/main.js:74:28
+#12 0.905     at Generator.next (<anonymous>)
+#12 0.905     at fulfilled (/usr/lib/code-server/out/node/main.js:28:58) {
+#12 0.905   errno: -13,
+#12 0.905   code: 'EACCES',
+#12 0.905   syscall: 'mkdir',
+#12 0.905   path: '/home/user/.local/share/code-server/User/History'
+#12 0.905 }
+#12 0.918 Installing extensions...
+#12 0.919 [Error: EACCES: permission denied, mkdir '/home/user/.local/share/code-server/logs'] {
+#12 0.919   errno: -13,
+#12 0.919   code: 'EACCES',
+#12 0.919   syscall: 'mkdir',
+#12 0.919   path: '/home/user/.local/share/code-server/logs'
+#12 0.919 }
+#12 0.920 [2025-02-25T23:41:49.095Z] error parent:43 Uncaught exception: Unable to resolve nonexistent file '/home/user/.local/share/code-server/extensions'
+#12 0.920 [2025-02-25T23:41:49.095Z] error parent:43 Error: Unable to resolve nonexistent file '/home/user/.local/share/code-server/extensions'
+#12 0.920     at Kc.resolve (file:///usr/lib/code-server/lib/vscode/out/server-main.js:64:8834)
+#12 0.920     at async Xc.zb (file:///usr/lib/code-server/lib/vscode/out/server-main.js:55:17818)
+#12 0.967 Error while installing extensions: Unable to read file '/home/user/.local/share/code-server/extensions/extensions.json' (Error: Unable to resolve nonexistent file '/home/user/.local/share/code-server/extensions/extensions.json')
+#12 0.967 Unable to read file '/home/user/.local/share/code-server/extensions/extensions.json' (Error: Unable to resolve nonexistent file '/home/user/.local/share/code-server/extensions/extensions.json')
+#12 1.175 Error: EACCES: permission denied, mkdir '/home/user/.local/share/code-server/extensions'
+#12 1.175     at Module.mkdirSync (node:fs:1371:26)
+#12 1.175     at file:///usr/lib/code-server/lib/vscode/out/server-main.js:204:6761
+#12 1.175     at Array.forEach (<anonymous>)
+#12 1.175     at wI (file:///usr/lib/code-server/lib/vscode/out/server-main.js:204:6724)
+#12 1.175     at Object.oB (file:///usr/lib/code-server/lib/vscode/out/server-main.js:204:6848)
+#12 1.175     at /usr/lib/code-server/out/node/main.js:74:28
+#12 1.175     at Generator.next (<anonymous>)
+#12 1.175     at fulfilled (/usr/lib/code-server/out/node/main.js:28:58) {
+#12 1.175   errno: -13,
+#12 1.175   code: 'EACCES',
+#12 1.175   syscall: 'mkdir',
+#12 1.175   path: '/home/user/.local/share/code-server/extensions'
+#12 1.175 }
+#12 1.175 Error: EACCES: permission denied, mkdir '/home/user/.local/share/code-server/Machine'
+#12 1.175     at Module.mkdirSync (node:fs:1371:26)
+#12 1.175     at file:///usr/lib/code-server/lib/vscode/out/server-main.js:204:6761
+#12 1.175     at Array.forEach (<anonymous>)
+#12 1.175     at wI (file:///usr/lib/code-server/lib/vscode/out/server-main.js:204:6724)
+#12 1.175     at Object.oB (file:///usr/lib/code-server/lib/vscode/out/server-main.js:204:6848)
+#12 1.175     at /usr/lib/code-server/out/node/main.js:74:28
+#12 1.175     at Generator.next (<anonymous>)
+#12 1.175     at fulfilled (/usr/lib/code-server/out/node/main.js:28:58) {
+#12 1.175   errno: -13,
+#12 1.175   code: 'EACCES',
+#12 1.175   syscall: 'mkdir',
+#12 1.175   path: '/home/user/.local/share/code-server/Machine'
+#12 1.175 }
+#12 1.175 Error: EACCES: permission denied, mkdir '/home/user/.local/share/code-server/User/globalStorage'
+#12 1.175     at Module.mkdirSync (node:fs:1371:26)
+#12 1.175     at file:///usr/lib/code-server/lib/vscode/out/server-main.js:204:6761
+#12 1.175     at Array.forEach (<anonymous>)
+#12 1.175     at wI (file:///usr/lib/code-server/lib/vscode/out/server-main.js:204:6724)
+#12 1.175     at Object.oB (file:///usr/lib/code-server/lib/vscode/out/server-main.js:204:6848)
+#12 1.175     at /usr/lib/code-server/out/node/main.js:74:28
+#12 1.175     at Generator.next (<anonymous>)
+#12 1.175     at fulfilled (/usr/lib/code-server/out/node/main.js:28:58) {
+#12 1.175   errno: -13,
+#12 1.175   code: 'EACCES',
+#12 1.175   syscall: 'mkdir',
+#12 1.175   path: '/home/user/.local/share/code-server/User/globalStorage'
+#12 1.175 }
+#12 1.175 Error: EACCES: permission denied, mkdir '/home/user/.local/share/code-server/User/History'
+#12 1.175     at Module.mkdirSync (node:fs:1371:26)
+#12 1.175     at file:///usr/lib/code-server/lib/vscode/out/server-main.js:204:6761
+#12 1.175     at Array.forEach (<anonymous>)
+#12 1.175     at wI (file:///usr/lib/code-server/lib/vscode/out/server-main.js:204:6724)
+#12 1.175     at Object.oB (file:///usr/lib/code-server/lib/vscode/out/server-main.js:204:6848)
+#12 1.175     at /usr/lib/code-server/out/node/main.js:74:28
+#12 1.175     at Generator.next (<anonymous>)
+#12 1.175     at fulfilled (/usr/lib/code-server/out/node/main.js:28:58) {
+#12 1.175   errno: -13,
+#12 1.175   code: 'EACCES',
+#12 1.175   syscall: 'mkdir',
+#12 1.175   path: '/home/user/.local/share/code-server/User/History'
+#12 1.175 }
+#12 1.188 Installing extensions...
+#12 1.190 [Error: EACCES: permission denied, mkdir '/home/user/.local/share/code-server/logs'] {
+#12 1.190   errno: -13,
+#12 1.190   code: 'EACCES',
+#12 1.190   syscall: 'mkdir',
+#12 1.190   path: '/home/user/.local/share/code-server/logs'
+#12 1.190 }
+#12 1.191 [2025-02-25T23:41:49.366Z] error parent:61 Uncaught exception: Unable to resolve nonexistent file '/home/user/.local/share/code-server/extensions'
+#12 1.191 [2025-02-25T23:41:49.366Z] error parent:61 Error: Unable to resolve nonexistent file '/home/user/.local/share/code-server/extensions'
+#12 1.191     at Kc.resolve (file:///usr/lib/code-server/lib/vscode/out/server-main.js:64:8834)
+#12 1.191     at async Xc.zb (file:///usr/lib/code-server/lib/vscode/out/server-main.js:55:17818)
+#12 1.238 Error while installing extensions: Unable to read file '/home/user/.local/share/code-server/extensions/extensions.json' (Error: Unable to resolve nonexistent file '/home/user/.local/share/code-server/extensions/extensions.json')
+#12 1.238 Unable to read file '/home/user/.local/share/code-server/extensions/extensions.json' (Error: Unable to resolve nonexistent file '/home/user/.local/share/code-server/extensions/extensions.json')
+#12 1.448 Error: EACCES: permission denied, mkdir '/home/user/.local/share/code-server/extensions'
+#12 1.448     at Module.mkdirSync (node:fs:1371:26)
+#12 1.448     at file:///usr/lib/code-server/lib/vscode/out/server-main.js:204:6761
+#12 1.448     at Array.forEach (<anonymous>)
+#12 1.448     at wI (file:///usr/lib/code-server/lib/vscode/out/server-main.js:204:6724)
+#12 1.448     at Object.oB (file:///usr/lib/code-server/lib/vscode/out/server-main.js:204:6848)
+#12 1.448     at /usr/lib/code-server/out/node/main.js:74:28
+#12 1.448     at Generator.next (<anonymous>)
+#12 1.448     at fulfilled (/usr/lib/code-server/out/node/main.js:28:58) {
+#12 1.448   errno: -13,
+#12 1.448   code: 'EACCES',
+#12 1.448   syscall: 'mkdir',
+#12 1.448   path: '/home/user/.local/share/code-server/extensions'
+#12 1.448 }
+#12 1.449 Error: EACCES: permission denied, mkdir '/home/user/.local/share/code-server/Machine'
+#12 1.449     at Module.mkdirSync (node:fs:1371:26)
+#12 1.449     at file:///usr/lib/code-server/lib/vscode/out/server-main.js:204:6761
+#12 1.449     at Array.forEach (<anonymous>)
+#12 1.449     at wI (file:///usr/lib/code-server/lib/vscode/out/server-main.js:204:6724)
+#12 1.449     at Object.oB (file:///usr/lib/code-server/lib/vscode/out/server-main.js:204:6848)
+#12 1.449     at /usr/lib/code-server/out/node/main.js:74:28
+#12 1.449     at Generator.next (<anonymous>)
+#12 1.449     at fulfilled (/usr/lib/code-server/out/node/main.js:28:58) {
+#12 1.449   errno: -13,
+#12 1.449   code: 'EACCES',
+#12 1.449   syscall: 'mkdir',
+#12 1.449   path: '/home/user/.local/share/code-server/Machine'
+#12 1.449 }
+#12 1.449 Error: EACCES: permission denied, mkdir '/home/user/.local/share/code-server/User/globalStorage'
+#12 1.449     at Module.mkdirSync (node:fs:1371:26)
+#12 1.449     at file:///usr/lib/code-server/lib/vscode/out/server-main.js:204:6761
+#12 1.449     at Array.forEach (<anonymous>)
+#12 1.449     at wI (file:///usr/lib/code-server/lib/vscode/out/server-main.js:204:6724)
+#12 1.449     at Object.oB (file:///usr/lib/code-server/lib/vscode/out/server-main.js:204:6848)
+#12 1.449     at /usr/lib/code-server/out/node/main.js:74:28
+#12 1.449     at Generator.next (<anonymous>)
+#12 1.449     at fulfilled (/usr/lib/code-server/out/node/main.js:28:58) {
+#12 1.449   errno: -13,
+#12 1.449   code: 'EACCES',
+#12 1.449   syscall: 'mkdir',
+#12 1.449   path: '/home/user/.local/share/code-server/User/globalStorage'
+#12 1.449 }
+#12 1.449 Error: EACCES: permission denied, mkdir '/home/user/.local/share/code-server/User/History'
+#12 1.449     at Module.mkdirSync (node:fs:1371:26)
+#12 1.449     at file:///usr/lib/code-server/lib/vscode/out/server-main.js:204:6761
+#12 1.449     at Array.forEach (<anonymous>)
+#12 1.449     at wI (file:///usr/lib/code-server/lib/vscode/out/server-main.js:204:6724)
+#12 1.449     at Object.oB (file:///usr/lib/code-server/lib/vscode/out/server-main.js:204:6848)
+#12 1.449     at /usr/lib/code-server/out/node/main.js:74:28
+#12 1.449     at Generator.next (<anonymous>)
+#12 1.449     at fulfilled (/usr/lib/code-server/out/node/main.js:28:58) {
+#12 1.449   errno: -13,
+#12 1.449   code: 'EACCES',
+#12 1.449   syscall: 'mkdir',
+#12 1.449   path: '/home/user/.local/share/code-server/User/History'
+#12 1.449 }
+#12 1.462 Installing extensions...
+#12 1.464 [Error: EACCES: permission denied, mkdir '/home/user/.local/share/code-server/logs'] {
+#12 1.464   errno: -13,
+#12 1.464   code: 'EACCES',
+#12 1.464   syscall: 'mkdir',
+#12 1.464   path: '/home/user/.local/share/code-server/logs'
+#12 1.464 }
+#12 1.464 [2025-02-25T23:41:49.640Z] error parent:79 Uncaught exception: Unable to resolve nonexistent file '/home/user/.local/share/code-server/extensions'
+#12 1.464 [2025-02-25T23:41:49.640Z] error parent:79 Error: Unable to resolve nonexistent file '/home/user/.local/share/code-server/extensions'
+#12 1.464     at Kc.resolve (file:///usr/lib/code-server/lib/vscode/out/server-main.js:64:8834)
+#12 1.464     at async Xc.zb (file:///usr/lib/code-server/lib/vscode/out/server-main.js:55:17818)
+#12 1.512 Error while installing extensions: Unable to read file '/home/user/.local/share/code-server/extensions/extensions.json' (Error: Unable to resolve nonexistent file '/home/user/.local/share/code-server/extensions/extensions.json')
+#12 1.512 Unable to read file '/home/user/.local/share/code-server/extensions/extensions.json' (Error: Unable to resolve nonexistent file '/home/user/.local/share/code-server/extensions/extensions.json')
+#12 1.718 Error: EACCES: permission denied, mkdir '/home/user/.local/share/code-server/extensions'
+#12 1.718     at Module.mkdirSync (node:fs:1371:26)
+#12 1.718     at file:///usr/lib/code-server/lib/vscode/out/server-main.js:204:6761
+#12 1.718     at Array.forEach (<anonymous>)
+#12 1.718     at wI (file:///usr/lib/code-server/lib/vscode/out/server-main.js:204:6724)
+#12 1.718     at Object.oB (file:///usr/lib/code-server/lib/vscode/out/server-main.js:204:6848)
+#12 1.718     at /usr/lib/code-server/out/node/main.js:74:28
+#12 1.718     at Generator.next (<anonymous>)
+#12 1.718     at fulfilled (/usr/lib/code-server/out/node/main.js:28:58) {
+#12 1.718   errno: -13,
+#12 1.718   code: 'EACCES',
+#12 1.718   syscall: 'mkdir',
+#12 1.718   path: '/home/user/.local/share/code-server/extensions'
+#12 1.718 }
+#12 1.718 Error: EACCES: permission denied, mkdir '/home/user/.local/share/code-server/Machine'
+#12 1.718     at Module.mkdirSync (node:fs:1371:26)
+#12 1.718     at file:///usr/lib/code-server/lib/vscode/out/server-main.js:204:6761
+#12 1.718     at Array.forEach (<anonymous>)
+#12 1.718     at wI (file:///usr/lib/code-server/lib/vscode/out/server-main.js:204:6724)
+#12 1.718     at Object.oB (file:///usr/lib/code-server/lib/vscode/out/server-main.js:204:6848)
+#12 1.718     at /usr/lib/code-server/out/node/main.js:74:28
+#12 1.718     at Generator.next (<anonymous>)
+#12 1.718     at fulfilled (/usr/lib/code-server/out/node/main.js:28:58) {
+#12 1.718   errno: -13,
+#12 1.718   code: 'EACCES',
+#12 1.718   syscall: 'mkdir',
+#12 1.718   path: '/home/user/.local/share/code-server/Machine'
+#12 1.718 }
+#12 1.718 Error: EACCES: permission denied, mkdir '/home/user/.local/share/code-server/User/globalStorage'
+#12 1.718     at Module.mkdirSync (node:fs:1371:26)
+#12 1.718     at file:///usr/lib/code-server/lib/vscode/out/server-main.js:204:6761
+#12 1.718     at Array.forEach (<anonymous>)
+#12 1.718     at wI (file:///usr/lib/code-server/lib/vscode/out/server-main.js:204:6724)
+#12 1.718     at Object.oB (file:///usr/lib/code-server/lib/vscode/out/server-main.js:204:6848)
+#12 1.718     at /usr/lib/code-server/out/node/main.js:74:28
+#12 1.718     at Generator.next (<anonymous>)
+#12 1.718     at fulfilled (/usr/lib/code-server/out/node/main.js:28:58) {
+#12 1.718   errno: -13,
+#12 1.718   code: 'EACCES',
+#12 1.718   syscall: 'mkdir',
+#12 1.718   path: '/home/user/.local/share/code-server/User/globalStorage'
+#12 1.718 }
+#12 1.719 Error: EACCES: permission denied, mkdir '/home/user/.local/share/code-server/User/History'
+#12 1.719     at Module.mkdirSync (node:fs:1371:26)
+#12 1.719     at file:///usr/lib/code-server/lib/vscode/out/server-main.js:204:6761
+#12 1.719     at Array.forEach (<anonymous>)
+#12 1.719     at wI (file:///usr/lib/code-server/lib/vscode/out/server-main.js:204:6724)
+#12 1.719     at Object.oB (file:///usr/lib/code-server/lib/vscode/out/server-main.js:204:6848)
+#12 1.719     at /usr/lib/code-server/out/node/main.js:74:28
+#12 1.719     at Generator.next (<anonymous>)
+#12 1.719     at fulfilled (/usr/lib/code-server/out/node/main.js:28:58) {
+#12 1.719   errno: -13,
+#12 1.719   code: 'EACCES',
+#12 1.719   syscall: 'mkdir',
+#12 1.719   path: '/home/user/.local/share/code-server/User/History'
+#12 1.719 }
+#12 1.733 Installing extensions...
+#12 1.734 [Error: EACCES: permission denied, mkdir '/home/user/.local/share/code-server/logs'] {
+#12 1.734   errno: -13,
+#12 1.734   code: 'EACCES',
+#12 1.734   syscall: 'mkdir',
+#12 1.734   path: '/home/user/.local/share/code-server/logs'
+#12 1.734 }
+#12 1.735 [2025-02-25T23:41:49.910Z] error parent:97 Uncaught exception: Unable to resolve nonexistent file '/home/user/.local/share/code-server/extensions'
+#12 1.735 [2025-02-25T23:41:49.910Z] error parent:97 Error: Unable to resolve nonexistent file '/home/user/.local/share/code-server/extensions'
+#12 1.735     at Kc.resolve (file:///usr/lib/code-server/lib/vscode/out/server-main.js:64:8834)
+#12 1.735     at async Xc.zb (file:///usr/lib/code-server/lib/vscode/out/server-main.js:55:17818)
+#12 1.769 Error while installing extensions: Unable to read file '/home/user/.local/share/code-server/extensions/extensions.json' (Error: Unable to resolve nonexistent file '/home/user/.local/share/code-server/extensions/extensions.json')
+#12 1.769 Unable to read file '/home/user/.local/share/code-server/extensions/extensions.json' (Error: Unable to resolve nonexistent file '/home/user/.local/share/code-server/extensions/extensions.json')
+#12 2.002 Error: EACCES: permission denied, mkdir '/home/user/.local/share/code-server/extensions'
+#12 2.002     at Module.mkdirSync (node:fs:1371:26)
+#12 2.002     at file:///usr/lib/code-server/lib/vscode/out/server-main.js:204:6761
+#12 2.002     at Array.forEach (<anonymous>)
+#12 2.002     at wI (file:///usr/lib/code-server/lib/vscode/out/server-main.js:204:6724)
+#12 2.002     at Object.oB (file:///usr/lib/code-server/lib/vscode/out/server-main.js:204:6848)
+#12 2.002     at /usr/lib/code-server/out/node/main.js:74:28
+#12 2.002     at Generator.next (<anonymous>)
+#12 2.002     at fulfilled (/usr/lib/code-server/out/node/main.js:28:58) {
+#12 2.002   errno: -13,
+#12 2.002   code: 'EACCES',
+#12 2.002   syscall: 'mkdir',
+#12 2.002   path: '/home/user/.local/share/code-server/extensions'
+#12 2.002 }
+#12 2.003 Error: EACCES: permission denied, mkdir '/home/user/.local/share/code-server/Machine'
+#12 2.003     at Module.mkdirSync (node:fs:1371:26)
+#12 2.003     at file:///usr/lib/code-server/lib/vscode/out/server-main.js:204:6761
+#12 2.003     at Array.forEach (<anonymous>)
+#12 2.003     at wI (file:///usr/lib/code-server/lib/vscode/out/server-main.js:204:6724)
+#12 2.003     at Object.oB (file:///usr/lib/code-server/lib/vscode/out/server-main.js:204:6848)
+#12 2.003     at /usr/lib/code-server/out/node/main.js:74:28
+#12 2.003     at Generator.next (<anonymous>)
+#12 2.003     at fulfilled (/usr/lib/code-server/out/node/main.js:28:58) {
+#12 2.003   errno: -13,
+#12 2.003   code: 'EACCES',
+#12 2.003   syscall: 'mkdir',
+#12 2.003   path: '/home/user/.local/share/code-server/Machine'
+#12 2.003 }
+#12 2.003 Error: EACCES: permission denied, mkdir '/home/user/.local/share/code-server/User/globalStorage'
+#12 2.003     at Module.mkdirSync (node:fs:1371:26)
+#12 2.003     at file:///usr/lib/code-server/lib/vscode/out/server-main.js:204:6761
+#12 2.003     at Array.forEach (<anonymous>)
+#12 2.003     at wI (file:///usr/lib/code-server/lib/vscode/out/server-main.js:204:6724)
+#12 2.003     at Object.oB (file:///usr/lib/code-server/lib/vscode/out/server-main.js:204:6848)
+#12 2.003     at /usr/lib/code-server/out/node/main.js:74:28
+#12 2.003     at Generator.next (<anonymous>)
+#12 2.003     at fulfilled (/usr/lib/code-server/out/node/main.js:28:58) {
+#12 2.003   errno: -13,
+#12 2.003   code: 'EACCES',
+#12 2.003   syscall: 'mkdir',
+#12 2.003   path: '/home/user/.local/share/code-server/User/globalStorage'
+#12 2.003 }
+#12 2.003 Error: EACCES: permission denied, mkdir '/home/user/.local/share/code-server/User/History'
+#12 2.003     at Module.mkdirSync (node:fs:1371:26)
+#12 2.003     at file:///usr/lib/code-server/lib/vscode/out/server-main.js:204:6761
+#12 2.003     at Array.forEach (<anonymous>)
+#12 2.003     at wI (file:///usr/lib/code-server/lib/vscode/out/server-main.js:204:6724)
+#12 2.003     at Object.oB (file:///usr/lib/code-server/lib/vscode/out/server-main.js:204:6848)
+#12 2.003     at /usr/lib/code-server/out/node/main.js:74:28
+#12 2.003     at Generator.next (<anonymous>)
+#12 2.003     at fulfilled (/usr/lib/code-server/out/node/main.js:28:58) {
+#12 2.003   errno: -13,
+#12 2.003   code: 'EACCES',
+#12 2.003   syscall: 'mkdir',
+#12 2.003   path: '/home/user/.local/share/code-server/User/History'
+#12 2.003 }
+#12 2.019 Installing extensions...
+#12 2.021 [Error: EACCES: permission denied, mkdir '/home/user/.local/share/code-server/logs'] {
+#12 2.021   errno: -13,
+#12 2.021   code: 'EACCES',
+#12 2.021   syscall: 'mkdir',
+#12 2.021   path: '/home/user/.local/share/code-server/logs'
+#12 2.021 }
+#12 2.022 [2025-02-25T23:41:50.197Z] error parent:115 Uncaught exception: Unable to resolve nonexistent file '/home/user/.local/share/code-server/extensions'
+#12 2.022 [2025-02-25T23:41:50.197Z] error parent:115 Error: Unable to resolve nonexistent file '/home/user/.local/share/code-server/extensions'
+#12 2.022     at Kc.resolve (file:///usr/lib/code-server/lib/vscode/out/server-main.js:64:8834)
+#12 2.022     at async Xc.zb (file:///usr/lib/code-server/lib/vscode/out/server-main.js:55:17818)
+#12 2.076 Error while installing extensions: Unable to read file '/home/user/.local/share/code-server/extensions/extensions.json' (Error: Unable to resolve nonexistent file '/home/user/.local/share/code-server/extensions/extensions.json')
+#12 2.077 Unable to read file '/home/user/.local/share/code-server/extensions/extensions.json' (Error: Unable to resolve nonexistent file '/home/user/.local/share/code-server/extensions/extensions.json')
+#12 2.301 Error: EACCES: permission denied, mkdir '/home/user/.local/share/code-server/extensions'
+#12 2.301     at Module.mkdirSync (node:fs:1371:26)
+#12 2.301     at file:///usr/lib/code-server/lib/vscode/out/server-main.js:204:6761
+#12 2.301     at Array.forEach (<anonymous>)
+#12 2.301     at wI (file:///usr/lib/code-server/lib/vscode/out/server-main.js:204:6724)
+#12 2.301     at Object.oB (file:///usr/lib/code-server/lib/vscode/out/server-main.js:204:6848)
+#12 2.301     at /usr/lib/code-server/out/node/main.js:74:28
+#12 2.301     at Generator.next (<anonymous>)
+#12 2.301     at fulfilled (/usr/lib/code-server/out/node/main.js:28:58) {
+#12 2.301   errno: -13,
+#12 2.301   code: 'EACCES',
+#12 2.301   syscall: 'mkdir',
+#12 2.301   path: '/home/user/.local/share/code-server/extensions'
+#12 2.301 }
+#12 2.301 Error: EACCES: permission denied, mkdir '/home/user/.local/share/code-server/Machine'
+#12 2.301     at Module.mkdirSync (node:fs:1371:26)
+#12 2.301     at file:///usr/lib/code-server/lib/vscode/out/server-main.js:204:6761
+#12 2.301     at Array.forEach (<anonymous>)
+#12 2.301     at wI (file:///usr/lib/code-server/lib/vscode/out/server-main.js:204:6724)
+#12 2.301     at Object.oB (file:///usr/lib/code-server/lib/vscode/out/server-main.js:204:6848)
+#12 2.301     at /usr/lib/code-server/out/node/main.js:74:28
+#12 2.301     at Generator.next (<anonymous>)
+#12 2.301     at fulfilled (/usr/lib/code-server/out/node/main.js:28:58) {
+#12 2.301   errno: -13,
+#12 2.301   code: 'EACCES',
+#12 2.301   syscall: 'mkdir',
+#12 2.301   path: '/home/user/.local/share/code-server/Machine'
+#12 2.301 }
+#12 2.301 Error: EACCES: permission denied, mkdir '/home/user/.local/share/code-server/User/globalStorage'
+#12 2.301     at Module.mkdirSync (node:fs:1371:26)
+#12 2.301     at file:///usr/lib/code-server/lib/vscode/out/server-main.js:204:6761
+#12 2.301     at Array.forEach (<anonymous>)
+#12 2.301     at wI (file:///usr/lib/code-server/lib/vscode/out/server-main.js:204:6724)
+#12 2.301     at Object.oB (file:///usr/lib/code-server/lib/vscode/out/server-main.js:204:6848)
+#12 2.301     at /usr/lib/code-server/out/node/main.js:74:28
+#12 2.301     at Generator.next (<anonymous>)
+#12 2.301     at fulfilled (/usr/lib/code-server/out/node/main.js:28:58) {
+#12 2.301   errno: -13,
+#12 2.301   code: 'EACCES',
+#12 2.301   syscall: 'mkdir',
+#12 2.301   path: '/home/user/.local/share/code-server/User/globalStorage'
+#12 2.301 }
+#12 2.301 Error: EACCES: permission denied, mkdir '/home/user/.local/share/code-server/User/History'
+#12 2.301     at Module.mkdirSync (node:fs:1371:26)
+#12 2.301     at file:///usr/lib/code-server/lib/vscode/out/server-main.js:204:6761
+#12 2.301     at Array.forEach (<anonymous>)
+#12 2.301     at wI (file:///usr/lib/code-server/lib/vscode/out/server-main.js:204:6724)
+#12 2.301     at Object.oB (file:///usr/lib/code-server/lib/vscode/out/server-main.js:204:6848)
+#12 2.301     at /usr/lib/code-server/out/node/main.js:74:28
+#12 2.301     at Generator.next (<anonymous>)
+#12 2.301     at fulfilled (/usr/lib/code-server/out/node/main.js:28:58) {
+#12 2.301   errno: -13,
+#12 2.301   code: 'EACCES',
+#12 2.301   syscall: 'mkdir',
+#12 2.301   path: '/home/user/.local/share/code-server/User/History'
+#12 2.301 }
+#12 2.315 Installing extensions...
+#12 2.316 [Error: EACCES: permission denied, mkdir '/home/user/.local/share/code-server/logs'] {
+#12 2.316   errno: -13,
+#12 2.316   code: 'EACCES',
+#12 2.316   syscall: 'mkdir',
+#12 2.316   path: '/home/user/.local/share/code-server/logs'
+#12 2.316 }
+#12 2.317 [2025-02-25T23:41:50.492Z] error parent:133 Uncaught exception: Unable to resolve nonexistent file '/home/user/.local/share/code-server/extensions'
+#12 2.317 [2025-02-25T23:41:50.492Z] error parent:133 Error: Unable to resolve nonexistent file '/home/user/.local/share/code-server/extensions'
+#12 2.317     at Kc.resolve (file:///usr/lib/code-server/lib/vscode/out/server-main.js:64:8834)
+#12 2.317     at async Xc.zb (file:///usr/lib/code-server/lib/vscode/out/server-main.js:55:17818)
+#12 2.355 Error while installing extensions: Unable to read file '/home/user/.local/share/code-server/extensions/extensions.json' (Error: Unable to resolve nonexistent file '/home/user/.local/share/code-server/extensions/extensions.json')
+#12 2.355 Unable to read file '/home/user/.local/share/code-server/extensions/extensions.json' (Error: Unable to resolve nonexistent file '/home/user/.local/share/code-server/extensions/extensions.json')
+#12 2.581 Error: EACCES: permission denied, mkdir '/home/user/.local/share/code-server/extensions'
+#12 2.581     at Module.mkdirSync (node:fs:1371:26)
+#12 2.581     at file:///usr/lib/code-server/lib/vscode/out/server-main.js:204:6761
+#12 2.581     at Array.forEach (<anonymous>)
+#12 2.581     at wI (file:///usr/lib/code-server/lib/vscode/out/server-main.js:204:6724)
+#12 2.581     at Object.oB (file:///usr/lib/code-server/lib/vscode/out/server-main.js:204:6848)
+#12 2.581     at /usr/lib/code-server/out/node/main.js:74:28
+#12 2.581     at Generator.next (<anonymous>)
+#12 2.581     at fulfilled (/usr/lib/code-server/out/node/main.js:28:58) {
+#12 2.581   errno: -13,
+#12 2.581   code: 'EACCES',
+#12 2.581   syscall: 'mkdir',
+#12 2.581   path: '/home/user/.local/share/code-server/extensions'
+#12 2.581 }
+#12 2.582 Error: EACCES: permission denied, mkdir '/home/user/.local/share/code-server/Machine'
+#12 2.582     at Module.mkdirSync (node:fs:1371:26)
+#12 2.582     at file:///usr/lib/code-server/lib/vscode/out/server-main.js:204:6761
+#12 2.582     at Array.forEach (<anonymous>)
+#12 2.582     at wI (file:///usr/lib/code-server/lib/vscode/out/server-main.js:204:6724)
+#12 2.582     at Object.oB (file:///usr/lib/code-server/lib/vscode/out/server-main.js:204:6848)
+#12 2.582     at /usr/lib/code-server/out/node/main.js:74:28
+#12 2.582     at Generator.next (<anonymous>)
+#12 2.582     at fulfilled (/usr/lib/code-server/out/node/main.js:28:58) {
+#12 2.582   errno: -13,
+#12 2.582   code: 'EACCES',
+#12 2.582   syscall: 'mkdir',
+#12 2.582   path: '/home/user/.local/share/code-server/Machine'
+#12 2.582 }
+#12 2.582 Error: EACCES: permission denied, mkdir '/home/user/.local/share/code-server/User/globalStorage'
+#12 2.582     at Module.mkdirSync (node:fs:1371:26)
+#12 2.582     at file:///usr/lib/code-server/lib/vscode/out/server-main.js:204:6761
+#12 2.582     at Array.forEach (<anonymous>)
+#12 2.582     at wI (file:///usr/lib/code-server/lib/vscode/out/server-main.js:204:6724)
+#12 2.582     at Object.oB (file:///usr/lib/code-server/lib/vscode/out/server-main.js:204:6848)
+#12 2.582     at /usr/lib/code-server/out/node/main.js:74:28
+#12 2.582     at Generator.next (<anonymous>)
+#12 2.582     at fulfilled (/usr/lib/code-server/out/node/main.js:28:58) {
+#12 2.582   errno: -13,
+#12 2.582   code: 'EACCES',
+#12 2.582   syscall: 'mkdir',
+#12 2.582   path: '/home/user/.local/share/code-server/User/globalStorage'
+#12 2.582 }
+#12 2.582 Error: EACCES: permission denied, mkdir '/home/user/.local/share/code-server/User/History'
+#12 2.582     at Module.mkdirSync (node:fs:1371:26)
+#12 2.582     at file:///usr/lib/code-server/lib/vscode/out/server-main.js:204:6761
+#12 2.582     at Array.forEach (<anonymous>)
+#12 2.582     at wI (file:///usr/lib/code-server/lib/vscode/out/server-main.js:204:6724)
+#12 2.582     at Object.oB (file:///usr/lib/code-server/lib/vscode/out/server-main.js:204:6848)
+#12 2.582     at /usr/lib/code-server/out/node/main.js:74:28
+#12 2.582     at Generator.next (<anonymous>)
+#12 2.582     at fulfilled (/usr/lib/code-server/out/node/main.js:28:58) {
+#12 2.582   errno: -13,
+#12 2.582   code: 'EACCES',
+#12 2.582   syscall: 'mkdir',
+#12 2.582   path: '/home/user/.local/share/code-server/User/History'
+#12 2.582 }
+#12 2.597 Installing extensions...
+#12 2.599 [Error: EACCES: permission denied, mkdir '/home/user/.local/share/code-server/logs'] {
+#12 2.599   errno: -13,
+#12 2.599   code: 'EACCES',
+#12 2.599   syscall: 'mkdir',
+#12 2.599   path: '/home/user/.local/share/code-server/logs'
+#12 2.599 }
+#12 2.600 [2025-02-25T23:41:50.775Z] error parent:151 Uncaught exception: Unable to resolve nonexistent file '/home/user/.local/share/code-server/extensions'
+#12 2.600 [2025-02-25T23:41:50.775Z] error parent:151 Error: Unable to resolve nonexistent file '/home/user/.local/share/code-server/extensions'
+#12 2.600     at Kc.resolve (file:///usr/lib/code-server/lib/vscode/out/server-main.js:64:8834)
+#12 2.600     at async Xc.zb (file:///usr/lib/code-server/lib/vscode/out/server-main.js:55:17818)
+#12 2.646 Error while installing extensions: Unable to read file '/home/user/.local/share/code-server/extensions/extensions.json' (Error: Unable to resolve nonexistent file '/home/user/.local/share/code-server/extensions/extensions.json')
+#12 2.647 Unable to read file '/home/user/.local/share/code-server/extensions/extensions.json' (Error: Unable to resolve nonexistent file '/home/user/.local/share/code-server/extensions/extensions.json')
+#12 2.895 Error: EACCES: permission denied, mkdir '/home/user/.local/share/code-server/extensions'
+#12 2.895     at Module.mkdirSync (node:fs:1371:26)
+#12 2.895     at file:///usr/lib/code-server/lib/vscode/out/server-main.js:204:6761
+#12 2.895     at Array.forEach (<anonymous>)
+#12 2.895     at wI (file:///usr/lib/code-server/lib/vscode/out/server-main.js:204:6724)
+#12 2.895     at Object.oB (file:///usr/lib/code-server/lib/vscode/out/server-main.js:204:6848)
+#12 2.895     at /usr/lib/code-server/out/node/main.js:74:28
+#12 2.895     at Generator.next (<anonymous>)
+#12 2.895     at fulfilled (/usr/lib/code-server/out/node/main.js:28:58) {
+#12 2.895   errno: -13,
+#12 2.895   code: 'EACCES',
+#12 2.895   syscall: 'mkdir',
+#12 2.895   path: '/home/user/.local/share/code-server/extensions'
+#12 2.895 }
+#12 2.896 Error: EACCES: permission denied, mkdir '/home/user/.local/share/code-server/Machine'
+#12 2.896     at Module.mkdirSync (node:fs:1371:26)
+#12 2.896     at file:///usr/lib/code-server/lib/vscode/out/server-main.js:204:6761
+#12 2.896     at Array.forEach (<anonymous>)
+#12 2.896     at wI (file:///usr/lib/code-server/lib/vscode/out/server-main.js:204:6724)
+#12 2.896     at Object.oB (file:///usr/lib/code-server/lib/vscode/out/server-main.js:204:6848)
+#12 2.896     at /usr/lib/code-server/out/node/main.js:74:28
+#12 2.896     at Generator.next (<anonymous>)
+#12 2.896     at fulfilled (/usr/lib/code-server/out/node/main.js:28:58) {
+#12 2.896   errno: -13,
+#12 2.896   code: 'EACCES',
+#12 2.896   syscall: 'mkdir',
+#12 2.896   path: '/home/user/.local/share/code-server/Machine'
+#12 2.896 }
+#12 2.896 Error: EACCES: permission denied, mkdir '/home/user/.local/share/code-server/User/globalStorage'
+#12 2.896     at Module.mkdirSync (node:fs:1371:26)
+#12 2.896     at file:///usr/lib/code-server/lib/vscode/out/server-main.js:204:6761
+#12 2.896     at Array.forEach (<anonymous>)
+#12 2.896     at wI (file:///usr/lib/code-server/lib/vscode/out/server-main.js:204:6724)
+#12 2.896     at Object.oB (file:///usr/lib/code-server/lib/vscode/out/server-main.js:204:6848)
+#12 2.896     at /usr/lib/code-server/out/node/main.js:74:28
+#12 2.896     at Generator.next (<anonymous>)
+#12 2.896     at fulfilled (/usr/lib/code-server/out/node/main.js:28:58) {
+#12 2.896   errno: -13,
+#12 2.896   code: 'EACCES',
+#12 2.896   syscall: 'mkdir',
+#12 2.896   path: '/home/user/.local/share/code-server/User/globalStorage'
+#12 2.896 }
+#12 2.896 Error: EACCES: permission denied, mkdir '/home/user/.local/share/code-server/User/History'
+#12 2.896     at Module.mkdirSync (node:fs:1371:26)
+#12 2.896     at file:///usr/lib/code-server/lib/vscode/out/server-main.js:204:6761
+#12 2.896     at Array.forEach (<anonymous>)
+#12 2.896     at wI (file:///usr/lib/code-server/lib/vscode/out/server-main.js:204:6724)
+#12 2.896     at Object.oB (file:///usr/lib/code-server/lib/vscode/out/server-main.js:204:6848)
+#12 2.896     at /usr/lib/code-server/out/node/main.js:74:28
+#12 2.896     at Generator.next (<anonymous>)
+#12 2.896     at fulfilled (/usr/lib/code-server/out/node/main.js:28:58) {
+#12 2.896   errno: -13,
+#12 2.896   code: 'EACCES',
+#12 2.896   syscall: 'mkdir',
+#12 2.896   path: '/home/user/.local/share/code-server/User/History'
+#12 2.896 }
+#12 2.915 Installing extensions...
+#12 2.917 [Error: EACCES: permission denied, mkdir '/home/user/.local/share/code-server/logs'] {
+#12 2.917   errno: -13,
+#12 2.917   code: 'EACCES',
+#12 2.917   syscall: 'mkdir',
+#12 2.917   path: '/home/user/.local/share/code-server/logs'
+#12 2.917 }
+#12 2.917 [2025-02-25T23:41:51.093Z] error parent:169 Uncaught exception: Unable to resolve nonexistent file '/home/user/.local/share/code-server/extensions'
+#12 2.917 [2025-02-25T23:41:51.093Z] error parent:169 Error: Unable to resolve nonexistent file '/home/user/.local/share/code-server/extensions'
+#12 2.917     at Kc.resolve (file:///usr/lib/code-server/lib/vscode/out/server-main.js:64:8834)
+#12 2.917     at async Xc.zb (file:///usr/lib/code-server/lib/vscode/out/server-main.js:55:17818)
+#12 2.969 Error while installing extensions: Unable to read file '/home/user/.local/share/code-server/extensions/extensions.json' (Error: Unable to resolve nonexistent file '/home/user/.local/share/code-server/extensions/extensions.json')
+#12 2.969 Unable to read file '/home/user/.local/share/code-server/extensions/extensions.json' (Error: Unable to resolve nonexistent file '/home/user/.local/share/code-server/extensions/extensions.json')
+#12 3.202 Error: EACCES: permission denied, mkdir '/home/user/.local/share/code-server/extensions'
+#12 3.202     at Module.mkdirSync (node:fs:1371:26)
+#12 3.202     at file:///usr/lib/code-server/lib/vscode/out/server-main.js:204:6761
+#12 3.202     at Array.forEach (<anonymous>)
+#12 3.202     at wI (file:///usr/lib/code-server/lib/vscode/out/server-main.js:204:6724)
+#12 3.202     at Object.oB (file:///usr/lib/code-server/lib/vscode/out/server-main.js:204:6848)
+#12 3.202     at /usr/lib/code-server/out/node/main.js:74:28
+#12 3.202     at Generator.next (<anonymous>)
+#12 3.202     at fulfilled (/usr/lib/code-server/out/node/main.js:28:58) {
+#12 3.202   errno: -13,
+#12 3.202   code: 'EACCES',
+#12 3.202   syscall: 'mkdir',
+#12 3.202   path: '/home/user/.local/share/code-server/extensions'
+#12 3.202 }
+#12 3.203 Error: EACCES: permission denied, mkdir '/home/user/.local/share/code-server/Machine'
+#12 3.203     at Module.mkdirSync (node:fs:1371:26)
+#12 3.203     at file:///usr/lib/code-server/lib/vscode/out/server-main.js:204:6761
+#12 3.203     at Array.forEach (<anonymous>)
+#12 3.203     at wI (file:///usr/lib/code-server/lib/vscode/out/server-main.js:204:6724)
+#12 3.203     at Object.oB (file:///usr/lib/code-server/lib/vscode/out/server-main.js:204:6848)
+#12 3.203     at /usr/lib/code-server/out/node/main.js:74:28
+#12 3.203     at Generator.next (<anonymous>)
+#12 3.203     at fulfilled (/usr/lib/code-server/out/node/main.js:28:58) {
+#12 3.203   errno: -13,
+#12 3.203   code: 'EACCES',
+#12 3.203   syscall: 'mkdir',
+#12 3.203   path: '/home/user/.local/share/code-server/Machine'
+#12 3.203 }
+#12 3.203 Error: EACCES: permission denied, mkdir '/home/user/.local/share/code-server/User/globalStorage'
+#12 3.203     at Module.mkdirSync (node:fs:1371:26)
+#12 3.203     at file:///usr/lib/code-server/lib/vscode/out/server-main.js:204:6761
+#12 3.203     at Array.forEach (<anonymous>)
+#12 3.203     at wI (file:///usr/lib/code-server/lib/vscode/out/server-main.js:204:6724)
+#12 3.203     at Object.oB (file:///usr/lib/code-server/lib/vscode/out/server-main.js:204:6848)
+#12 3.203     at /usr/lib/code-server/out/node/main.js:74:28
+#12 3.203     at Generator.next (<anonymous>)
+#12 3.203     at fulfilled (/usr/lib/code-server/out/node/main.js:28:58) {
+#12 3.203   errno: -13,
+#12 3.203   code: 'EACCES',
+#12 3.203   syscall: 'mkdir',
+#12 3.203   path: '/home/user/.local/share/code-server/User/globalStorage'
+#12 3.203 }
+#12 3.203 Error: EACCES: permission denied, mkdir '/home/user/.local/share/code-server/User/History'
+#12 3.203     at Module.mkdirSync (node:fs:1371:26)
+#12 3.203     at file:///usr/lib/code-server/lib/vscode/out/server-main.js:204:6761
+#12 3.203     at Array.forEach (<anonymous>)
+#12 3.203     at wI (file:///usr/lib/code-server/lib/vscode/out/server-main.js:204:6724)
+#12 3.203     at Object.oB (file:///usr/lib/code-server/lib/vscode/out/server-main.js:204:6848)
+#12 3.203     at /usr/lib/code-server/out/node/main.js:74:28
+#12 3.203     at Generator.next (<anonymous>)
+#12 3.203     at fulfilled (/usr/lib/code-server/out/node/main.js:28:58) {
+#12 3.203   errno: -13,
+#12 3.203   code: 'EACCES',
+#12 3.203   syscall: 'mkdir',
+#12 3.203   path: '/home/user/.local/share/code-server/User/History'
+#12 3.203 }
+#12 3.217 Installing extensions...
+#12 3.218 [Error: EACCES: permission denied, mkdir '/home/user/.local/share/code-server/logs'] {
+#12 3.218   errno: -13,
+#12 3.218   code: 'EACCES',
+#12 3.218   syscall: 'mkdir',
+#12 3.218   path: '/home/user/.local/share/code-server/logs'
+#12 3.218 }
+#12 3.219 [2025-02-25T23:41:51.394Z] error parent:187 Uncaught exception: Unable to resolve nonexistent file '/home/user/.local/share/code-server/extensions'
+#12 3.219 [2025-02-25T23:41:51.394Z] error parent:187 Error: Unable to resolve nonexistent file '/home/user/.local/share/code-server/extensions'
+#12 3.219     at Kc.resolve (file:///usr/lib/code-server/lib/vscode/out/server-main.js:64:8834)
+#12 3.219     at async Xc.zb (file:///usr/lib/code-server/lib/vscode/out/server-main.js:55:17818)
+#12 3.262 Error while installing extensions: Unable to read file '/home/user/.local/share/code-server/extensions/extensions.json' (Error: Unable to resolve nonexistent file '/home/user/.local/share/code-server/extensions/extensions.json')
+#12 3.262 Unable to read file '/home/user/.local/share/code-server/extensions/extensions.json' (Error: Unable to resolve nonexistent file '/home/user/.local/share/code-server/extensions/extensions.json')
+#12 3.468 Error: EACCES: permission denied, mkdir '/home/user/.local/share/code-server/extensions'
+#12 3.468     at Module.mkdirSync (node:fs:1371:26)
+#12 3.468     at file:///usr/lib/code-server/lib/vscode/out/server-main.js:204:6761
+#12 3.468     at Array.forEach (<anonymous>)
+#12 3.468     at wI (file:///usr/lib/code-server/lib/vscode/out/server-main.js:204:6724)
+#12 3.468     at Object.oB (file:///usr/lib/code-server/lib/vscode/out/server-main.js:204:6848)
+#12 3.468     at /usr/lib/code-server/out/node/main.js:74:28
+#12 3.468     at Generator.next (<anonymous>)
+#12 3.468     at fulfilled (/usr/lib/code-server/out/node/main.js:28:58) {
+#12 3.468   errno: -13,
+#12 3.468   code: 'EACCES',
+#12 3.468   syscall: 'mkdir',
+#12 3.468   path: '/home/user/.local/share/code-server/extensions'
+#12 3.468 }
+#12 3.469 Error: EACCES: permission denied, mkdir '/home/user/.local/share/code-server/Machine'
+#12 3.469     at Module.mkdirSync (node:fs:1371:26)
+#12 3.469     at file:///usr/lib/code-server/lib/vscode/out/server-main.js:204:6761
+#12 3.469     at Array.forEach (<anonymous>)
+#12 3.469     at wI (file:///usr/lib/code-server/lib/vscode/out/server-main.js:204:6724)
+#12 3.469     at Object.oB (file:///usr/lib/code-server/lib/vscode/out/server-main.js:204:6848)
+#12 3.469     at /usr/lib/code-server/out/node/main.js:74:28
+#12 3.469     at Generator.next (<anonymous>)
+#12 3.469     at fulfilled (/usr/lib/code-server/out/node/main.js:28:58) {
+#12 3.469   errno: -13,
+#12 3.469   code: 'EACCES',
+#12 3.469   syscall: 'mkdir',
+#12 3.469   path: '/home/user/.local/share/code-server/Machine'
+#12 3.469 }
+#12 3.469 Error: EACCES: permission denied, mkdir '/home/user/.local/share/code-server/User/globalStorage'
+#12 3.469     at Module.mkdirSync (node:fs:1371:26)
+#12 3.469     at file:///usr/lib/code-server/lib/vscode/out/server-main.js:204:6761
+#12 3.469     at Array.forEach (<anonymous>)
+#12 3.469     at wI (file:///usr/lib/code-server/lib/vscode/out/server-main.js:204:6724)
+#12 3.469     at Object.oB (file:///usr/lib/code-server/lib/vscode/out/server-main.js:204:6848)
+#12 3.469     at /usr/lib/code-server/out/node/main.js:74:28
+#12 3.469     at Generator.next (<anonymous>)
+#12 3.469     at fulfilled (/usr/lib/code-server/out/node/main.js:28:58) {
+#12 3.469   errno: -13,
+#12 3.469   code: 'EACCES',
+#12 3.469   syscall: 'mkdir',
+#12 3.469   path: '/home/user/.local/share/code-server/User/globalStorage'
+#12 3.469 }
+#12 3.469 Error: EACCES: permission denied, mkdir '/home/user/.local/share/code-server/User/History'
+#12 3.469     at Module.mkdirSync (node:fs:1371:26)
+#12 3.469     at file:///usr/lib/code-server/lib/vscode/out/server-main.js:204:6761
+#12 3.469     at Array.forEach (<anonymous>)
+#12 3.469     at wI (file:///usr/lib/code-server/lib/vscode/out/server-main.js:204:6724)
+#12 3.469     at Object.oB (file:///usr/lib/code-server/lib/vscode/out/server-main.js:204:6848)
+#12 3.469     at /usr/lib/code-server/out/node/main.js:74:28
+#12 3.469     at Generator.next (<anonymous>)
+#12 3.469     at fulfilled (/usr/lib/code-server/out/node/main.js:28:58) {
+#12 3.469   errno: -13,
+#12 3.469   code: 'EACCES',
+#12 3.469   syscall: 'mkdir',
+#12 3.469   path: '/home/user/.local/share/code-server/User/History'
+#12 3.469 }
+#12 3.483 Installing extensions...
+#12 3.484 [Error: EACCES: permission denied, mkdir '/home/user/.local/share/code-server/logs'] {
+#12 3.484   errno: -13,
+#12 3.484   code: 'EACCES',
+#12 3.484   syscall: 'mkdir',
+#12 3.484   path: '/home/user/.local/share/code-server/logs'
+#12 3.484 }
+#12 3.485 [2025-02-25T23:41:51.660Z] error parent:205 Uncaught exception: Unable to resolve nonexistent file '/home/user/.local/share/code-server/extensions'
+#12 3.485 [2025-02-25T23:41:51.660Z] error parent:205 Error: Unable to resolve nonexistent file '/home/user/.local/share/code-server/extensions'
+#12 3.485     at Kc.resolve (file:///usr/lib/code-server/lib/vscode/out/server-main.js:64:8834)
+#12 3.485     at async Xc.zb (file:///usr/lib/code-server/lib/vscode/out/server-main.js:55:17818)
+#12 3.539 Error while installing extensions: Unable to read file '/home/user/.local/share/code-server/extensions/extensions.json' (Error: Unable to resolve nonexistent file '/home/user/.local/share/code-server/extensions/extensions.json')
+#12 3.539 Unable to read file '/home/user/.local/share/code-server/extensions/extensions.json' (Error: Unable to resolve nonexistent file '/home/user/.local/share/code-server/extensions/extensions.json')
+#12 3.749 Error: EACCES: permission denied, mkdir '/home/user/.local/share/code-server/extensions'
+#12 3.749     at Module.mkdirSync (node:fs:1371:26)
+#12 3.749     at file:///usr/lib/code-server/lib/vscode/out/server-main.js:204:6761
+#12 3.749     at Array.forEach (<anonymous>)
+#12 3.749     at wI (file:///usr/lib/code-server/lib/vscode/out/server-main.js:204:6724)
+#12 3.749     at Object.oB (file:///usr/lib/code-server/lib/vscode/out/server-main.js:204:6848)
+#12 3.749     at /usr/lib/code-server/out/node/main.js:74:28
+#12 3.749     at Generator.next (<anonymous>)
+#12 3.749     at fulfilled (/usr/lib/code-server/out/node/main.js:28:58) {
+#12 3.749   errno: -13,
+#12 3.749   code: 'EACCES',
+#12 3.749   syscall: 'mkdir',
+#12 3.749   path: '/home/user/.local/share/code-server/extensions'
+#12 3.749 }
+#12 3.749 Error: EACCES: permission denied, mkdir '/home/user/.local/share/code-server/Machine'
+#12 3.749     at Module.mkdirSync (node:fs:1371:26)
+#12 3.749     at file:///usr/lib/code-server/lib/vscode/out/server-main.js:204:6761
+#12 3.749     at Array.forEach (<anonymous>)
+#12 3.749     at wI (file:///usr/lib/code-server/lib/vscode/out/server-main.js:204:6724)
+#12 3.749     at Object.oB (file:///usr/lib/code-server/lib/vscode/out/server-main.js:204:6848)
+#12 3.749     at /usr/lib/code-server/out/node/main.js:74:28
+#12 3.749     at Generator.next (<anonymous>)
+#12 3.749     at fulfilled (/usr/lib/code-server/out/node/main.js:28:58) {
+#12 3.749   errno: -13,
+#12 3.749   code: 'EACCES',
+#12 3.749   syscall: 'mkdir',
+#12 3.749   path: '/home/user/.local/share/code-server/Machine'
+#12 3.749 }
+#12 3.749 Error: EACCES: permission denied, mkdir '/home/user/.local/share/code-server/User/globalStorage'
+#12 3.749     at Module.mkdirSync (node:fs:1371:26)
+#12 3.749     at file:///usr/lib/code-server/lib/vscode/out/server-main.js:204:6761
+#12 3.749     at Array.forEach (<anonymous>)
+#12 3.749     at wI (file:///usr/lib/code-server/lib/vscode/out/server-main.js:204:6724)
+#12 3.749     at Object.oB (file:///usr/lib/code-server/lib/vscode/out/server-main.js:204:6848)
+#12 3.749     at /usr/lib/code-server/out/node/main.js:74:28
+#12 3.749     at Generator.next (<anonymous>)
+#12 3.749     at fulfilled (/usr/lib/code-server/out/node/main.js:28:58) {
+#12 3.749   errno: -13,
+#12 3.749   code: 'EACCES',
+#12 3.749   syscall: 'mkdir',
+#12 3.749   path: '/home/user/.local/share/code-server/User/globalStorage'
+#12 3.749 }
+#12 3.749 Error: EACCES: permission denied, mkdir '/home/user/.local/share/code-server/User/History'
+#12 3.749     at Module.mkdirSync (node:fs:1371:26)
+#12 3.749     at file:///usr/lib/code-server/lib/vscode/out/server-main.js:204:6761
+#12 3.749     at Array.forEach (<anonymous>)
+#12 3.749     at wI (file:///usr/lib/code-server/lib/vscode/out/server-main.js:204:6724)
+#12 3.749     at Object.oB (file:///usr/lib/code-server/lib/vscode/out/server-main.js:204:6848)
+#12 3.749     at /usr/lib/code-server/out/node/main.js:74:28
+#12 3.749     at Generator.next (<anonymous>)
+#12 3.749     at fulfilled (/usr/lib/code-server/out/node/main.js:28:58) {
+#12 3.749   errno: -13,
+#12 3.749   code: 'EACCES',
+#12 3.749   syscall: 'mkdir',
+#12 3.749   path: '/home/user/.local/share/code-server/User/History'
+#12 3.749 }
+#12 3.762 Installing extensions...
+#12 3.764 [Error: EACCES: permission denied, mkdir '/home/user/.local/share/code-server/logs'] {
+#12 3.764   errno: -13,
+#12 3.764   code: 'EACCES',
+#12 3.764   syscall: 'mkdir',
+#12 3.764   path: '/home/user/.local/share/code-server/logs'
+#12 3.764 }
+#12 3.764 [2025-02-25T23:41:51.940Z] error parent:223 Uncaught exception: Unable to resolve nonexistent file '/home/user/.local/share/code-server/extensions'
+#12 3.764 [2025-02-25T23:41:51.940Z] error parent:223 Error: Unable to resolve nonexistent file '/home/user/.local/share/code-server/extensions'
+#12 3.764     at Kc.resolve (file:///usr/lib/code-server/lib/vscode/out/server-main.js:64:8834)
+#12 3.764     at async Xc.zb (file:///usr/lib/code-server/lib/vscode/out/server-main.js:55:17818)
+#12 3.819 Error while installing extensions: Unable to read file '/home/user/.local/share/code-server/extensions/extensions.json' (Error: Unable to resolve nonexistent file '/home/user/.local/share/code-server/extensions/extensions.json')
+#12 3.819 Unable to read file '/home/user/.local/share/code-server/extensions/extensions.json' (Error: Unable to resolve nonexistent file '/home/user/.local/share/code-server/extensions/extensions.json')
+#12 4.040 Error: EACCES: permission denied, mkdir '/home/user/.local/share/code-server/extensions'
+#12 4.040     at Module.mkdirSync (node:fs:1371:26)
+#12 4.040     at file:///usr/lib/code-server/lib/vscode/out/server-main.js:204:6761
+#12 4.040     at Array.forEach (<anonymous>)
+#12 4.040     at wI (file:///usr/lib/code-server/lib/vscode/out/server-main.js:204:6724)
+#12 4.040     at Object.oB (file:///usr/lib/code-server/lib/vscode/out/server-main.js:204:6848)
+#12 4.040     at /usr/lib/code-server/out/node/main.js:74:28
+#12 4.040     at Generator.next (<anonymous>)
+#12 4.040     at fulfilled (/usr/lib/code-server/out/node/main.js:28:58) {
+#12 4.040   errno: -13,
+#12 4.040   code: 'EACCES',
+#12 4.040   syscall: 'mkdir',
+#12 4.040   path: '/home/user/.local/share/code-server/extensions'
+#12 4.040 }
+#12 4.040 Error: EACCES: permission denied, mkdir '/home/user/.local/share/code-server/Machine'
+#12 4.040     at Module.mkdirSync (node:fs:1371:26)
+#12 4.040     at file:///usr/lib/code-server/lib/vscode/out/server-main.js:204:6761
+#12 4.040     at Array.forEach (<anonymous>)
+#12 4.040     at wI (file:///usr/lib/code-server/lib/vscode/out/server-main.js:204:6724)
+#12 4.040     at Object.oB (file:///usr/lib/code-server/lib/vscode/out/server-main.js:204:6848)
+#12 4.040     at /usr/lib/code-server/out/node/main.js:74:28
+#12 4.040     at Generator.next (<anonymous>)
+#12 4.040     at fulfilled (/usr/lib/code-server/out/node/main.js:28:58) {
+#12 4.040   errno: -13,
+#12 4.040   code: 'EACCES',
+#12 4.040   syscall: 'mkdir',
+#12 4.040   path: '/home/user/.local/share/code-server/Machine'
+#12 4.040 }
+#12 4.040 Error: EACCES: permission denied, mkdir '/home/user/.local/share/code-server/User/globalStorage'
+#12 4.040     at Module.mkdirSync (node:fs:1371:26)
+#12 4.040     at file:///usr/lib/code-server/lib/vscode/out/server-main.js:204:6761
+#12 4.040     at Array.forEach (<anonymous>)
+#12 4.040     at wI (file:///usr/lib/code-server/lib/vscode/out/server-main.js:204:6724)
+#12 4.040     at Object.oB (file:///usr/lib/code-server/lib/vscode/out/server-main.js:204:6848)
+#12 4.040     at /usr/lib/code-server/out/node/main.js:74:28
+#12 4.040     at Generator.next (<anonymous>)
+#12 4.040     at fulfilled (/usr/lib/code-server/out/node/main.js:28:58) {
+#12 4.040   errno: -13,
+#12 4.040   code: 'EACCES',
+#12 4.040   syscall: 'mkdir',
+#12 4.040   path: '/home/user/.local/share/code-server/User/globalStorage'
+#12 4.040 }
+#12 4.040 Error: EACCES: permission denied, mkdir '/home/user/.local/share/code-server/User/History'
+#12 4.040     at Module.mkdirSync (node:fs:1371:26)
+#12 4.040     at file:///usr/lib/code-server/lib/vscode/out/server-main.js:204:6761
+#12 4.040     at Array.forEach (<anonymous>)
+#12 4.040     at wI (file:///usr/lib/code-server/lib/vscode/out/server-main.js:204:6724)
+#12 4.040     at Object.oB (file:///usr/lib/code-server/lib/vscode/out/server-main.js:204:6848)
+#12 4.040     at /usr/lib/code-server/out/node/main.js:74:28
+#12 4.040     at Generator.next (<anonymous>)
+#12 4.040     at fulfilled (/usr/lib/code-server/out/node/main.js:28:58) {
+#12 4.040   errno: -13,
+#12 4.040   code: 'EACCES',
+#12 4.040   syscall: 'mkdir',
+#12 4.040   path: '/home/user/.local/share/code-server/User/History'
+#12 4.040 }
+#12 4.054 Installing extensions...
+#12 4.055 [Error: EACCES: permission denied, mkdir '/home/user/.local/share/code-server/logs'] {
+#12 4.055   errno: -13,
+#12 4.055   code: 'EACCES',
+#12 4.055   syscall: 'mkdir',
+#12 4.055   path: '/home/user/.local/share/code-server/logs'
+#12 4.055 }
+#12 4.056 [2025-02-25T23:41:52.231Z] error parent:241 Uncaught exception: Unable to resolve nonexistent file '/home/user/.local/share/code-server/extensions'
+#12 4.056 [2025-02-25T23:41:52.232Z] error parent:241 Error: Unable to resolve nonexistent file '/home/user/.local/share/code-server/extensions'
+#12 4.056     at Kc.resolve (file:///usr/lib/code-server/lib/vscode/out/server-main.js:64:8834)
+#12 4.056     at async Xc.zb (file:///usr/lib/code-server/lib/vscode/out/server-main.js:55:17818)
+#12 4.100 Error while installing extensions: Unable to read file '/home/user/.local/share/code-server/extensions/extensions.json' (Error: Unable to resolve nonexistent file '/home/user/.local/share/code-server/extensions/extensions.json')
+#12 4.100 Unable to read file '/home/user/.local/share/code-server/extensions/extensions.json' (Error: Unable to resolve nonexistent file '/home/user/.local/share/code-server/extensions/extensions.json')
+#12 4.312 Error: EACCES: permission denied, mkdir '/home/user/.local/share/code-server/extensions'
+#12 4.312     at Module.mkdirSync (node:fs:1371:26)
+#12 4.312     at file:///usr/lib/code-server/lib/vscode/out/server-main.js:204:6761
+#12 4.312     at Array.forEach (<anonymous>)
+#12 4.312     at wI (file:///usr/lib/code-server/lib/vscode/out/server-main.js:204:6724)
+#12 4.312     at Object.oB (file:///usr/lib/code-server/lib/vscode/out/server-main.js:204:6848)
+#12 4.312     at /usr/lib/code-server/out/node/main.js:74:28
+#12 4.312     at Generator.next (<anonymous>)
+#12 4.312     at fulfilled (/usr/lib/code-server/out/node/main.js:28:58) {
+#12 4.312   errno: -13,
+#12 4.312   code: 'EACCES',
+#12 4.312   syscall: 'mkdir',
+#12 4.312   path: '/home/user/.local/share/code-server/extensions'
+#12 4.312 }
+#12 4.312 Error: EACCES: permission denied, mkdir '/home/user/.local/share/code-server/Machine'
+#12 4.312     at Module.mkdirSync (node:fs:1371:26)
+#12 4.312     at file:///usr/lib/code-server/lib/vscode/out/server-main.js:204:6761
+#12 4.312     at Array.forEach (<anonymous>)
+#12 4.312     at wI (file:///usr/lib/code-server/lib/vscode/out/server-main.js:204:6724)
+#12 4.312     at Object.oB (file:///usr/lib/code-server/lib/vscode/out/server-main.js:204:6848)
+#12 4.312     at /usr/lib/code-server/out/node/main.js:74:28
+#12 4.312     at Generator.next (<anonymous>)
+#12 4.312     at fulfilled (/usr/lib/code-server/out/node/main.js:28:58) {
+#12 4.312   errno: -13,
+#12 4.312   code: 'EACCES',
+#12 4.312   syscall: 'mkdir',
+#12 4.312   path: '/home/user/.local/share/code-server/Machine'
+#12 4.312 }
+#12 4.312 Error: EACCES: permission denied, mkdir '/home/user/.local/share/code-server/User/globalStorage'
+#12 4.312     at Module.mkdirSync (node:fs:1371:26)
+#12 4.312     at file:///usr/lib/code-server/lib/vscode/out/server-main.js:204:6761
+#12 4.312     at Array.forEach (<anonymous>)
+#12 4.312     at wI (file:///usr/lib/code-server/lib/vscode/out/server-main.js:204:6724)
+#12 4.312     at Object.oB (file:///usr/lib/code-server/lib/vscode/out/server-main.js:204:6848)
+#12 4.312     at /usr/lib/code-server/out/node/main.js:74:28
+#12 4.312     at Generator.next (<anonymous>)
+#12 4.312     at fulfilled (/usr/lib/code-server/out/node/main.js:28:58) {
+#12 4.312   errno: -13,
+#12 4.312   code: 'EACCES',
+#12 4.312   syscall: 'mkdir',
+#12 4.312   path: '/home/user/.local/share/code-server/User/globalStorage'
+#12 4.312 }
+#12 4.313 Error: EACCES: permission denied, mkdir '/home/user/.local/share/code-server/User/History'
+#12 4.313     at Module.mkdirSync (node:fs:1371:26)
+#12 4.313     at file:///usr/lib/code-server/lib/vscode/out/server-main.js:204:6761
+#12 4.313     at Array.forEach (<anonymous>)
+#12 4.313     at wI (file:///usr/lib/code-server/lib/vscode/out/server-main.js:204:6724)
+#12 4.313     at Object.oB (file:///usr/lib/code-server/lib/vscode/out/server-main.js:204:6848)
+#12 4.313     at /usr/lib/code-server/out/node/main.js:74:28
+#12 4.313     at Generator.next (<anonymous>)
+#12 4.313     at fulfilled (/usr/lib/code-server/out/node/main.js:28:58) {
+#12 4.313   errno: -13,
+#12 4.313   code: 'EACCES',
+#12 4.313   syscall: 'mkdir',
+#12 4.313   path: '/home/user/.local/share/code-server/User/History'
+#12 4.313 }
+#12 4.326 Installing extensions...
+#12 4.328 [Error: EACCES: permission denied, mkdir '/home/user/.local/share/code-server/logs'] {
+#12 4.328   errno: -13,
+#12 4.328   code: 'EACCES',
+#12 4.328   syscall: 'mkdir',
+#12 4.328   path: '/home/user/.local/share/code-server/logs'
+#12 4.328 }
+#12 4.328 [2025-02-25T23:41:52.504Z] error parent:259 Uncaught exception: Unable to resolve nonexistent file '/home/user/.local/share/code-server/extensions'
+#12 4.328 [2025-02-25T23:41:52.504Z] error parent:259 Error: Unable to resolve nonexistent file '/home/user/.local/share/code-server/extensions'
+#12 4.328     at Kc.resolve (file:///usr/lib/code-server/lib/vscode/out/server-main.js:64:8834)
+#12 4.328     at async Xc.zb (file:///usr/lib/code-server/lib/vscode/out/server-main.js:55:17818)
+#12 4.373 Error while installing extensions: Unable to read file '/home/user/.local/share/code-server/extensions/extensions.json' (Error: Unable to resolve nonexistent file '/home/user/.local/share/code-server/extensions/extensions.json')
+#12 4.373 Unable to read file '/home/user/.local/share/code-server/extensions/extensions.json' (Error: Unable to resolve nonexistent file '/home/user/.local/share/code-server/extensions/extensions.json')
+#12 4.591 Error: EACCES: permission denied, mkdir '/home/user/.local/share/code-server/extensions'
+#12 4.591     at Module.mkdirSync (node:fs:1371:26)
+#12 4.591     at file:///usr/lib/code-server/lib/vscode/out/server-main.js:204:6761
+#12 4.591     at Array.forEach (<anonymous>)
+#12 4.591     at wI (file:///usr/lib/code-server/lib/vscode/out/server-main.js:204:6724)
+#12 4.591     at Object.oB (file:///usr/lib/code-server/lib/vscode/out/server-main.js:204:6848)
+#12 4.591     at /usr/lib/code-server/out/node/main.js:74:28
+#12 4.591     at Generator.next (<anonymous>)
+#12 4.591     at fulfilled (/usr/lib/code-server/out/node/main.js:28:58) {
+#12 4.591   errno: -13,
+#12 4.591   code: 'EACCES',
+#12 4.591   syscall: 'mkdir',
+#12 4.591   path: '/home/user/.local/share/code-server/extensions'
+#12 4.591 }
+#12 4.591 Error: EACCES: permission denied, mkdir '/home/user/.local/share/code-server/Machine'
+#12 4.591     at Module.mkdirSync (node:fs:1371:26)
+#12 4.591     at file:///usr/lib/code-server/lib/vscode/out/server-main.js:204:6761
+#12 4.591     at Array.forEach (<anonymous>)
+#12 4.591     at wI (file:///usr/lib/code-server/lib/vscode/out/server-main.js:204:6724)
+#12 4.591     at Object.oB (file:///usr/lib/code-server/lib/vscode/out/server-main.js:204:6848)
+#12 4.591     at /usr/lib/code-server/out/node/main.js:74:28
+#12 4.591     at Generator.next (<anonymous>)
+#12 4.591     at fulfilled (/usr/lib/code-server/out/node/main.js:28:58) {
+#12 4.591   errno: -13,
+#12 4.591   code: 'EACCES',
+#12 4.591   syscall: 'mkdir',
+#12 4.591   path: '/home/user/.local/share/code-server/Machine'
+#12 4.591 }
+#12 4.591 Error: EACCES: permission denied, mkdir '/home/user/.local/share/code-server/User/globalStorage'
+#12 4.591     at Module.mkdirSync (node:fs:1371:26)
+#12 4.591     at file:///usr/lib/code-server/lib/vscode/out/server-main.js:204:6761
+#12 4.591     at Array.forEach (<anonymous>)
+#12 4.591     at wI (file:///usr/lib/code-server/lib/vscode/out/server-main.js:204:6724)
+#12 4.591     at Object.oB (file:///usr/lib/code-server/lib/vscode/out/server-main.js:204:6848)
+#12 4.591     at /usr/lib/code-server/out/node/main.js:74:28
+#12 4.591     at Generator.next (<anonymous>)
+#12 4.591     at fulfilled (/usr/lib/code-server/out/node/main.js:28:58) {
+#12 4.591   errno: -13,
+#12 4.591   code: 'EACCES',
+#12 4.591   syscall: 'mkdir',
+#12 4.591   path: '/home/user/.local/share/code-server/User/globalStorage'
+#12 4.591 }
+#12 4.591 Error: EACCES: permission denied, mkdir '/home/user/.local/share/code-server/User/History'
+#12 4.591     at Module.mkdirSync (node:fs:1371:26)
+#12 4.591     at file:///usr/lib/code-server/lib/vscode/out/server-main.js:204:6761
+#12 4.591     at Array.forEach (<anonymous>)
+#12 4.591     at wI (file:///usr/lib/code-server/lib/vscode/out/server-main.js:204:6724)
+#12 4.591     at Object.oB (file:///usr/lib/code-server/lib/vscode/out/server-main.js:204:6848)
+#12 4.591     at /usr/lib/code-server/out/node/main.js:74:28
+#12 4.591     at Generator.next (<anonymous>)
+#12 4.591     at fulfilled (/usr/lib/code-server/out/node/main.js:28:58) {
+#12 4.591   errno: -13,
+#12 4.591   code: 'EACCES',
+#12 4.591   syscall: 'mkdir',
+#12 4.591   path: '/home/user/.local/share/code-server/User/History'
+#12 4.591 }
+#12 4.605 Installing extensions...
+#12 4.606 [Error: EACCES: permission denied, mkdir '/home/user/.local/share/code-server/logs'] {
+#12 4.606   errno: -13,
+#12 4.606   code: 'EACCES',
+#12 4.606   syscall: 'mkdir',
+#12 4.606   path: '/home/user/.local/share/code-server/logs'
+#12 4.606 }
+#12 4.607 [2025-02-25T23:41:52.782Z] error parent:277 Uncaught exception: Unable to resolve nonexistent file '/home/user/.local/share/code-server/extensions'
+#12 4.607 [2025-02-25T23:41:52.783Z] error parent:277 Error: Unable to resolve nonexistent file '/home/user/.local/share/code-server/extensions'
+#12 4.607     at Kc.resolve (file:///usr/lib/code-server/lib/vscode/out/server-main.js:64:8834)
+#12 4.607     at async Xc.zb (file:///usr/lib/code-server/lib/vscode/out/server-main.js:55:17818)
+#12 4.650 Error while installing extensions: Unable to read file '/home/user/.local/share/code-server/extensions/extensions.json' (Error: Unable to resolve nonexistent file '/home/user/.local/share/code-server/extensions/extensions.json')
+#12 4.651 Unable to read file '/home/user/.local/share/code-server/extensions/extensions.json' (Error: Unable to resolve nonexistent file '/home/user/.local/share/code-server/extensions/extensions.json')
+#12 4.860 Error: EACCES: permission denied, mkdir '/home/user/.local/share/code-server/extensions'
+#12 4.860     at Module.mkdirSync (node:fs:1371:26)
+#12 4.860     at file:///usr/lib/code-server/lib/vscode/out/server-main.js:204:6761
+#12 4.860     at Array.forEach (<anonymous>)
+#12 4.860     at wI (file:///usr/lib/code-server/lib/vscode/out/server-main.js:204:6724)
+#12 4.860     at Object.oB (file:///usr/lib/code-server/lib/vscode/out/server-main.js:204:6848)
+#12 4.860     at /usr/lib/code-server/out/node/main.js:74:28
+#12 4.860     at Generator.next (<anonymous>)
+#12 4.860     at fulfilled (/usr/lib/code-server/out/node/main.js:28:58) {
+#12 4.860   errno: -13,
+#12 4.860   code: 'EACCES',
+#12 4.860   syscall: 'mkdir',
+#12 4.860   path: '/home/user/.local/share/code-server/extensions'
+#12 4.860 }
+#12 4.861 Error: EACCES: permission denied, mkdir '/home/user/.local/share/code-server/Machine'
+#12 4.861     at Module.mkdirSync (node:fs:1371:26)
+#12 4.861     at file:///usr/lib/code-server/lib/vscode/out/server-main.js:204:6761
+#12 4.861     at Array.forEach (<anonymous>)
+#12 4.861     at wI (file:///usr/lib/code-server/lib/vscode/out/server-main.js:204:6724)
+#12 4.861     at Object.oB (file:///usr/lib/code-server/lib/vscode/out/server-main.js:204:6848)
+#12 4.861     at /usr/lib/code-server/out/node/main.js:74:28
+#12 4.861     at Generator.next (<anonymous>)
+#12 4.861     at fulfilled (/usr/lib/code-server/out/node/main.js:28:58) {
+#12 4.861   errno: -13,
+#12 4.861   code: 'EACCES',
+#12 4.861   syscall: 'mkdir',
+#12 4.861   path: '/home/user/.local/share/code-server/Machine'
+#12 4.861 }
+#12 4.861 Error: EACCES: permission denied, mkdir '/home/user/.local/share/code-server/User/globalStorage'
+#12 4.861     at Module.mkdirSync (node:fs:1371:26)
+#12 4.861     at file:///usr/lib/code-server/lib/vscode/out/server-main.js:204:6761
+#12 4.861     at Array.forEach (<anonymous>)
+#12 4.861     at wI (file:///usr/lib/code-server/lib/vscode/out/server-main.js:204:6724)
+#12 4.861     at Object.oB (file:///usr/lib/code-server/lib/vscode/out/server-main.js:204:6848)
+#12 4.861     at /usr/lib/code-server/out/node/main.js:74:28
+#12 4.861     at Generator.next (<anonymous>)
+#12 4.861     at fulfilled (/usr/lib/code-server/out/node/main.js:28:58) {
+#12 4.861   errno: -13,
+#12 4.861   code: 'EACCES',
+#12 4.861   syscall: 'mkdir',
+#12 4.861   path: '/home/user/.local/share/code-server/User/globalStorage'
+#12 4.861 }
+#12 4.861 Error: EACCES: permission denied, mkdir '/home/user/.local/share/code-server/User/History'
+#12 4.861     at Module.mkdirSync (node:fs:1371:26)
+#12 4.861     at file:///usr/lib/code-server/lib/vscode/out/server-main.js:204:6761
+#12 4.861     at Array.forEach (<anonymous>)
+#12 4.861     at wI (file:///usr/lib/code-server/lib/vscode/out/server-main.js:204:6724)
+#12 4.861     at Object.oB (file:///usr/lib/code-server/lib/vscode/out/server-main.js:204:6848)
+#12 4.861     at /usr/lib/code-server/out/node/main.js:74:28
+#12 4.861     at Generator.next (<anonymous>)
+#12 4.861     at fulfilled (/usr/lib/code-server/out/node/main.js:28:58) {
+#12 4.861   errno: -13,
+#12 4.861   code: 'EACCES',
+#12 4.861   syscall: 'mkdir',
+#12 4.861   path: '/home/user/.local/share/code-server/User/History'
+#12 4.861 }
+#12 4.874 Installing extensions...
+#12 4.875 [Error: EACCES: permission denied, mkdir '/home/user/.local/share/code-server/logs'] {
+#12 4.875   errno: -13,
+#12 4.875   code: 'EACCES',
+#12 4.875   syscall: 'mkdir',
+#12 4.875   path: '/home/user/.local/share/code-server/logs'
+#12 4.875 }
+#12 4.876 [2025-02-25T23:41:53.051Z] error parent:295 Uncaught exception: Unable to resolve nonexistent file '/home/user/.local/share/code-server/extensions'
+#12 4.876 [2025-02-25T23:41:53.052Z] error parent:295 Error: Unable to resolve nonexistent file '/home/user/.local/share/code-server/extensions'
+#12 4.876     at Kc.resolve (file:///usr/lib/code-server/lib/vscode/out/server-main.js:64:8834)
+#12 4.876     at async Xc.zb (file:///usr/lib/code-server/lib/vscode/out/server-main.js:55:17818)
+#12 4.922 Error while installing extensions: Unable to read file '/home/user/.local/share/code-server/extensions/extensions.json' (Error: Unable to resolve nonexistent file '/home/user/.local/share/code-server/extensions/extensions.json')
+#12 4.922 Unable to read file '/home/user/.local/share/code-server/extensions/extensions.json' (Error: Unable to resolve nonexistent file '/home/user/.local/share/code-server/extensions/extensions.json')
+#12 5.133 Error: EACCES: permission denied, mkdir '/home/user/.local/share/code-server/extensions'
+#12 5.133     at Module.mkdirSync (node:fs:1371:26)
+#12 5.133     at file:///usr/lib/code-server/lib/vscode/out/server-main.js:204:6761
+#12 5.133     at Array.forEach (<anonymous>)
+#12 5.133     at wI (file:///usr/lib/code-server/lib/vscode/out/server-main.js:204:6724)
+#12 5.133     at Object.oB (file:///usr/lib/code-server/lib/vscode/out/server-main.js:204:6848)
+#12 5.133     at /usr/lib/code-server/out/node/main.js:74:28
+#12 5.133     at Generator.next (<anonymous>)
+#12 5.133     at fulfilled (/usr/lib/code-server/out/node/main.js:28:58) {
+#12 5.133   errno: -13,
+#12 5.133   code: 'EACCES',
+#12 5.133   syscall: 'mkdir',
+#12 5.133   path: '/home/user/.local/share/code-server/extensions'
+#12 5.133 }
+#12 5.133 Error: EACCES: permission denied, mkdir '/home/user/.local/share/code-server/Machine'
+#12 5.133     at Module.mkdirSync (node:fs:1371:26)
+#12 5.133     at file:///usr/lib/code-server/lib/vscode/out/server-main.js:204:6761
+#12 5.133     at Array.forEach (<anonymous>)
+#12 5.133     at wI (file:///usr/lib/code-server/lib/vscode/out/server-main.js:204:6724)
+#12 5.133     at Object.oB (file:///usr/lib/code-server/lib/vscode/out/server-main.js:204:6848)
+#12 5.133     at /usr/lib/code-server/out/node/main.js:74:28
+#12 5.133     at Generator.next (<anonymous>)
+#12 5.133     at fulfilled (/usr/lib/code-server/out/node/main.js:28:58) {
+#12 5.133   errno: -13,
+#12 5.133   code: 'EACCES',
+#12 5.133   syscall: 'mkdir',
+#12 5.133   path: '/home/user/.local/share/code-server/Machine'
+#12 5.133 }
+#12 5.134 Error: EACCES: permission denied, mkdir '/home/user/.local/share/code-server/User/globalStorage'
+#12 5.134     at Module.mkdirSync (node:fs:1371:26)
+#12 5.134     at file:///usr/lib/code-server/lib/vscode/out/server-main.js:204:6761
+#12 5.134     at Array.forEach (<anonymous>)
+#12 5.134     at wI (file:///usr/lib/code-server/lib/vscode/out/server-main.js:204:6724)
+#12 5.134     at Object.oB (file:///usr/lib/code-server/lib/vscode/out/server-main.js:204:6848)
+#12 5.134     at /usr/lib/code-server/out/node/main.js:74:28
+#12 5.134     at Generator.next (<anonymous>)
+#12 5.134     at fulfilled (/usr/lib/code-server/out/node/main.js:28:58) {
+#12 5.134   errno: -13,
+#12 5.134   code: 'EACCES',
+#12 5.134   syscall: 'mkdir',
+#12 5.134   path: '/home/user/.local/share/code-server/User/globalStorage'
+#12 5.134 }
+#12 5.134 Error: EACCES: permission denied, mkdir '/home/user/.local/share/code-server/User/History'
+#12 5.134     at Module.mkdirSync (node:fs:1371:26)
+#12 5.134     at file:///usr/lib/code-server/lib/vscode/out/server-main.js:204:6761
+#12 5.134     at Array.forEach (<anonymous>)
+#12 5.134     at wI (file:///usr/lib/code-server/lib/vscode/out/server-main.js:204:6724)
+#12 5.134     at Object.oB (file:///usr/lib/code-server/lib/vscode/out/server-main.js:204:6848)
+#12 5.134     at /usr/lib/code-server/out/node/main.js:74:28
+#12 5.134     at Generator.next (<anonymous>)
+#12 5.134     at fulfilled (/usr/lib/code-server/out/node/main.js:28:58) {
+#12 5.134   errno: -13,
+#12 5.134   code: 'EACCES',
+#12 5.134   syscall: 'mkdir',
+#12 5.134   path: '/home/user/.local/share/code-server/User/History'
+#12 5.134 }
+#12 5.148 Installing extensions...
+#12 5.149 [Error: EACCES: permission denied, mkdir '/home/user/.local/share/code-server/logs'] {
+#12 5.149   errno: -13,
+#12 5.149   code: 'EACCES',
+#12 5.149   syscall: 'mkdir',
+#12 5.149   path: '/home/user/.local/share/code-server/logs'
+#12 5.149 }
+#12 5.150 [2025-02-25T23:41:53.325Z] error parent:313 Uncaught exception: Unable to resolve nonexistent file '/home/user/.local/share/code-server/extensions'
+#12 5.150 [2025-02-25T23:41:53.325Z] error parent:313 Error: Unable to resolve nonexistent file '/home/user/.local/share/code-server/extensions'
+#12 5.150     at Kc.resolve (file:///usr/lib/code-server/lib/vscode/out/server-main.js:64:8834)
+#12 5.150     at async Xc.zb (file:///usr/lib/code-server/lib/vscode/out/server-main.js:55:17818)
+#12 5.188 Error while installing extensions: Unable to read file '/home/user/.local/share/code-server/extensions/extensions.json' (Error: Unable to resolve nonexistent file '/home/user/.local/share/code-server/extensions/extensions.json')
+#12 5.188 Unable to read file '/home/user/.local/share/code-server/extensions/extensions.json' (Error: Unable to resolve nonexistent file '/home/user/.local/share/code-server/extensions/extensions.json')
+#12 5.399 Error: EACCES: permission denied, mkdir '/home/user/.local/share/code-server/extensions'
+#12 5.399     at Module.mkdirSync (node:fs:1371:26)
+#12 5.399     at file:///usr/lib/code-server/lib/vscode/out/server-main.js:204:6761
+#12 5.399     at Array.forEach (<anonymous>)
+#12 5.399     at wI (file:///usr/lib/code-server/lib/vscode/out/server-main.js:204:6724)
+#12 5.399     at Object.oB (file:///usr/lib/code-server/lib/vscode/out/server-main.js:204:6848)
+#12 5.399     at /usr/lib/code-server/out/node/main.js:74:28
+#12 5.399     at Generator.next (<anonymous>)
+#12 5.399     at fulfilled (/usr/lib/code-server/out/node/main.js:28:58) {
+#12 5.399   errno: -13,
+#12 5.399   code: 'EACCES',
+#12 5.399   syscall: 'mkdir',
+#12 5.399   path: '/home/user/.local/share/code-server/extensions'
+#12 5.399 }
+#12 5.399 Error: EACCES: permission denied, mkdir '/home/user/.local/share/code-server/Machine'
+#12 5.399     at Module.mkdirSync (node:fs:1371:26)
+#12 5.399     at file:///usr/lib/code-server/lib/vscode/out/server-main.js:204:6761
+#12 5.399     at Array.forEach (<anonymous>)
+#12 5.399     at wI (file:///usr/lib/code-server/lib/vscode/out/server-main.js:204:6724)
+#12 5.399     at Object.oB (file:///usr/lib/code-server/lib/vscode/out/server-main.js:204:6848)
+#12 5.399     at /usr/lib/code-server/out/node/main.js:74:28
+#12 5.399     at Generator.next (<anonymous>)
+#12 5.399     at fulfilled (/usr/lib/code-server/out/node/main.js:28:58) {
+#12 5.399   errno: -13,
+#12 5.399   code: 'EACCES',
+#12 5.399   syscall: 'mkdir',
+#12 5.399   path: '/home/user/.local/share/code-server/Machine'
+#12 5.399 }
+#12 5.400 Error: EACCES: permission denied, mkdir '/home/user/.local/share/code-server/User/globalStorage'
+#12 5.400     at Module.mkdirSync (node:fs:1371:26)
+#12 5.400     at file:///usr/lib/code-server/lib/vscode/out/server-main.js:204:6761
+#12 5.400     at Array.forEach (<anonymous>)
+#12 5.400     at wI (file:///usr/lib/code-server/lib/vscode/out/server-main.js:204:6724)
+#12 5.400     at Object.oB (file:///usr/lib/code-server/lib/vscode/out/server-main.js:204:6848)
+#12 5.400     at /usr/lib/code-server/out/node/main.js:74:28
+#12 5.400     at Generator.next (<anonymous>)
+#12 5.400     at fulfilled (/usr/lib/code-server/out/node/main.js:28:58) {
+#12 5.400   errno: -13,
+#12 5.400   code: 'EACCES',
+#12 5.400   syscall: 'mkdir',
+#12 5.400   path: '/home/user/.local/share/code-server/User/globalStorage'
+#12 5.400 }
+#12 5.400 Error: EACCES: permission denied, mkdir '/home/user/.local/share/code-server/User/History'
+#12 5.400     at Module.mkdirSync (node:fs:1371:26)
+#12 5.400     at file:///usr/lib/code-server/lib/vscode/out/server-main.js:204:6761
+#12 5.400     at Array.forEach (<anonymous>)
+#12 5.400     at wI (file:///usr/lib/code-server/lib/vscode/out/server-main.js:204:6724)
+#12 5.400     at Object.oB (file:///usr/lib/code-server/lib/vscode/out/server-main.js:204:6848)
+#12 5.400     at /usr/lib/code-server/out/node/main.js:74:28
+#12 5.400     at Generator.next (<anonymous>)
+#12 5.400     at fulfilled (/usr/lib/code-server/out/node/main.js:28:58) {
+#12 5.400   errno: -13,
+#12 5.400   code: 'EACCES',
+#12 5.400   syscall: 'mkdir',
+#12 5.400   path: '/home/user/.local/share/code-server/User/History'
+#12 5.400 }
+#12 5.413 Installing extensions...
+#12 5.415 [Error: EACCES: permission denied, mkdir '/home/user/.local/share/code-server/logs'] {
+#12 5.415   errno: -13,
+#12 5.415   code: 'EACCES',
+#12 5.415   syscall: 'mkdir',
+#12 5.415   path: '/home/user/.local/share/code-server/logs'
+#12 5.415 }
+#12 5.416 [2025-02-25T23:41:53.591Z] error parent:331 Uncaught exception: Unable to resolve nonexistent file '/home/user/.local/share/code-server/extensions'
+#12 5.416 [2025-02-25T23:41:53.591Z] error parent:331 Error: Unable to resolve nonexistent file '/home/user/.local/share/code-server/extensions'
+#12 5.416     at Kc.resolve (file:///usr/lib/code-server/lib/vscode/out/server-main.js:64:8834)
+#12 5.416     at async Xc.zb (file:///usr/lib/code-server/lib/vscode/out/server-main.js:55:17818)
+#12 5.459 Error while installing extensions: Unable to read file '/home/user/.local/share/code-server/extensions/extensions.json' (Error: Unable to resolve nonexistent file '/home/user/.local/share/code-server/extensions/extensions.json')
+#12 5.459 Unable to read file '/home/user/.local/share/code-server/extensions/extensions.json' (Error: Unable to resolve nonexistent file '/home/user/.local/share/code-server/extensions/extensions.json')
+#12 5.669 Error: EACCES: permission denied, mkdir '/home/user/.local/share/code-server/extensions'
+#12 5.669     at Module.mkdirSync (node:fs:1371:26)
+#12 5.669     at file:///usr/lib/code-server/lib/vscode/out/server-main.js:204:6761
+#12 5.669     at Array.forEach (<anonymous>)
+#12 5.669     at wI (file:///usr/lib/code-server/lib/vscode/out/server-main.js:204:6724)
+#12 5.669     at Object.oB (file:///usr/lib/code-server/lib/vscode/out/server-main.js:204:6848)
+#12 5.669     at /usr/lib/code-server/out/node/main.js:74:28
+#12 5.669     at Generator.next (<anonymous>)
+#12 5.669     at fulfilled (/usr/lib/code-server/out/node/main.js:28:58) {
+#12 5.669   errno: -13,
+#12 5.669   code: 'EACCES',
+#12 5.669   syscall: 'mkdir',
+#12 5.669   path: '/home/user/.local/share/code-server/extensions'
+#12 5.669 }
+#12 5.669 Error: EACCES: permission denied, mkdir '/home/user/.local/share/code-server/Machine'
+#12 5.669     at Module.mkdirSync (node:fs:1371:26)
+#12 5.669     at file:///usr/lib/code-server/lib/vscode/out/server-main.js:204:6761
+#12 5.669     at Array.forEach (<anonymous>)
+#12 5.669     at wI (file:///usr/lib/code-server/lib/vscode/out/server-main.js:204:6724)
+#12 5.669     at Object.oB (file:///usr/lib/code-server/lib/vscode/out/server-main.js:204:6848)
+#12 5.669     at /usr/lib/code-server/out/node/main.js:74:28
+#12 5.669     at Generator.next (<anonymous>)
+#12 5.669     at fulfilled (/usr/lib/code-server/out/node/main.js:28:58) {
+#12 5.669   errno: -13,
+#12 5.669   code: 'EACCES',
+#12 5.669   syscall: 'mkdir',
+#12 5.669   path: '/home/user/.local/share/code-server/Machine'
+#12 5.669 }
+#12 5.669 Error: EACCES: permission denied, mkdir '/home/user/.local/share/code-server/User/globalStorage'
+#12 5.669     at Module.mkdirSync (node:fs:1371:26)
+#12 5.669     at file:///usr/lib/code-server/lib/vscode/out/server-main.js:204:6761
+#12 5.669     at Array.forEach (<anonymous>)
+#12 5.669     at wI (file:///usr/lib/code-server/lib/vscode/out/server-main.js:204:6724)
+#12 5.669     at Object.oB (file:///usr/lib/code-server/lib/vscode/out/server-main.js:204:6848)
+#12 5.669     at /usr/lib/code-server/out/node/main.js:74:28
+#12 5.669     at Generator.next (<anonymous>)
+#12 5.669     at fulfilled (/usr/lib/code-server/out/node/main.js:28:58) {
+#12 5.669   errno: -13,
+#12 5.669   code: 'EACCES',
+#12 5.669   syscall: 'mkdir',
+#12 5.669   path: '/home/user/.local/share/code-server/User/globalStorage'
+#12 5.669 }
+#12 5.669 Error: EACCES: permission denied, mkdir '/home/user/.local/share/code-server/User/History'
+#12 5.669     at Module.mkdirSync (node:fs:1371:26)
+#12 5.669     at file:///usr/lib/code-server/lib/vscode/out/server-main.js:204:6761
+#12 5.669     at Array.forEach (<anonymous>)
+#12 5.669     at wI (file:///usr/lib/code-server/lib/vscode/out/server-main.js:204:6724)
+#12 5.669     at Object.oB (file:///usr/lib/code-server/lib/vscode/out/server-main.js:204:6848)
+#12 5.669     at /usr/lib/code-server/out/node/main.js:74:28
+#12 5.669     at Generator.next (<anonymous>)
+#12 5.669     at fulfilled (/usr/lib/code-server/out/node/main.js:28:58) {
+#12 5.669   errno: -13,
+#12 5.669   code: 'EACCES',
+#12 5.669   syscall: 'mkdir',
+#12 5.669   path: '/home/user/.local/share/code-server/User/History'
+#12 5.669 }
+#12 5.682 Installing extensions...
+#12 5.683 [Error: EACCES: permission denied, mkdir '/home/user/.local/share/code-server/logs'] {
+#12 5.683   errno: -13,
+#12 5.683   code: 'EACCES',
+#12 5.683   syscall: 'mkdir',
+#12 5.683   path: '/home/user/.local/share/code-server/logs'
+#12 5.683 }
+#12 5.684 [2025-02-25T23:41:53.860Z] error parent:349 Uncaught exception: Unable to resolve nonexistent file '/home/user/.local/share/code-server/extensions'
+#12 5.684 [2025-02-25T23:41:53.860Z] error parent:349 Error: Unable to resolve nonexistent file '/home/user/.local/share/code-server/extensions'
+#12 5.684     at Kc.resolve (file:///usr/lib/code-server/lib/vscode/out/server-main.js:64:8834)
+#12 5.684     at async Xc.zb (file:///usr/lib/code-server/lib/vscode/out/server-main.js:55:17818)
+#12 5.736 Error while installing extensions: Unable to read file '/home/user/.local/share/code-server/extensions/extensions.json' (Error: Unable to resolve nonexistent file '/home/user/.local/share/code-server/extensions/extensions.json')
+#12 5.736 Unable to read file '/home/user/.local/share/code-server/extensions/extensions.json' (Error: Unable to resolve nonexistent file '/home/user/.local/share/code-server/extensions/extensions.json')
+#12 5.948 Error: EACCES: permission denied, mkdir '/home/user/.local/share/code-server/extensions'
+#12 5.948     at Module.mkdirSync (node:fs:1371:26)
+#12 5.948     at file:///usr/lib/code-server/lib/vscode/out/server-main.js:204:6761
+#12 5.948     at Array.forEach (<anonymous>)
+#12 5.948     at wI (file:///usr/lib/code-server/lib/vscode/out/server-main.js:204:6724)
+#12 5.948     at Object.oB (file:///usr/lib/code-server/lib/vscode/out/server-main.js:204:6848)
+#12 5.948     at /usr/lib/code-server/out/node/main.js:74:28
+#12 5.948     at Generator.next (<anonymous>)
+#12 5.948     at fulfilled (/usr/lib/code-server/out/node/main.js:28:58) {
+#12 5.948   errno: -13,
+#12 5.948   code: 'EACCES',
+#12 5.948   syscall: 'mkdir',
+#12 5.948   path: '/home/user/.local/share/code-server/extensions'
+#12 5.948 }
+#12 5.949 Error: EACCES: permission denied, mkdir '/home/user/.local/share/code-server/Machine'
+#12 5.949     at Module.mkdirSync (node:fs:1371:26)
+#12 5.949     at file:///usr/lib/code-server/lib/vscode/out/server-main.js:204:6761
+#12 5.949     at Array.forEach (<anonymous>)
+#12 5.949     at wI (file:///usr/lib/code-server/lib/vscode/out/server-main.js:204:6724)
+#12 5.949     at Object.oB (file:///usr/lib/code-server/lib/vscode/out/server-main.js:204:6848)
+#12 5.949     at /usr/lib/code-server/out/node/main.js:74:28
+#12 5.949     at Generator.next (<anonymous>)
+#12 5.949     at fulfilled (/usr/lib/code-server/out/node/main.js:28:58) {
+#12 5.949   errno: -13,
+#12 5.949   code: 'EACCES',
+#12 5.949   syscall: 'mkdir',
+#12 5.949   path: '/home/user/.local/share/code-server/Machine'
+#12 5.949 }
+#12 5.949 Error: EACCES: permission denied, mkdir '/home/user/.local/share/code-server/User/globalStorage'
+#12 5.949     at Module.mkdirSync (node:fs:1371:26)
+#12 5.949     at file:///usr/lib/code-server/lib/vscode/out/server-main.js:204:6761
+#12 5.949     at Array.forEach (<anonymous>)
+#12 5.949     at wI (file:///usr/lib/code-server/lib/vscode/out/server-main.js:204:6724)
+#12 5.949     at Object.oB (file:///usr/lib/code-server/lib/vscode/out/server-main.js:204:6848)
+#12 5.949     at /usr/lib/code-server/out/node/main.js:74:28
+#12 5.949     at Generator.next (<anonymous>)
+#12 5.949     at fulfilled (/usr/lib/code-server/out/node/main.js:28:58) {
+#12 5.949   errno: -13,
+#12 5.949   code: 'EACCES',
+#12 5.949   syscall: 'mkdir',
+#12 5.949   path: '/home/user/.local/share/code-server/User/globalStorage'
+#12 5.949 }
+#12 5.949 Error: EACCES: permission denied, mkdir '/home/user/.local/share/code-server/User/History'
+#12 5.949     at Module.mkdirSync (node:fs:1371:26)
+#12 5.949     at file:///usr/lib/code-server/lib/vscode/out/server-main.js:204:6761
+#12 5.949     at Array.forEach (<anonymous>)
+#12 5.949     at wI (file:///usr/lib/code-server/lib/vscode/out/server-main.js:204:6724)
+#12 5.949     at Object.oB (file:///usr/lib/code-server/lib/vscode/out/server-main.js:204:6848)
+#12 5.949     at /usr/lib/code-server/out/node/main.js:74:28
+#12 5.949     at Generator.next (<anonymous>)
+#12 5.949     at fulfilled (/usr/lib/code-server/out/node/main.js:28:58) {
+#12 5.949   errno: -13,
+#12 5.949   code: 'EACCES',
+#12 5.949   syscall: 'mkdir',
+#12 5.949   path: '/home/user/.local/share/code-server/User/History'
+#12 5.949 }
+#12 5.964 Installing extensions...
+#12 5.965 [Error: EACCES: permission denied, mkdir '/home/user/.local/share/code-server/logs'] {
+#12 5.965   errno: -13,
+#12 5.965   code: 'EACCES',
+#12 5.965   syscall: 'mkdir',
+#12 5.965   path: '/home/user/.local/share/code-server/logs'
+#12 5.965 }
+#12 5.966 [2025-02-25T23:41:54.141Z] error parent:367 Uncaught exception: Unable to resolve nonexistent file '/home/user/.local/share/code-server/extensions'
+#12 5.966 [2025-02-25T23:41:54.141Z] error parent:367 Error: Unable to resolve nonexistent file '/home/user/.local/share/code-server/extensions'
+#12 5.966     at Kc.resolve (file:///usr/lib/code-server/lib/vscode/out/server-main.js:64:8834)
+#12 5.966     at async Xc.zb (file:///usr/lib/code-server/lib/vscode/out/server-main.js:55:17818)
+#12 6.012 Error while installing extensions: Unable to read file '/home/user/.local/share/code-server/extensions/extensions.json' (Error: Unable to resolve nonexistent file '/home/user/.local/share/code-server/extensions/extensions.json')
+#12 6.012 Unable to read file '/home/user/.local/share/code-server/extensions/extensions.json' (Error: Unable to resolve nonexistent file '/home/user/.local/share/code-server/extensions/extensions.json')
+#12 ERROR: process "/bin/sh -c while IFS= read -r extension; do     code-server --install-extension \"$extension\"; done < /home/user/extensions.txt &&     rm /home/user/extensions.txt" did not complete successfully: exit code: 1
+------
+ > [8/8] RUN while IFS= read -r extension; do     code-server --install-extension "$extension"; done < /home/user/extensions.txt &&     rm /home/user/extensions.txt:
+5.965   code: 'EACCES',
+5.965   syscall: 'mkdir',
+5.965   path: '/home/user/.local/share/code-server/logs'
+5.965 }
+5.966 [2025-02-25T23:41:54.141Z] error parent:367 Uncaught exception: Unable to resolve nonexistent file '/home/user/.local/share/code-server/extensions'
+5.966 [2025-02-25T23:41:54.141Z] error parent:367 Error: Unable to resolve nonexistent file '/home/user/.local/share/code-server/extensions'
+5.966     at Kc.resolve (file:///usr/lib/code-server/lib/vscode/out/server-main.js:64:8834)
+5.966     at async Xc.zb (file:///usr/lib/code-server/lib/vscode/out/server-main.js:55:17818)
+6.012 Error while installing extensions: Unable to read file '/home/user/.local/share/code-server/extensions/extensions.json' (Error: Unable to resolve nonexistent file '/home/user/.local/share/code-server/extensions/extensions.json')
+6.012 Unable to read file '/home/user/.local/share/code-server/extensions/extensions.json' (Error: Unable to resolve nonexistent file '/home/user/.local/share/code-server/extensions/extensions.json')
+------
+
+ [33m3 warnings found (use docker --debug to expand):
+[0m - SecretsUsedInArgOrEnv: Do not use ARG or ENV instructions for sensitive data (ARG "PASSWORD") (line 3)
+ - SecretsUsedInArgOrEnv: Do not use ARG or ENV instructions for sensitive data (ENV "PASSWORD") (line 4)
+ - SecretsUsedInArgOrEnv: Do not use ARG or ENV instructions for sensitive data (ENV "SUDO_PASSWORD") (line 5)
+Dockerfile:31
+--------------------
+  30 |     
+  31 | >>> RUN while IFS= read -r extension; do \
+  32 | >>>     code-server --install-extension "$extension"; \
+  33 | >>> done < /home/user/extensions.txt && \
+  34 | >>>     rm /home/user/extensions.txt
+  35 |     
+--------------------
+ERROR: failed to solve: process "/bin/sh -c while IFS= read -r extension; do     code-server --install-extension \"$extension\"; done < /home/user/extensions.txt &&     rm /home/user/extensions.txt" did not complete successfully: exit code: 1
+
+View build details: docker-desktop://dashboard/build/desktop-linux/desktop-linux/vmovldqa9c2808s8sbmtk6lym

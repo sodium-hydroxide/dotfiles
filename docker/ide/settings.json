@@ -1,0 +1,95 @@
+{
+      // Editor appearance
+      "workbench.colorTheme": "Default Light Modern",
+      "editor.fontSize": 16,
+      "editor.fontFamily": "JetBrainsMono Nerd Font",
+      "window.zoomLevel": -1,
+
+      // Editor behavior and visual guides
+      "editor.renderWhitespace": "all",
+      "editor.bracketPairColorization.independentColorPoolPerBracketType": true,
+      "editor.minimap.enabled": false,
+      "editor.rulers": [80],
+      "vim.useSystemClipboard": true,
+      // Workbench settings
+      "workbench.activityBar.location": "top",
+      "workbench.tips.enabled": false,
+      "workbench.settings.editor": "json",
+
+      // Python configuration
+      "python.languageServer": "Pylance",
+      "python.missingPackage.severity": "Error",
+      "python.terminal.executeInFileDir": true,
+      "[python]": {
+          "editor.tabSize": 4,
+          "editor.insertSpaces": true,
+          "editor.detectIndentation": true
+      },
+      "autoDocstring.docstringFormat": "numpy",
+      "pythonIndent.trimLinesWithOnlyWhitespace": true,
+      "ruff.lineLength": 80,
+
+      // Terminal settings
+      "terminal.integrated.fontSize": 15,
+      "terminal.integrated.commandsToSkipShell": [
+          "language-julia.interrupt"
+      ],
+
+
+
+      // MCNP Settings
+      "[mcnp]": {
+          "editor.tabSize": 5,
+          "editor.insertSpaces": true,
+          "editor.detectIndentation": true
+      },
+
+      // Whitespace visualization
+      "visibleWhitespace.htab.text": "»",
+      "visibleWhitespace.newLine.crLf": "↲↓",
+      "visibleWhitespace.newLine.lf": "¬",
+      "visibleWhitespace.space.enable": true,
+      "visibleWhitespace.nbsp.text": "‡",
+      "visibleWhitespace.widespace.text": "»⎕",
+      "visibleWhitespace.eof.text": "___",
+
+      // File handling
+      "files.trimTrailingWhitespace": true,
+      "files.insertFinalNewline": true,
+      "files.trimFinalNewlines": true,
+
+      // Git settings
+      "git.autofetch": true,
+
+      // Telemetry settings
+      "redhat.telemetry.enabled": false,
+      "makefile.configureOnOpen": false,
+      "editor.largeFileOptimizations": false,
+      "workbench.iconTheme": "vscode-icons",
+      "[markdown]": {
+          "editor.defaultFormatter": "yzhang.markdown-all-in-one"
+      },
+
+      "dataWrangler.experiments.copilot.enabled": false,
+      "chat.commandCenter.enabled": false,
+      "haskell.manageHLS": "PATH",
+
+      "prettier.proseWrap": "always",
+      "prettier.tabWidth": 4,
+
+      "terminal.integrated.fontLigatures": true,
+      "editor.fontLigatures": true,
+      "C_Cpp.doxygen.generatedStyle": "/**",
+      "r.rpath.mac": "/usr/local/bin/R",
+      "workbench.editor.splitInGroupLayout": "vertical",
+
+      "workbench.editor.editorActionsLocation": "titleBar",
+      "cSpell.userWords": [
+        "ansatz",
+        "eigen",
+        "spinor",
+        "Weyl"
+      ],
+      "workbench.startupEditor": "none"
+
+  }

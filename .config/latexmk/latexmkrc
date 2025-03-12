@@ -1,18 +1,13 @@
-# Set the output directory for auxiliary files
-$out_dir = "output/logs";
+# Explicitly set output directory for auxiliary files
+$out_dir = "logs";             # Auxiliary files go here
+$pdf_mode = 1;                 # Generate PDF
 
-# Set the directory for the final PDF
-$pdf_mode = 1;
-$pdf_dir = "output";
+# Complex pdflatex command to force separation
+$pdflatex = 'pdflatex -output-directory=logs -aux-directory=logs %O %S && cp logs/*.pdf .';
 
-# Ensure the output directories exist
-ensure_path($out_dir);
-ensure_path($pdf_dir);
-
-# Clean extensions (files to be cleaned up)
+# Cleanup commands
 $clean_ext = "aux bbl bcf blg fdb_latexmk fls log nav out run.xml snm synctex.gz toc";
 
-# Add custom clean function to handle files in output directories
 sub cleanup_dirs {
     my $dir;
     foreach $dir ($out_dir, $pdf_dir) {
