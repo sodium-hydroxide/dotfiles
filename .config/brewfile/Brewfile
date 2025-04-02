@@ -1,10 +1,18 @@
+cask "rstudio"               # IDE for R                            ## rm
+cask "quarto"                # Quarto for data science              ## rm
+cask "pdf-expert"            # PDF viewer                           ## rm
+cask "microsoft-teams"       # Collaboration and communication      ## rm
+cask "bbedit"                # Basic Text Editor                    ## rm
+brew "kiwix"                    # Wikipedia client
+brew "octave"               ## docker
+
+cask "zen-browser"
+
 # Cask Applications --------------------------
 cask "brave-browser"         # Privacy-focused browser
 cask "utm"                   # Virtual Machine
 cask "carbon-copy-cloner@6"  # Backup software
-cask "pdf-expert"            # PDF viewer                           ## rm
 cask "skim"                  # Lightweight PDF Viewer
-cask "microsoft-teams"       # Collaboration and communication      ## rm
 cask "raycast"               # Productivity tool
 cask "iterm2"                # Terminal emulator
 cask "calibre"               # Library for Books
@@ -13,7 +21,6 @@ cask "backblaze"             # Cloud backup service
 cask "vlc"                   # Media Viewer
 cask "freetube"              # YouTube Client
 cask "transmission"          # Torrent client
-cask "bbedit"                # Basic Text Editor                    ## rm
 cask "visual-studio-code"    # IDE
 brew "biber"
 # Development Tools --------------------------
@@ -24,16 +31,17 @@ brew "lazygit"               # Git Interface
 cask "docker"                # Container management
 brew "gcc"                   # GNU Compiler Collection
 
+
 # Languages --------------------------
 brew "bash"                  # Bash shell (macOS version is outdated)
 brew "node"
 cask "r"                     # R Statistical Language               ## docker
-cask "rstudio"               # IDE for R                            ## rm
-cask "quarto"                # Quarto for data science              ## rm
 
 brew "texlive"               # LaTeX distribution                   ## docker
 brew "pandoc"                # Document conversion (including LaTeX)## docker
 brew "uv"                    # Python environment management        ## docker
+cask "quarto"                # Data science rendering               ## docker
+
 
 # CLI Programs --------------------------
 brew "lf"                    # File browser
@@ -67,4 +75,3 @@ cask "aldente"               # Battery manager
 
 # Fonts --------------------------
 cask "font-jetbrains-mono-nerd-font"  # Nerd font for developers
-
