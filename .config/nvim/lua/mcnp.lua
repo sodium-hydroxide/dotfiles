@@ -3,7 +3,7 @@ local M = {}
 
 function M.setup(opts)
   opts = opts or {}
-  local extensions = opts.extensions or {"mcnp", "in"}
+  local extensions = opts.extensions or { "mcnp", "in" }
 
   -- Build file patterns from the given extensions (e.g. "*.mcnp")
   local patterns = {}
@@ -11,41 +11,10 @@ function M.setup(opts)
     table.insert(patterns, "*." .. ext)
   end
 
-  vim.api.nvim_create_autocmd({"BufRead", "BufNewFile"}, {
+  vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
     pattern = patterns,
     callback = function()
       vim.cmd([[
-        " Vim syntax file
-        " Language:	MCNP input file
-        " Version:	1.02
-        " Last Change:	2014 March 19
-        " Maintainer:   Grant Goodyear <g2boojum@gmail.com>
-        " Creator:	Giacomo L.A. Grasso
-        "		Nuclear Reactor Core and Shielding Analysis and Design laboratory (PRONOC)
-        "		Technical Unit for Reactor Safety and Fuel Cycle Methods (UTFISSM)
-        "		Italian National Agency for New Technologies, Energy and Sustainable Economic Development (ENEA)
-        " Contact:	<giacomo.grasso@enea.it>
-        " Usage:	Do :help imcnp-syntax from Vim (FIXME: This doesn't actually work)
-        " Credits:
-        "  Version 0.1 was based on the MCNP5 input file scheme as reported in the
-        "  Los Alamos User Manual. For instructions on use, do :help imcnp from vim
-        "
-        " This program is free software: you can redistribute it and/or modify
-        " it under the terms of the GNU General Public License as published by
-        " the Free Software Foundation, either version 3 of the License, or
-        " (at your option) any later version.
-        "
-        " This program is distributed in the hope that it will be useful,
-        " but WITHOUT ANY WARRANTY; without even the implied warranty of
-        " MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-        " GNU General Public License for more details.
-        "
-        " You should have received a copy of the GNU General Public License
-        " along with this program.  If not, see <http://www.gnu.org/licenses/>.
-        "
-
-        " For version 5.x: Clear all syntax items
-        " For version 6.x: Quit if a syntax file is already loaded
         if version < 600
           syntax clear
         elseif exists("b:current_syntax")
@@ -195,49 +164,5 @@ function M.setup(opts)
     end
   })
 end
-return M
 
--- -- File: lua/path/to/file.lua
---
--- local M = {}
---
--- function M.setup(opts)
---   opts = opts or {}
---   local extensions = opts.extensions or {"mcnp", "in"}
---
---   -- Build file patterns from the given extensions (e.g. "*.mcnp")
---   local patterns = {}
---   for _, ext in ipairs(extensions) do
---     table.insert(patterns, "*." .. ext)
---   end
---
---   vim.api.nvim_create_autocmd({"BufRead", "BufNewFile"}, {
---     pattern = patterns,
---     callback = function()
---       -- Clear any existing syntax rules for this buffer.
---       vim.cmd("syntax clear")
---
---       -- Define a custom syntax match for MCNP comments:
---       -- This pattern matches any line where a 'c' or 'C' appears within the first five characters.
---       --
---       -- Pattern breakdown:
---       --   ^              : beginning of the line
---       --   \(.\{0,4}\)   : matches 0 to 4 of any character (positions 1 to 4)
---       --   [cC]          : matches a lowercase or uppercase 'c' at position 1-5
---       --   .*            : matches the rest of the line
---       vim.cmd([[syntax match MCNPComment /^\(.\{0,4}\)[cC] .*/]])
---       vim.cmd([[syntax match MCNPInlineComment /\$.*$/]])
---       -- Link the custom MCNP comment group to the standard Comment highlight group.
---       vim.cmd("highlight link MCNPComment Comment")
---       vim.cmd("highlight link MCNPInlineComment Comment")
---
---     vim.cmd([[
---         syntax keyword MCNPKeywordGroup if else while for
---     ]])
---     vim.cmd("highlight link MCNPKeywordGroup Keyword")
---     end,
---   })
--- end
---
--- return M
---
+return M

@@ -28,11 +28,10 @@ function M.setup()
     map('n', '<C-l>', '<C-w>l')
 
     -- Text wrapping
-    map('n', '<leader>w', ':set wrap!<CR>', { desc = "Toggle word wrap" })
+
 
     -- File explorer
-    map('n', '<C-n>', ':NvimTreeToggle<CR>', { desc = "Toggle file explorer" })
-    map('n', '<leader>e', ':NvimTreeToggle<CR>', { desc = "Toggle file explorer" })
+
 
     -- Diagnostic navigation
     map('n', '<leader>r', vim.diagnostic.open_float, { desc = "Show diagnostic details" })
