@@ -1,19 +1,20 @@
-# Explicitly set output directory for auxiliary files
-$out_dir = "logs";             # Auxiliary files go here
-$pdf_mode = 1;                 # Generate PDF
+# # latexmkrc - project-specific settings
 
-# Complex pdflatex command to force separation
-$pdflatex = 'pdflatex -output-directory=logs -aux-directory=logs %O %S && cp logs/*.pdf .';
+# # Always use pdflatex (can be changed to lualatex or xelatex if needed)
+# $pdflatex = 'pdflatex -interaction=nonstopmode -file-line-error %O %S';
 
-# Cleanup commands
-$clean_ext = "aux bbl bcf blg fdb_latexmk fls log nav out run.xml snm synctex.gz toc";
+# # Set output directory for logs and aux files
+# $out_dir = '.logs';
 
-sub cleanup_dirs {
-    my $dir;
-    foreach $dir ($out_dir, $pdf_dir) {
-        if (-d $dir) {
-            unlink glob "$dir/*.$_" for split ' ', $clean_ext;
-        }
-    }
-}
-push @clean_up_subdirs, \&cleanup_dirs;
+# # Set path to input files
+# @default_files = ('main.tex');
+
+# # Copy final PDF to main.pdf in the project root
+# $pdf_mode = 1;
+
+# # Hook to move final PDF from logs to project root after successful build
+# $cleanup_includes_cus_dep_generated = 1;
+# $success_cmd = "cp .logs/main.pdf ./main.pdf";
+
+# # Ensure logs and aux files are not left scattered
+# $clean_ext = 'aux bbl blg log out toc lof lot fls fdb_latexmk synctex.gz nav snm vrb';
