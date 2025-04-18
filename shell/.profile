@@ -9,8 +9,8 @@ add_to_path() {
 }
 
 # User scripts
-add_to_path "$HOME/bin"
-add_to_path "$HOME/bin/macos"
+add_to_path "$HOME/dotfiles/bin"
+add_to_path "$HOME/dotfiles/bin/macos"
 
 # Development tools
 add_to_path "/usr/local/opt/llvm/bin"
@@ -69,6 +69,10 @@ export TERM=xterm-256color
 export COLORTERM=truecolor
 
 # Development Environment Variables
+
+# git
+export GIT_CONFIG_GLOBAL="$XDG_CONFIG_HOME/git/config"
+
 # python
 export VIRTUAL_ENV_DISABLE_PROMPT=1
 export PYTHONPATH="$HOME/.local/lib/python3/site-packages:$PYTHONPATH"
