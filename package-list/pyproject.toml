@@ -1,0 +1,20 @@
+[project]
+name        = "global-tools"
+version     = "0.1.0"
+description = "Global Python CLI tools and libraries"
+dependencies = [
+  "basedisp>=0.1.0",
+  "numpy>=2.2.4",
+  "matplotlib>=3.10.1",
+  "scipy>=1.15.2",
+  "xonsh>=0.19.3",
+  "packaging>=24.2",
+  "Pillow>=11.2.1",
+  "cycler>=0.12.1",
+  "gnureadline>=8.2.13",
+]
+
+[build-system]
+requires    = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+

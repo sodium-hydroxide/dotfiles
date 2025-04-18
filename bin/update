@@ -4,7 +4,7 @@ set -e
 
 ### Paths & filenames ###
 DOTFILES_DIR="$HOME/dotfiles"
-PACKAGELISTS="$HOME/.config/brewfile"
+PACKAGELISTS="$DOTFILES_DIR/package-list"
 
 SYSTEMPYTHON="/opt/homebrew/bin/python3"
 GLOBAL_VENV="$HOME/.local/.venv"
