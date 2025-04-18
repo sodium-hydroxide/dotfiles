@@ -1,16 +1,15 @@
-cask "rstudio"               # IDE for R                            ## rm
-cask "quarto"                # Quarto for data science              ## rm
+#cask "rstudio"               # IDE for R                            ## rm
+#cask "quarto"                # Quarto for data science              ## rm
 cask "pdf-expert"            # PDF viewer                           ## rm
 cask "microsoft-teams"       # Collaboration and communication      ## rm
 cask "bbedit"                # Basic Text Editor                    ## rm
-brew "kiwix"                    # Wikipedia client
-brew "octave"               ## docker
-
-cask "zen-browser"
+#brew "kiwix"                    # Wikipedia client
+#brew "octave"               ## docker
+# cask "libreoffice"
+#cask "zen-browser"
 
 # Cask Applications --------------------------
-cask "brave-browser"         # Privacy-focused browser
-cask "utm"                   # Virtual Machine
+#cask "utm"                   # Virtual Machine
 cask "carbon-copy-cloner@6"  # Backup software
 cask "skim"                  # Lightweight PDF Viewer
 cask "raycast"               # Productivity tool
@@ -33,7 +32,7 @@ brew "gcc"                   # GNU Compiler Collection
 
 
 # Languages --------------------------
-brew "bash"                  # Bash shell (macOS version is outdated)
+#brew "bash"                  # Bash shell (macOS version is outdated)
 brew "node"
 cask "r"                     # R Statistical Language               ## docker
 
@@ -75,3 +74,4 @@ cask "aldente"               # Battery manager
 
 # Fonts --------------------------
 cask "font-jetbrains-mono-nerd-font"  # Nerd font for developers
+
