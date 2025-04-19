@@ -8,6 +8,8 @@ cask "bbedit"                # Basic Text Editor                    ## rm
 # cask "libreoffice"
 #cask "zen-browser"
 
+cask "neovide"
+brew "rustup"
 # Cask Applications --------------------------
 #cask "utm"                   # Virtual Machine
 cask "carbon-copy-cloner@6"  # Backup software
@@ -74,4 +76,3 @@ cask "aldente"               # Battery manager
 
 # Fonts --------------------------
 cask "font-jetbrains-mono-nerd-font"  # Nerd font for developers
-

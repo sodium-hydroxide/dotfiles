@@ -20,8 +20,11 @@ PYTHON="$GLOBAL_VENV/bin/python"
 #######################################################################
 # Helpers
 #######################################################################
-error()      { printf '%s\n' "Error: $*" >&2; exit 1; }
-check_cmd()  { command -v "$1" >/dev/null 2>&1 || error "'$1' not found – $2"; }
+error() {
+    printf '%s\n' "Error: $*" >&2
+    exit 1
+}
+check_cmd() { command -v "$1" >/dev/null 2>&1 || error "'$1' not found – $2"; }
 
 usage() {
     cat <<-EOF
@@ -36,9 +39,9 @@ EOF
 #######################################################################
 _stow_package_list() (
     cd "$DOTFILES_DIR" || exit 1
-    for d in */ ; do
+    for d in */; do
         case "${d%/}" in
-            bin|package-list) continue ;;   # not Stow packages
+        bin | package-list) continue ;; # not Stow packages
         esac
         printf '%s ' "${d%/}"
     done
@@ -51,9 +54,9 @@ dotfiles_sync() {
     printf '→ Restowing packages: %s\n' "$pkgs"
     # shellcheck disable=SC2086
     stow --restow --verbose \
-         --dir="$DOTFILES_DIR" \
-         --target="$HOME" \
-         $pkgs
+        --dir="$DOTFILES_DIR" \
+        --target="$HOME" \
+        $pkgs
 }
 
 #######################################################################
@@ -64,7 +67,21 @@ brew_update() {
     printf '→ Updating Homebrew…\n'
     brew update
     brew upgrade
-    brew bundle --file="$BREWFILE" --cleanup --force
+
+    # Expand all matching files (root Brewfile, Brewfile‑rust …)
+    set -- "$PACKAGELISTS"/*Brewfile*
+
+    # If nothing matched, stop early
+    [ -e "$1" ] || {
+        printf '→ No Brewfiles found – skipping bundle.\n'
+        return
+    }
+
+    printf '→ Bundling: %s\n' "$*"
+    for f; do
+        cat "$f"
+    done | brew bundle --file=- --cleanup --force # --file=- = read from STDIN :contentReference[oaicite:1]{index=1}
+
     brew cleanup
 }
 
@@ -98,7 +115,7 @@ pip_update() {
 
         desired=$(grep -Ev '^\s*($|#)' "$PYTOOLS")
         installed=$(uv tool list 2>/dev/null |
-                    awk 'NF && $1 != "-" {print $1}')
+            awk 'NF && $1 != "-" {print $1}')
 
         for tool in $desired; do
             printf '  → Ensuring %s is installed…\n' "$tool"
@@ -106,7 +123,7 @@ pip_update() {
         done
 
         for tool in $installed; do
-            echo "$desired"   | grep -qx "$tool" || uv tool uninstall "$tool"
+            echo "$desired" | grep -qx "$tool" || uv tool uninstall "$tool"
         done
     else
         printf '→ No tool‑list file at %s; skipping CLI tool management.\n' "$PYTOOLS"
@@ -117,7 +134,10 @@ pip_update() {
 # 4.  Main
 #######################################################################
 main() {
-    [ "$1" = "-h" ] || [ "$1" = "--help" ] && { usage; exit 0; }
+    [ "$1" = "-h" ] || [ "$1" = "--help" ] && {
+        usage
+        exit 0
+    }
 
     dotfiles_sync
     brew_update
