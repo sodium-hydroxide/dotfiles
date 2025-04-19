@@ -12,26 +12,11 @@ $XONSH_COLOR_STYLE = 'default'
 $PROMPT = '{YELLOW}{env_name}{RESET}{GREEN}{user}@{hostname}{RED} {$PWD}{branch_color}{curr_branch: {}}{RESET} {RED}{last_return_code_if_nonzero:[{BOLD_INTENSE_RED}{}{RED}] }{RESET}{BLUE}\n›{RESET} '
 # Aliases
 
-def lf_func(args, stdin=None, stdout=None, stderr=None):
-    tmp = tempfile.mkstemp()[1]
+def lf(*args, **kwargs):
+    import subprocess, os, pathlib, shlex
+    newdir = subprocess.check_output(
+        ["lf", "-print-last-dir", *args], text=True).strip()
+    if pathlib.Path(newdir).is_dir():
+        os.chdir(newdir)
+aliases['lf'] = lf
 
-    try:
-        cmd = ["/opt/homebrew/bin/lf", f"-last-dir-path={tmp}"] + list(args)
-        subprocess.call(cmd)
-
-        if os.path.isfile(tmp):
-            with open(tmp) as f:
-                dir = f.read().strip()
-            os.remove(tmp)
-
-            if os.path.isdir(dir) and dir != str(__xonsh__.env['PWD']):
-                os.chdir(dir)
-    finally:
-        if os.path.exists(tmp):
-            os.remove(tmp)
-
-aliases.update({
-    "cluster": "ssh njblair@129.82.20.78",
-    "lf": lf_func
-    #"dotedit": f"vi {$HOME}/dotfiles"
-})
