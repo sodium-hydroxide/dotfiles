@@ -46,8 +46,10 @@ _stow_package_list() (
 
 dotfiles_sync() {
     check_cmd stow "e.g. 'brew install stow'"
+    find "$HOME/dotfiles" -name ".DS_Store" -delete
     pkgs=$(_stow_package_list)
     printf '→ Restowing packages: %s\n' "$pkgs"
+    # shellcheck disable=SC2086
     stow --restow --verbose \
          --dir="$DOTFILES_DIR" \
          --target="$HOME" \

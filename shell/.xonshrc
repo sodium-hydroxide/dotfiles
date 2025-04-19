@@ -1,6 +1,7 @@
 #!/usr/bin/env xonsh
 import os
 import subprocess
+import sys
 import tempfile
 
 import matplotlib.pyplot as plt
@@ -30,10 +31,6 @@ def lf_func(args, stdin=None, stdout=None, stderr=None):
             os.remove(tmp)
 
 aliases.update({
-    "lg": "lazygit",
-    "ls": "ls -CFl",
-    "lsa": "ls -CFla",
-    "vim": "vi",
     "cluster": "ssh njblair@129.82.20.78",
     "lf": lf_func
     #"dotedit": f"vi {$HOME}/dotfiles"
