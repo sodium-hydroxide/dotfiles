@@ -42,7 +42,7 @@ cask "r"                     # R Statistical Language               ## docker
 
 brew "texlive"               # LaTeX distribution                   ## docker
 brew "pandoc"                # Document conversion (including LaTeX)## docker
-brew "uv"                    # Python environment management        ## docker
+brew "uv"
 cask "quarto"                # Data science rendering               ## docker
 
 
@@ -78,4 +78,3 @@ cask "aldente"               # Battery manager
 
 # Fonts --------------------------
 cask "font-jetbrains-mono-nerd-font"  # Nerd font for developers
-
