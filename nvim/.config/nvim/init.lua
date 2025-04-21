@@ -23,28 +23,6 @@ map("n", "<leader>w", ":set wrap!<CR>", { desc = "Toggle word wrap" })
 map("n", "<C-n>", ":NvimTreeToggle<CR>", { desc = "Toggle file explorer" })
 map("n", "<leader>e", ":NvimTreeToggle<CR>", { desc = "Toggle file explorer" })
 
--- [[ Basic Autocommands ]]
--- Highlight when yanking (copying) text
-vim.api.nvim_create_autocmd("TextYankPost", {
-  desc = "Highlight when yanking (copying) text",
-  group = vim.api.nvim_create_augroup("kickstart-highlight-yank", { clear = true }),
-  callback = function()
-    vim.highlight.on_yank()
-  end,
-})
--- Trim Whitespace on Save
-vim.api.nvim_create_autocmd("BufWritePre", {
-  pattern = "*",
-  callback = function()
-    local curpos = vim.api.nvim_win_get_cursor(0)
-    vim.cmd([[%s/\s\+$//e]])
-    vim.cmd([[
-    silent! %s/\($\n\s*\)\+\%$//e
-    silent! call append(line('$'), '')
-  ]])
-    vim.api.nvim_win_set_cursor(0, curpos)
-  end,
-})
 
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not (vim.uv or vim.loop).fs_stat(lazypath) then

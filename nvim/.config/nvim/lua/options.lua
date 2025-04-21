@@ -44,3 +44,24 @@ vim.opt.listchars = {
 vim.opt.inccommand = "split" -- Preview substitutions live, as you type!
 vim.opt.cursorline = true    -- Show which line your cursor is on
 vim.opt.scrolloff = 10       -- Minimal # of screen lines to keep above and below the cursor.
+-- Highlight when yanking (copying) text
+vim.api.nvim_create_autocmd("TextYankPost", {
+  desc = "Highlight when yanking (copying) text",
+  group = vim.api.nvim_create_augroup("kickstart-highlight-yank", { clear = true }),
+  callback = function()
+    vim.highlight.on_yank()
+  end,
+})
+-- Trim Whitespace on Save
+vim.api.nvim_create_autocmd("BufWritePre", {
+  pattern = "*",
+  callback = function()
+    local curpos = vim.api.nvim_win_get_cursor(0)
+    vim.cmd([[%s/\s\+$//e]])
+    vim.cmd([[
+    silent! %s/\($\n\s*\)\+\%$//e
+    silent! call append(line('$'), '')
+  ]])
+    vim.api.nvim_win_set_cursor(0, curpos)
+  end,
+})
