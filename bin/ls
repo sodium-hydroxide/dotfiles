@@ -1,0 +1,6 @@
+#!/bin/sh
+main() {
+  arg=$1
+  /bin/ls -CFl "${arg}"
+}
+main "$@"

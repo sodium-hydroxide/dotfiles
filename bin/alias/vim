@@ -1,0 +1,2 @@
+#!/bin/sh
+"$HOME/dotfiles/bin/vi" "$@"
