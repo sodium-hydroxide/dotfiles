@@ -11,7 +11,6 @@ DOTFILES_DIR="$HOME/dotfiles"
 PACKAGELISTS="$DOTFILES_DIR/package-list"
 PYPROJECT="$PACKAGELISTS/pyproject.toml"
 PYTOOLS="$PACKAGELISTS/tool-list.txt"
-BREWFILE="$PACKAGELISTS/Brewfile"
 
 SYSTEMPYTHON="/opt/homebrew/bin/python3"
 GLOBAL_VENV="$HOME/.local/.venv"
@@ -32,6 +31,10 @@ Usage: update [--help]
 
 Re-stow dot-files, update Homebrew, and sync Python tools.
 EOF
+}
+
+edit_dotfiles() {
+    vi "$DOTFILES_DIR"
 }
 
 #######################################################################
@@ -136,6 +139,10 @@ pip_update() {
 main() {
     [ "$1" = "-h" ] || [ "$1" = "--help" ] && {
         usage
+        exit 0
+    }
+    [ "$1" = "-e" ] || [ "$1" = "--edit" ] && {
+        edit_dotfiles
         exit 0
     }
 
