@@ -20,6 +20,7 @@ __pycache__/
 __pycache__/
 *.py[cod]
 *$py.class
+.mypy_cache
 
 # Distribution/packaging
 dist/
@@ -103,4 +104,3 @@ Thumbs.db
 # Logs and databases
 *.log
 *.sqlite
-

@@ -1,3 +1,6 @@
+brew "nushell"
+
+
 #cask "rstudio"               # IDE for R                            ## rm
 #cask "quarto"                # Quarto for data science              ## rm
 cask "pdf-expert"            # PDF viewer                           ## rm
@@ -9,7 +12,6 @@ cask "bbedit"                # Basic Text Editor                    ## rm
 #cask "zen-browser"
 
 cask "neovide"
-brew "rustup"
 # Cask Applications --------------------------
 #cask "utm"                   # Virtual Machine
 cask "carbon-copy-cloner@6"  # Backup software
@@ -40,7 +42,7 @@ cask "r"                     # R Statistical Language               ## docker
 
 brew "texlive"               # LaTeX distribution                   ## docker
 brew "pandoc"                # Document conversion (including LaTeX)## docker
-brew "uv"                    # Python environment management        ## docker
+brew "uv"
 cask "quarto"                # Data science rendering               ## docker
 
 

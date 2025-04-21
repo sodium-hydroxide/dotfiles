@@ -17,6 +17,7 @@ add_to_path "$HOME/dotfiles/bin/alias"
 add_to_path "/usr/local/opt/llvm/bin"
 add_to_path "$HOME/.local/bin"
 add_to_path "$HOME/.local/.venv/bin"
+add_to_path "$HOME/.cargo/bin"
 
 # This requires `brew` to be available already in the path
 brew_tcltk_path="$(/opt/homebrew/bin/brew --prefix tcl-tk 2>/dev/null)/bin"

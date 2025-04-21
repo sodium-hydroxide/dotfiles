@@ -3,7 +3,7 @@
 export BASH_SILENCE_DEPRECATION_WARNING=
 export SHELL="$LOGIN_SHELL"
 export EDITOR="nvim"
-export PAGER="less"
+export PAGER="bat"
 export BROWSER=""
 export LANG="en_US.UTF-8"
 export HISTSIZE=10000
