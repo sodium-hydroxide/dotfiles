@@ -33,7 +33,13 @@ GLOBAL_VENV: Final[Path] = HOME / ".local" / ".venv"
 PYTHON: Final[Path] = GLOBAL_VENV / "bin" / "python"
 
 # Any directory whose name is in this set - or starts with a dot - is NOT a Stow package
-STOW_EXCLUDE: Final[set[str]] = {"bin", "package-list", ".git", ".mypy_cache"}
+STOW_EXCLUDE: Final[set[str]] = {
+    "bin",
+    "package-list",
+    ".git",
+    ".mypy_cache",
+    "scripts",
+}
 
 ARROW: Final[str] = (
     "→" if (enc := sys.stdout.encoding) and "utf" in enc.lower() else "->"
@@ -222,9 +228,7 @@ def ensure_homebrew() -> None:
         return
 
     # 1) Install macOS Command-Line Tools if needed (idempotent)
-    clt_path = subprocess.run(
-        ["xcode-select", "-p"], capture_output=True, text=True
-    )
+    clt_path = subprocess.run(["xcode-select", "-p"], capture_output=True, text=True)
     if clt_path.returncode != 0:
         print(
             f"{ARROW} Installing Xcode Command-Line Tools… (this may pop up a GUI installer)"
@@ -234,10 +238,7 @@ def ensure_homebrew() -> None:
         print(f"{ARROW} Waiting for CLT installation to finish…")
         # Busy-wait until `xcode-select -p` succeeds
         while (
-            subprocess.run(
-                ["xcode-select", "-p"], capture_output=True
-            ).returncode
-            != 0
+            subprocess.run(["xcode-select", "-p"], capture_output=True).returncode != 0
         ):
             pass  # could sleep to be polite, but CLT install typically quick
 
@@ -295,9 +296,7 @@ def pip_update() -> None:
 
     if not PYTHON.exists():
         print(f"{ARROW} Creating global venv at {GLOBAL_VENV}…")
-        run_cmd(
-            ["uv", "venv", "--python", str(SYSTEM_PYTHON), str(GLOBAL_VENV)]
-        )
+        run_cmd(["uv", "venv", "--python", str(SYSTEM_PYTHON), str(GLOBAL_VENV)])
 
     run_cmd([str(PYTHON), "-m", "ensurepip", "--upgrade"])
     run_cmd([str(PYTHON), "-m", "pip", "install", "--upgrade", "pip"])
@@ -343,9 +342,7 @@ def pip_update() -> None:
                 print(f"    {ARROW} Removing {tool}…")
                 run_cmd(["uv", "tool", "uninstall", tool])
     else:
-        print(
-            f"{ARROW} No tool-list file at {PYTOOLS}; skipping CLI tool management."
-        )
+        print(f"{ARROW} No tool-list file at {PYTOOLS}; skipping CLI tool management.")
 
 
 # ---------------------------------------------------------------------------

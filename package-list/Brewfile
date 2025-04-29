@@ -1,6 +1,6 @@
 brew "nushell"
-
-
+cask "kitty"
+cask "arc"
 #cask "rstudio"               # IDE for R                            ## rm
 #cask "quarto"                # Quarto for data science              ## rm
 cask "pdf-expert"            # PDF viewer                           ## rm
@@ -10,6 +10,18 @@ cask "bbedit"                # Basic Text Editor                    ## rm
 #brew "octave"               ## docker
 # cask "libreoffice"
 #cask "zen-browser"
+
+# # Needed to install luakit
+# # git clone https://github.com/luakit/luakit.git
+# # make
+# # sudo make install
+# brew "webkitgtk"
+# brew "lua"
+# brew "glib"
+# brew "gtk+3"
+# cask "utm"
+cask "qutebrowser"
+cask "min"
 
 cask "neovide"
 # Cask Applications --------------------------
@@ -78,3 +90,4 @@ cask "aldente"               # Battery manager
 
 # Fonts --------------------------
 cask "font-jetbrains-mono-nerd-font"  # Nerd font for developers
+
