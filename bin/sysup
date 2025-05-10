@@ -39,6 +39,7 @@ STOW_EXCLUDE: Final[set[str]] = {
     ".git",
     ".mypy_cache",
     "scripts",
+    "locals",
 }
 
 ARROW: Final[str] = (
@@ -352,7 +353,6 @@ def pip_update() -> None:
 
 def parse_args(argv: Union[List[str], None] = None) -> argparse.Namespace:
     parser = argparse.ArgumentParser(
-        prog="update",
         description="Restow dot-files, update Homebrew, sync Python tools, and keep Rust & uv current.",
     )
     parser.add_argument(
@@ -360,6 +360,34 @@ def parse_args(argv: Union[List[str], None] = None) -> argparse.Namespace:
         "--edit",
         action="store_true",
         help="Open the dot-files repository in $EDITOR and exit.",
+    )
+    parser.add_argument(
+        "-s",
+        "--stow",
+        action="store_false",
+        default=True,
+        help="Supress dotfiles updates",
+    )
+    parser.add_argument(
+        "-r",
+        "--rustup",
+        action="store_false",
+        default=True,
+        help="Supress rustup updatep",
+    )
+    parser.add_argument(
+        "-b",
+        "--homebrew",
+        action="store_false",
+        default=True,
+        help="Supress homebrew update",
+    )
+    parser.add_argument(
+        "-p",
+        "--python",
+        action="store_false",
+        default=True,
+        help="Supress python update",
     )
     return parser.parse_args(argv)
 
@@ -377,12 +405,16 @@ def main(argv: Union[List[str], None] = None) -> None:
         edit_dotfiles()
         return
 
-    ensure_homebrew()
-    # ensure_uv()
-    ensure_rust()
-    dotfiles_sync()
-    brew_update()
-    pip_update()
+    if args.homebrew:
+        ensure_homebrew()
+        brew_update()
+    if args.rustup:
+        ensure_rust()
+    if args.stow:
+        dotfiles_sync()
+    if args.python:
+        # ensure_uv()
+        pip_update()
 
     print(f"{CHECK} All done.")
 

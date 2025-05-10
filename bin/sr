@@ -1,0 +1,180 @@
+#!/usr/bin/env python3
+"""
+search_launcher.py – Unified fuzzy search for macOS
+--------------------------------------------------
+
+A self‑contained launcher that merges several macOS data sources and feeds them
+into **fzf**.  Each candidate carries a short **TAG** that tells you where it
+came from, so you can skim the list quickly:
+
+* `[APP]` – Application bundles from Spotlight
+* `[DIR]` – Regular folders inside *~/*
+* `[ZOX]` – Frequently/recenly visited directories tracked by **zoxide**
+* `[PATH]` – Executables found in your `$PATH`
+
+Selecting an item and pressing **Return**:
+* opens **.app** bundles and normal directories in *Finder* (via `open`)
+* launches executables interactively in a new process (backgrounded)
+* prints the chosen path to `stdout` so that wrapper scripts can still capture it
+
+Requirements: macOS, Python ≥3.8, `fzf`. Adding `zoxide` is optional but will
+improve directory relevance.
+"""
+
+from __future__ import annotations
+
+import os
+import pathlib
+import shlex
+import shutil
+import subprocess
+import sys
+from typing import Iterable, Tuple
+
+HOME = pathlib.Path.home()
+
+# ---------------------------------------------------------------------------
+# Helpers that gather (path, tag) pairs
+# ---------------------------------------------------------------------------
+
+
+def get_zoxide_dirs() -> Iterable[Tuple[str, str]]:
+    """Frequently/recently used directories via `zoxide query -ls`."""
+    if not shutil.which("zoxide"):
+        return []
+    try:
+        output = subprocess.check_output(["zoxide", "query", "-ls"], text=True)
+    except subprocess.CalledProcessError:
+        return []
+
+    for line in output.strip().splitlines():
+        try:
+            _score, path = line.split("\t", 1)
+        except ValueError:
+            continue
+        yield path, "ZOX"
+
+
+def get_spotlight_apps() -> Iterable[Tuple[str, str]]:
+    """All *.app bundles indexed by Spotlight."""
+    if not shutil.which("mdfind"):
+        return []
+    try:
+        output = subprocess.check_output(
+            ["mdfind", "kMDItemKind==Application"], text=True
+        )
+    except subprocess.CalledProcessError:
+        return []
+
+    for path in output.strip().splitlines():
+        yield path, "APP"
+
+
+def get_home_dirs(max_depth: int = 2) -> Iterable[Tuple[str, str]]:
+    """Non‑hidden folders inside the user’s home directory (limited depth)."""
+    # We avoid a full recursive walk for performance.
+    for root, dirs, _files in os.walk(HOME):
+        depth = pathlib.Path(root).relative_to(HOME).parts
+        if len(depth) > max_depth:
+            dirs[:] = []  # prune traversal
+            continue
+        for d in dirs:
+            if d.startswith("."):
+                continue  # skip dot‑folders
+            path = os.path.join(root, d)
+            yield path, "DIR"
+
+
+def get_path_bins() -> Iterable[Tuple[str, str]]:
+    """Executables in each component of the user’s $PATH."""
+    seen: set[str] = set()
+    for dir_ in os.getenv("PATH", "").split(os.pathsep):
+        if not dir_:
+            continue
+        try:
+            for entry in os.scandir(dir_):
+                if entry.is_file() and os.access(entry.path, os.X_OK):
+                    if entry.name not in seen:
+                        seen.add(entry.name)
+                        yield entry.path, "PATH"
+        except (FileNotFoundError, PermissionError):
+            continue
+
+
+def build_candidates() -> Iterable[str]:
+    """Compose display lines for fzf: <name>\t[<TAG>]\t<full path>."""
+    for src in (
+        get_spotlight_apps(),
+        get_home_dirs(),
+        get_zoxide_dirs(),
+        get_path_bins(),
+    ):
+        for path, tag in src:
+            name = pathlib.Path(path).stem if tag == "APP" else pathlib.Path(path).name
+            yield f"{name}\t[{tag}]\t{path}"
+
+
+# ---------------------------------------------------------------------------
+# Main routine
+# ---------------------------------------------------------------------------
+
+
+def launch(path: str, tag: str) -> None:
+    """Launch or open the selected path depending on its tag/type."""
+    if tag == "APP" or pathlib.Path(path).is_dir():
+        # open handles both .app bundles and normal folders in Finder
+        subprocess.Popen(["open", path])
+    elif tag == "PATH":
+        # Run executable in the background so the launcher returns immediately.
+        subprocess.Popen([path])
+    else:
+        # Fallback: just open in the default way
+        subprocess.Popen(["open", path])
+
+
+def main() -> None:
+    fzf = shutil.which("fzf")
+    if not fzf:
+        sys.stderr.write("fzf not found in PATH – please install it first.\n")
+        sys.exit(1)
+
+    fzf_cmd = [
+        fzf,
+        "--prompt",
+        "Search: ",
+        "--with-nth",
+        "1,2",
+        "--delimiter",
+        "\t",
+        "--preview",
+        "awk -F'\t' '{print $3}' <<< {}",
+    ]
+
+    proc = subprocess.Popen(
+        fzf_cmd,
+        stdin=subprocess.PIPE,
+        stdout=subprocess.PIPE,  # <-- capture selection!
+        text=True,
+    )
+
+    for line in build_candidates():
+        proc.stdin.write(line + "\n")
+    proc.stdin.close()
+
+    selected, _ = proc.communicate()
+
+    if proc.returncode == 0 and selected:
+        parts = selected.rstrip("\n").split("\t")
+        if len(parts) < 3:
+            sys.exit(1)
+        name, tag_field, path = parts
+        tag = tag_field.strip("[]")
+        print(path)
+        launch(path, tag)
+        sys.exit(0)
+    else:
+        sys.exit(1)
+
+
+if __name__ == "__main__":
+    main()

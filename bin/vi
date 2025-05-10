@@ -199,7 +199,7 @@ def build_nvim_command(directory: Path, args: ProcessedArgs) -> List[str]:
 
     # GUI‑specific post‑load commands -----------------------------------------
     if args.gui:
-        cmd.extend(["-c", "TermHorizontal", "-c", "TreeToggle"])
+        cmd.extend(["-c", "TermHorizontal", "-c", "TreeToggle", "-c", "wincmd l"])
 
     # Final positional (file or directory) -------------------------------------
     if args.filepath is not None:
@@ -219,9 +219,7 @@ def main() -> int:
     cmd = build_nvim_command(directory, parsed)
 
     try:
-        return subprocess.run(
-            cmd, check=False
-        ).returncode  # propagate exit‑code
+        return subprocess.run(cmd, check=False).returncode  # propagate exit‑code
     except KeyboardInterrupt:
         return 130  # standard Ctrl‑C exit status
     except Exception as exc:  # pylint: disable=broad-except
