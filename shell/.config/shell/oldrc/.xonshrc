@@ -18,3 +18,8 @@ def lf(*args, **kwargs):
     if pathlib.Path(newdir).is_dir():
         os.chdir(newdir)
 aliases['lf'] = lf
+
+# Setup zoxide
+#execx($(zoxide init xonsh), 'exec', __xonsh__.ctx, filename='zoxide')
+xontrib load zoxide
+
