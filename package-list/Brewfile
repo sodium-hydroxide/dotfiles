@@ -1,35 +1,11 @@
-brew "nushell"
-cask "kitty"
-cask "arc"
-#cask "rstudio"               # IDE for R                            ## rm
-#cask "quarto"                # Quarto for data science              ## rm
-cask "pdf-expert"            # PDF viewer                           ## rm
-cask "microsoft-teams"       # Collaboration and communication      ## rm
-cask "bbedit"                # Basic Text Editor                    ## rm
-#brew "kiwix"                    # Wikipedia client
-#brew "octave"               ## docker
-# cask "libreoffice"
-#cask "zen-browser"
-
-# # Needed to install luakit
-# # git clone https://github.com/luakit/luakit.git
-# # make
-# # sudo make install
-# brew "webkitgtk"
-# brew "lua"
-# brew "glib"
-# brew "gtk+3"
-# cask "utm"
-cask "qutebrowser"
-cask "min"
-
-cask "neovide"
 # Cask Applications --------------------------
-#cask "utm"                   # Virtual Machine
+cask "arc"
 cask "carbon-copy-cloner@6"  # Backup software
 cask "skim"                  # Lightweight PDF Viewer
+cask "pdf-expert"            # PDF viewer                           ## rm
 cask "raycast"               # Productivity tool
 cask "iterm2"                # Terminal emulator
+cask "ghostty"               # Terminal emulator
 cask "calibre"               # Library for Books
 cask "zotero"                # Library for Academic Documents
 cask "backblaze"             # Cloud backup service
@@ -37,41 +13,46 @@ cask "vlc"                   # Media Viewer
 cask "freetube"              # YouTube Client
 cask "transmission"          # Torrent client
 cask "visual-studio-code"    # IDE
-brew "biber"
+
+brew "nushell"
+
+cask "nikitabobko/tap/aerospace"
+
 # Development Tools --------------------------
 brew "git"                   # Version Control
 brew "git-lfs"               # VCS for Large Files
 brew "gh"                    # GitHub CLI
 brew "lazygit"               # Git Interface
 cask "docker"                # Container management
-brew "gcc"                   # GNU Compiler Collection
-
 
 # Languages --------------------------
-#brew "bash"                  # Bash shell (macOS version is outdated)
 brew "node"
-cask "r"                     # R Statistical Language               ## docker
-
-brew "texlive"               # LaTeX distribution                   ## docker
-brew "pandoc"                # Document conversion (including LaTeX)## docker
+brew "gcc"                   # GNU Compiler Collection
+brew "texlive"               # LaTeX distribution
+brew "biber"
+brew "latexindent"
+brew "pandoc"                # Document conversion (including LaTeX)
+cask "quarto"
 brew "uv"
-cask "quarto"                # Data science rendering               ## docker
-
+brew "mdcat"                 # Markdown to terminal viewer
 
 # CLI Programs --------------------------
 brew "lf"                    # File browser
+brew "zoxide"                # CD with fuzzy finder
 brew "yazi"                  # File renaming tool
 brew "massren"               # Mass file renaming
 brew "fd"                    # Fast file search (alternative to find)
 brew "bat"                   # Better cat (view files with syntax highlighting)
+brew "eza"                   # Alternative to ls
 brew "chafa"                 # Image preview in the terminal
 brew "libsixel"              # Image preview for Zellij
 brew "mediainfo"             # Media metadata tool
 brew "file"                  # File type detection
 brew "neovim"                # Modern Vim
+brew "imagemagick"
+brew "luajit"
 brew "tmux"                  # Terminal Multiplexer
 brew "w3m"                   # Text-based web browser
-brew "mdcat"                 # Markdown to terminal viewer
 brew "mpv"                   # Media player
 brew "ripgrep"               # Fast search tool (similar to grep)
 brew "fzf"                   # Fuzzy finder for files and text
