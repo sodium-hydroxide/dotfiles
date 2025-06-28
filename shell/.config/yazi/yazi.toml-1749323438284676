@@ -1,0 +1,8 @@
+[manager]
+show_hidden = true
+
+# In ~/.config/yazi/keymap.toml
+[[manager.prepend_keymap]]
+on = [ "q" ]
+run = "shell 'echo $PWD > ~/.yazi-cwd' --confirm"
+desc = "Save current directory and quit"

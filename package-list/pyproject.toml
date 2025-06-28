@@ -11,6 +11,16 @@ dependencies = [
   "scipy>=1.15.2",
   # Manage build systems in python
   "buildmgr==0.1.1",
+  #
+  "jupytext",
+  #
+  "xonsh",
+  "xonsh[full]",
+  "xontrib-kitty",
+  "xontrib-pipeliner",
+  "xontrib-sh",
+  "tool>=0.8.0",
+  "jupyterlab>=1.1.1",
 ]
 
 [build-system]
