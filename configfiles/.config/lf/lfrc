@@ -1,0 +1,100 @@
+# Basic settings
+set drawbox true
+set icons true
+set period 1
+set hidden true
+set previewer ~/.config/lf/preview
+set cleaner ~/.config/lf/cleaner
+
+# Enable icons with Nerd Font
+set icons true
+
+# Icon rules (examples - add more as needed)
+set ifs "\n"
+set filesep "\n"
+
+# Border characters for box drawing
+set promptfmt "\033[32;1m%u@%h\033[0m:\033[34;1m%d\033[0m\033[1m%f\033[0m"
+set borderfmt "\033[34;1m"
+set drawboxchars "├─┤│┼┌┐└┘"
+
+# Key bindings
+map <enter> shell
+map x cut
+map y copy
+map p paste
+map d delete
+map . set hidden!
+map <esc> quit
+map R massren  # Add a keybinding for massren
+
+# Custom commands
+cmd open ${{
+    case $(file --mime-type "$f" -b) in
+        text/*) $EDITOR "$f";;
+        *) open "$f" ;;
+    esac
+}}
+
+# Massren command that works in current directory
+cmd massren ${{
+    massren -r .
+}}
+
+# File operations
+cmd mkdir ${{
+  printf "Directory Name: "
+  read ans
+  mkdir $ans
+}}
+
+cmd mkfile ${{
+  printf "File Name: "
+  read ans
+  touch $ans
+}}
+
+# File icons (add more as needed)
+set diricons "\
+    *:..\
+    di:\
+    fi:\
+    ln:\
+    or:\
+    ex:\
+    *.txt:\
+    *.md:\
+    *.json:\
+    *.yml:\
+    *.yaml:\
+    *.toml:\
+    *.conf:\
+    *.cfg:\
+    *.git:\
+    *.py:\
+    *.js:\
+    *.html:\
+    *.css:\
+    *.sh:\
+    *.bash:\
+    *.zsh:\
+    *.vim:\
+    *.jpg:\
+    *.jpeg:\
+    *.png:\
+    *.gif:\
+    *.svg:\
+    *.mp3:\
+    *.mp4:\
+    *.pdf:\
+    *.zip:\
+    *.tar:\
+    *.gz:\
+    *.7z:\
+    *.doc:\
+    *.docx:\
+    *.xls:\
+    *.xlsx:\
+    *.ppt:\
+    *.pptx:\
+"

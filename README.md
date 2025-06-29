@@ -38,4 +38,3 @@ The `shell` directory contains the `.profile` which sources scripts to set the
 drop into `$INTERACTIVE_SHELL`. It is advised that `$LOGIN_SHELL` is a POSIX
 complient shell, such as `sh` or `dash`. It is alright if `bash` is used, but as
 it is a superset of `sh`, but it may be slower for certain scripts.
-

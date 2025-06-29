@@ -1,0 +1,148 @@
+
+{
+  "begin_equation": {
+    "prefix": "beq",
+    "body": [
+      "\\begin{equation}",
+      "\t$0",
+      "\\end{equation}"
+    ],
+    "description": "Equation environment"
+  },
+  "begin_figure": {
+    "prefix": "bfig",
+    "body": [
+      "\\begin{figure}",
+      "\t$0",
+      "\\end{figure}"
+    ],
+    "description": "Figure environment"
+  },
+  "begin_matrix": {
+    "prefix": "bmat",
+    "body": [
+      "\\begin{matrix}",
+      "\t$0",
+      "\\end{matrix}"
+    ],
+    "description": "Matrix environment"
+  },
+  "begin_aligned": {
+    "prefix": "bali",
+    "body": [
+      "\\begin{aligned}",
+      "\t$0",
+      "\\end{aligned}"
+    ],
+    "description": "Aligned environment"
+  },
+  "begin_table": {
+    "prefix": "btab",
+    "body": [
+      "\\begin{table}",
+      "\t$0",
+      "\\end{table}"
+    ],
+    "description": "Table environment"
+  },
+  "begin_center": {
+    "prefix": "bcent",
+    "body": [
+      "\\begin{center}",
+      "\t$0",
+      "\\end{center}"
+    ],
+    "description": "Center environment"
+  },
+  "begin_document": {
+    "prefix": "bdoc",
+    "body": [
+      "\\begin{document}",
+      "\t$0",
+      "\\end{document}"
+    ],
+    "description": "Document environment"
+  },
+  "left_right_parens": {
+    "prefix": "lr(",
+    "body": [
+      "\\left(",
+      "\t$0",
+      "\\right)"
+    ],
+    "description": "Left/right parentheses"
+  },
+  "left_right_brackets": {
+    "prefix": "lr[",
+    "body": [
+      "\\left[",
+      "\t$0",
+      "\\right]"
+    ],
+    "description": "Left/right brackets"
+  },
+  "left_right_braces": {
+    "prefix": "lr{",
+    "body": [
+      "\\left\\{",
+      "\t$0",
+      "\\right\\}"
+    ],
+    "description": "Left/right braces"
+  },
+  "left_right_pipes": {
+    "prefix": "lr|",
+    "body": [
+      "\\left|",
+      "\t$0",
+      "\\right|"
+    ],
+    "description": "Left/right absolute value bars"
+  },
+  "rbrak": {
+    "prefix": "rbrak",
+    "body": [
+      "\\left(",
+      "\t$0",
+      "\\right)"
+    ],
+    "description": "Round brackets (parentheses)"
+  },
+  "sbrak": {
+    "prefix": "sbrak",
+    "body": [
+      "\\left[",
+      "\t$0",
+      "\\right]"
+    ],
+    "description": "Square brackets"
+  },
+  "cbrak": {
+    "prefix": "cbrak",
+    "body": [
+      "\\left\\{",
+      "\t$0",
+      "\\right\\}"
+    ],
+    "description": "Curly brackets (braces)"
+  },
+  "abrak": {
+    "prefix": "abrak",
+    "body": [
+      "\\left\\langle",
+      "\t$0",
+      "\\right\\rangle"
+    ],
+    "description": "Angle brackets"
+  },
+  "lbrak": {
+    "prefix": "lbrak",
+    "body": [
+      "\\left|",
+      "\t$0",
+      "\\right|"
+    ],
+    "description": "Line brackets (absolute value)"
+  }
+}
+

@@ -1,0 +1,37 @@
+#!/bin/sh
+
+# File preview handler for lf
+
+case "$(file --mime-type "$1" -b)" in
+    text/*|application/json|application/javascript|application/x-yaml)
+        bat --color always "$1";;
+    image/*)
+        if [ "$TERM" = "xterm-kitty" ]; then
+            kitten icat --silent --stdin=no --transfer-mode=file "$1"
+        elif [ "$TERM_PROGRAM" = "zellij" ]; then
+            img2sixel "$1"
+        else
+            chafa "$1"
+        fi;;
+    video/*)
+        mediainfo "$1";;
+    application/pdf)
+        if [ "$TERM" = "xterm-kitty" ]; then
+            pdftoppm -png -f 1 -singlefile "$1" /tmp/preview
+            kitten icat --silent --stdin=no --transfer-mode=file /tmp/preview.png
+            rm /tmp/preview.png
+        elif [ "$TERM_PROGRAM" = "zellij" ]; then
+            pdftoppm -png -f 1 -singlefile "$1" /tmp/preview
+            img2sixel /tmp/preview.png
+            rm /tmp/preview.png
+        else
+            pdftotext "$1" -
+        fi;;
+    application/zip)
+        unzip -l "$1";;
+    application/x-tar|application/x-gzip)
+        tar tf "$1";;
+    *)
+        file -b "$1";;
+esac
+

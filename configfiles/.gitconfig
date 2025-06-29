@@ -1,0 +1,16 @@
+[user]
+	email = 43483259+sodium-hydroxide@users.noreply.github.com
+	name = Noah Blair
+[init]
+	defaultBranch = main
+	templateDir = /Users/noa3hjb/.config/git/template
+[core]
+	excludesfile = ~/.gitignore_global
+[http]
+	postBuffer = 524288000
+	maxRequestBuffer = 1048576000
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true

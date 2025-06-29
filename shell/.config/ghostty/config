@@ -1,6 +1,0 @@
-theme = github-light-default
-font-family = "JetBrains Mono"
-font-size   = 15
-keybind = global:alt+space=toggle_quick_terminal
-window-width  = 120
-window-height = 30
