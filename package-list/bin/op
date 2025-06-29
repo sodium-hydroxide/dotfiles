@@ -1,0 +1,100 @@
+#!/bin/sh
+
+set -e
+
+OPEN_CMD=/usr/bin/open
+CODE_CMD=/opt/homebrew/bin/code
+TERMINAL_CMD='open -na Ghostty --args'
+VI_CMD="$TERMINAL_CMD nvim"
+
+usage() {
+  cat <<-EOF
+usage: op [options] [file|directory|command ...]
+
+Open files, folders, or run commands from macOS terminal.
+
+options
+  -h, --help
+      Print this help and exit
+
+  -t, --term [cmd ...]
+      ─ Without args: open a new Ghostty window at \$PWD
+      ─ With args:    open a new Ghostty window and run the given command
+
+  -n, --nvim [file|directory]
+      Open the given file or directory in Neovim inside a new Ghostty window.
+      If no path is given, opens Neovim in \$PWD.
+
+  -c, --vscode [file|directory]
+      Open the given file or directory in VSCode.
+      If no path is given, opens VSCode \$PWD.
+EOF
+}
+
+# —── Parse Flags ─────────────────────────────────────
+MODE="open"
+if [ $# -ge 1 ]; then
+  case "$1" in
+  -h | --help)
+    usage
+    exit 0
+    ;;
+  -t | --term)
+    MODE="term"
+    shift
+    ;;
+  -n | --nvim)
+    MODE="nvim"
+    shift
+    ;;
+  -a | --app)
+    MODE="application"
+    shift
+    ;;
+    ;;
+  -c | --code)
+    MODE="nvim"
+    shift
+    ;;
+  esac
+fi
+
+# —── Dispatch ────────────────────────────────────────
+case "$MODE" in
+
+term)
+  # If command args remain, run them; otherwise just spawn a shell
+  if [[ $# -gt 0 ]]; then
+    # e.g. op -t python -q
+    $TERMINAL_CMD --working-directory="$PWD" -e "$@"
+  else
+    # e.g. op -t
+    $TERMINAL_CMD --working-directory="$PWD"
+  fi
+  ;;
+
+nvim)
+  # Determine target path (defaults to PWD)
+  TARGET=${1:-$PWD}
+  # cd into its directory, then open the file/dir in nvim
+  DIR=$([ -d "$TARGET" ] && echo "$TARGET" || dirname "$TARGET")
+  $TERMINAL_CMD --working-directory="$DIR" -e $VI_CMD "$TARGET"
+  ;;
+
+code)
+  # Determine target path
+  TARGET=${1:-$PWD}
+  $CODE_CMD "$TARGET"
+  ;;
+open)
+  # Default: hand off to macOS `open`
+  TARGET=${1:-$PWD}
+  $OPEN_CMD "$TARGET"
+  ;;
+
+*)
+  # Fallback (shouldn't happen)
+  usage >&2
+  exit 1
+  ;;
+esac

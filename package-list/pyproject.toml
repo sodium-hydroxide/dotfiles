@@ -1,6 +1,6 @@
 [project]
-name        = "global-tools"
-version     = "0.1.0"
+name = "global-tools"
+version = "0.1.0"
 description = "Global Python CLI tools and libraries"
 dependencies = [
   # Fun CLI Tool I wrote
@@ -9,19 +9,20 @@ dependencies = [
   "numpy>=2.2.4",
   "matplotlib>=3.10.1",
   "scipy>=1.15.2",
-  # Python Based Shell
-  "xonsh>=0.19.3",
-  "packaging>=24.2",
-  "Pillow>=11.2.1",
-  "cycler>=0.12.1",
-  "gnureadline>=8.2.13",
-  # Functional Programming for Python
-  "coconut[all]>=3.1.2",
-  # Python with braces
-  "bython>=0.0.8"
+  # Manage build systems in python
+  "buildmgr==0.1.1",
+  #
+  "jupytext",
+  #
+  "xonsh",
+  "xonsh[full]",
+  "xontrib-kitty",
+  "xontrib-pipeliner",
+  "xontrib-sh",
+  "tool>=0.8.0",
+  "jupyterlab>=1.1.1",
 ]
 
 [build-system]
-requires    = ["setuptools>=61.0", "wheel"]
+requires = ["setuptools>=61.0", "wheel"]
 build-backend = "setuptools.build_meta"
-

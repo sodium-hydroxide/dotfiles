@@ -1,5 +1,0 @@
-#!/bin/sh
-
-# Clean up the preview when switching files
-clear
-

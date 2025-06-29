@@ -1,4 +1,0 @@
-jupyter-core
-lsdir
-radian
-euporie

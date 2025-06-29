@@ -1,0 +1,72 @@
+#!/bin/sh
+# lfcd – run lf(1) and print a “cd <dir>” command for the caller.
+# Works with lf   r29+   (option -print-last-dir).
+#
+# Use:  eval "$(lfcd [lf‑options] …)"
+#
+# POSIX compliant – no bashisms, no external utilities other than lf.
+
+print_help() {
+cat <<'EOF'
+lfcd – wrapper that lets lf change the current shell’s directory
+Usage:
+  eval "$(lfcd [lf options …])"
+
+lfcd runs `lf -print-last-dir`, captures the directory you end in,
+and prints a single line        cd <that-directory>
+The surrounding eval (or function/alias) executes that line IN *THIS*
+shell process, so $PWD really changes.
+
+───────────────────────────────────────────────────────────────────────
+ADD THIS ALIAS / FUNCTION TO YOUR SHELL
+───────────────────────────────────────────────────────────────────────
+# POSIX sh, bash, zsh, dash, ksh …            (rc/alias variant)
+alias lf='eval "$(lfcd)"'
+
+# bash or zsh (function variant – avoids eval)
+lf() { cd "$(command lf -print-last-dir "$@")"; }
+
+# nushell  (config.nu or login.nu)
+def lf [...args] {
+  let dir = ( ^lf -print-last-dir $args )
+  cd $dir
+}
+
+# xonsh  (~/.xonshrc)
+def lf(*args, **kwargs):
+    import subprocess, os, pathlib, shlex
+    newdir = subprocess.check_output(
+        ["lf", "-print-last-dir", *args], text=True).strip()
+    if pathlib.Path(newdir).is_dir():
+        os.chdir(newdir)
+aliases['lf'] = lf
+
+# PowerShell  ($PROFILE)
+function lf { Set-Location (& lf.exe -print-last-dir @Args) }
+
+# csh / tcsh  (~/.cshrc or ~/.tcshrc)
+alias lf 'cd "`lfcd \!* | tail -1`"'
+
+───────────────────────────────────────────────────────────────────────
+HINTS
+ • Put the alias/function in the *interactive* rc file of each shell.
+ • If your lf is not on $PATH, set the environment variable  LFCMD.
+ • lf must be at least release r29 (May 2024) so that -print-last-dir exists.
+EOF
+}
+
+# ----- main -----------------------------------------------------------
+case "$1" in
+  -h|--help) print_help; exit 0 ;;
+esac
+
+LF=${LFCMD:-lf}                       # allow override via $LFCMD
+command -v "$LF" >/dev/null 2>&1 || {
+    echo "lfcd: \"$LF\" not found" >&2
+    exit 127
+}
+
+dir=$("$LF" -print-last-dir "$@") || exit      # lf exit status propagates
+[ -d "$dir" ] || exit 0                        # nothing to do
+printf 'cd %s\n' "$dir"
+
