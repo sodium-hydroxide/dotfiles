@@ -1,0 +1,63 @@
+config.toml
+languages.toml
+snippets/
+test.txt
+themes/
+
+./snippets:
+latex.json
+
+./themes:
+github_light.toml
+theme = "github_light"
+[[language]]
+name = "python"
+language-servers = ["pyright", "ruff"]
+auto-format = true
+
+[language.formatter]
+command = "ruff"
+args = ["format", "--line-length=79", "--preview"]
+
+[[language-server.pyright]]
+command = "pyright-langserver"
+args = ["--stdio"]
+timeout = 30
+root-uri = "file://"
+
+[[language-server.ruff]]
+command = "ruff"
+args = ["server", "--preview"]
+timeout = 10
+
+[language-server.ruff.config]
+settings = { lineLength = 79, extendSelect = ["ALL"], format = true, organizeImports = true }
+
+[[language]]
+name = "bash"
+language-servers = ["shellcheck"]
+auto-format = true
+
+[language.formatter]
+command = "shfmt"
+args = ["-i", "4", "-ci"]
+
+[[language-server.shellcheck]]
+command = "shellcheck-lsp"
+timeout = 10
+
+[[language]]
+name = "latex"
+language-servers = ["texlab", "hx-lsp"]
+auto-format = true
+
+[language.formatter]
+command = "latexindent"
+args = ["-l"]
+
+[[language-server.texlab]]
+command = "texlab"
+
+[[language-server.hx-lsp]]
+command = "hx-lsp"
+

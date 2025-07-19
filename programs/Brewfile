@@ -1,0 +1,58 @@
+cask_args appdir: "~/Applications"
+
+# Essentials
+cask "macvim-app"
+brew "bash"
+brew "stow"
+cask "sublime-text"
+# Cask Applications --------------------------
+brew "mas"
+mas "Front and Center", id: 1493996622
+mas "Hyperspace", id: 6739505345
+cask "utm"
+cask "carbon-copy-cloner@6"   # Backup software
+cask "calibre"                # Library for Books
+cask "zotero"                 # Library for Academic Documents
+cask "backblaze"              # Cloud backup service
+cask "vlc"                    # Media Viewer
+cask "freetube"               # YouTube Client
+cask "skim"                   # Lightweight PDF Viewer
+cask "transmission"           # Torrent client
+cask "geogebra"
+cask "docker-desktop"        # Container management
+cask "libreoffice"
+cask "hiddenbar"             # Hide icons in the menu bar
+cask "grandperspective"      # Disk space viewer
+cask "mission-control-plus"  # Window management tool
+cask "xquartz"               # X Window System support
+cask "aldente"
+cask "dmenu-mac"
+cask "visual-studio-code"     # IDE
+
+# Utilities
+brew "ffmpeg"
+brew "yt-dlp"
+
+# Dev tools
+brew "git-lfs"               # VCS for Large Files
+brew "gh"                    # GitHub CLI
+
+# C
+brew "autoconf" 
+brew "llvm"
+brew "gcc"
+
+# Tex
+cask "quarto"
+brew "texlive"               # LaTeX distribution
+brew "texlab"                # LSP
+brew "biber"
+brew "latexindent"
+brew "pandoc"                # Document conversion (including LaTeX)
+
+# Python
+#brew "black"                 # Formatter
+# brew "pyright"               # LSP
+# brew "python3"
+
+

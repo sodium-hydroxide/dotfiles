@@ -1,0 +1,95 @@
+#!/usr/bin/env python3
+import os
+import subprocess
+from collections.abc import Callable
+from pathlib import Path
+from typing import TypedDict, Union
+
+DMENU = os.path.join(
+    os.environ.get("HOMEBREW_PREFIX", "/opt/homebrew"), "bin", "dmenu-mac"
+)
+XDG_CONFIG_HOME = Path(
+    os.environ.get("XDG_CONFIG_HOME", Path.home() / ".config")
+)
+
+
+class Process(TypedDict):
+    input_str: str
+    command_prefix: str
+
+
+ProcessFunction = Callable[[], Process]
+
+
+def pipe(
+    input_str: str, command_prefix: str = "", return_str: bool = False
+) -> Union[str, None]:
+    """Pipe a multiline string into mac-menu and run selected item."""
+    try:
+        result = subprocess.run(
+            [DMENU], input=input_str, text=True, capture_output=True, check=True
+        )
+        selection = result.stdout.strip()
+        if not selection:
+            return None
+
+        if return_str:
+            return selection
+
+        full_command = (
+            command_prefix.split() + [selection]
+            if command_prefix
+            else [selection]
+        )
+        subprocess.run(full_command)
+    except subprocess.CalledProcessError as e:
+        print(f"Error: {e}")
+    return None
+
+
+def applications() -> Process:
+    apps: list[str] = []
+    for dir_path in ["/Applications", str(Path.home() / "Applications")]:
+        if os.path.isdir(dir_path):
+            for entry in os.listdir(dir_path):
+                if entry.endswith(".app"):
+                    apps.append(entry)
+    apps.sort()  # Sort alphabetically
+    return {"input_str": "\n".join(apps), "command_prefix": "open -a"}
+
+
+def bookmarks() -> Process:
+    bookmarks_path = XDG_CONFIG_HOME / "bookmarks" / "bookmarks.txt"
+    if not bookmarks_path.exists():
+        print(f"Bookmark file not found: {bookmarks_path}")
+        return {"input_str": "", "command_prefix": ""}
+    with bookmarks_path.open() as f:
+        bookmarks_values = f.read()
+    return {"input_str": bookmarks_values, "command_prefix": "pbcopy"}
+
+
+def path() -> Process:
+    path = {Path(x) for x in os.environ["PATH"].splitlines()}
+    items = {y for x in path for y in x.glob("*")}
+
+
+class AllProcesses(TypedDict):
+    applications: ProcessFunction
+    bookmarks: ProcessFunction
+
+
+def main():
+    all_processes: AllProcesses = {
+        "applications": applications,
+        "bookmarks": bookmarks,
+    }
+
+    selection = pipe("\n".join(all_processes.keys()), return_str=True)
+    if selection and selection in all_processes:
+        pipe(**all_processes[selection]())
+    else:
+        print("No valid selection made.")
+
+
+if __name__ == "__main__":
+    main()

@@ -168,5 +168,9 @@
   "telemetry.feedback.enabled": false,
   "chat.agent.enabled": false,
   "chat.commandCenter.enabled": false,
-  "chat.extensionTools.enabled": false
+  "chat.extensionTools.enabled": false,
+  "python.analysis.inlayHints.callArgumentNames": "partial",
+  "python.analysis.typeEvaluation.deprecateTypingAliases": true,
+  "python.analysis.inlayHints.variableTypes": true,
+  "security.workspace.trust.untrustedFiles": "open"
 }

@@ -1,0 +1,48 @@
+name = "github_light"
+
+[palette]
+bg         = "#ffffff"
+fg         = "#24292f"
+cursor     = "#24292f"
+selection  = "#c8e1ff"
+comment    = "#6a737d"
+keyword    = "#d73a49"
+function   = "#6f42c1"
+string     = "#032f62"
+type       = "#005cc5"
+variable   = "#e36209"
+constant   = "#005cc5"
+operator   = "#d73a49"
+attribute  = "#6f42c1"
+namespace  = "#22863a"
+number     = "#005cc5"
+markup     = "#24292f"
+
+[ui]
+background = "bg"
+foreground = "fg"
+cursorline = "#f6f8fa"
+selection  = "#c8e1ff"
+cursor     = "cursor"
+
+[editor]
+foreground = "fg"
+background = "bg"
+caret      = "cursor"
+selection = "#c8e1ff"
+line_number = "#d1d5da"
+line_number_selected = "#24292f"
+
+[syntax]
+comment    = "comment"
+keyword    = "keyword"
+function   = "function"
+string     = "string"
+type       = "type"
+variable   = "variable"
+constant   = "constant"
+operator   = "operator"
+attribute  = "attribute"
+namespace  = "namespace"
+number     = "number"
+markup     = "markup"
